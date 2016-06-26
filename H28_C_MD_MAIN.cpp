@@ -49,21 +49,23 @@ class C_MD_MAIN
 	
 	sint _mem_md_main_pwm_revis :6;
 	
+	E_LOGIC _mem_md_main_nf_turn :1;
+	
 	#define MD_DATA_NUM_0 0
 	#define MD_DATA_NUM_1 1
 	
 	public:
 
 	C_MD_MAIN()	{}
-	C_MD_MAIN(const T_NUM , const T_NUM ,const sint);
+	C_MD_MAIN(T_NUM ,T_NUM ,E_LOGIC ,sint);
 	
 	void Chan_md(T_NUM );
 	
 	void Out(C_UART_T &);
-	void Set_data(const E_SIG,const T_PWM,const E_LOGIC);
-	void Set_pwm(const T_PWM );
-	void Set_sig(const E_SIG );
-	void Set_steps(const E_LOGIC );
+	void Set_data(E_SIG ,T_PWM ,E_LOGIC);
+	void Set_pwm(T_PWM );
+	void Set_sig(E_SIG );
+	void Set_steps(E_LOGIC );
 	void Set_pwm_revis(sint );
 	
 	T_DATA Ret_data_0()	{	return _mem_md_main_data_0.md_0_data;	}
@@ -72,11 +74,11 @@ class C_MD_MAIN
 	T_NUM Ret_num_mdc()	{	return _mem_md_main_data_0.md_0_data_bit.md_0_num_mdc;	}
 	T_NUM Ret_num_md()	{	return _mem_md_main_data_0.md_0_data_bit.md_0_num_md;	}
 	E_SIG Ret_sig()		{	return _mem_md_main_data_0.md_0_data_bit.md_0_sig_mode;	}
-	T_PWM Ret_pwm()		{	return _mem_md_main_data_1.md_1_data_bit.md_1_pwm_value;	}
+	T_PWM Ret_pwm()		{	return _mem_md_main_data_1.md_1_data_bit.md_1_pwm_value;}
 	E_LOGIC Ret_steps()	{	return _mem_md_main_data_0.md_0_data_bit.md_0_nf_steps;	}
 };
 
-inline C_MD_MAIN::C_MD_MAIN(T_NUM _arg_md_main_num_mdc, T_NUM _arg_md_main_num_md ,sint _arg_md_main_pwm_revis = 0)
+inline C_MD_MAIN::C_MD_MAIN(T_NUM _arg_md_main_num_mdc, T_NUM _arg_md_main_num_md ,E_LOGIC _arg_md_main_nf_turn = FALES ,sint _arg_md_main_pwm_revis = 0)
 {
 	_mem_md_main_data_0.md_0_data_bit.md_0_num_mdc = _arg_md_main_num_mdc;
 	_mem_md_main_data_1.md_1_data_bit.md_1_num_mdc = _arg_md_main_num_mdc;
@@ -90,6 +92,8 @@ inline C_MD_MAIN::C_MD_MAIN(T_NUM _arg_md_main_num_mdc, T_NUM _arg_md_main_num_m
 	_mem_md_main_data_0.md_0_data_bit.md_0_without = 0;
 	
 	_mem_md_main_pwm_revis = _arg_md_main_pwm_revis;
+	
+	_mem_md_main_nf_turn = _arg_md_main_nf_turn;
 }
 
 inline void C_MD_MAIN::Chan_md(T_NUM  _arg_md_main_num_md)
@@ -103,14 +107,14 @@ inline void C_MD_MAIN::Set_pwm(T_PWM _arg_md_main_pwm_value)
 	_mem_md_main_data_1.md_1_data_bit.md_1_pwm_value = _arg_md_main_pwm_value;
 }
 
-inline void C_MD_MAIN::Set_sig(const E_SIG _arg_md_main_sig_mode)
+inline void C_MD_MAIN::Set_sig(E_SIG _arg_md_main_sig_mode)
 {
 	if (CHECK_MOVE(_arg_md_main_sig_mode) == FALES)	_mem_md_main_data_1.md_1_data_bit.md_1_pwm_value = 0;
 	
 	_mem_md_main_data_0.md_0_data_bit.md_0_sig_mode = _arg_md_main_sig_mode;
 }
 
-inline void C_MD_MAIN::Set_steps(const E_LOGIC _arg_md_main_nf_steps = TRUE)
+inline void C_MD_MAIN::Set_steps(E_LOGIC _arg_md_main_nf_steps = TRUE)
 {
 	_mem_md_main_data_0.md_0_data_bit.md_0_nf_steps = _arg_md_main_nf_steps;
 }
@@ -130,6 +134,8 @@ inline void C_MD_MAIN::Set_data(E_SIG _arg_md_main_sig_mode, T_PWM _arg_md_main_
 void C_MD_MAIN::Out(C_UART_T &_arg_md_main_uart_t)
 {
 	if (_mem_md_main_data_1.md_1_data_bit.md_1_pwm_value != 0) _mem_md_main_data_1.md_1_data_bit.md_1_pwm_value += _mem_md_main_pwm_revis;
+	
+	if (_mem_md_main_nf_turn == TRUE)	_mem_md_main_data_0.md_0_data_bit.md_0_sig_mode = TURN_SIG_ROTATE(_mem_md_main_data_0.md_0_data_bit.md_0_sig_mode);
 	
 	_arg_md_main_uart_t.Set_bit9(TRUE);
 	
