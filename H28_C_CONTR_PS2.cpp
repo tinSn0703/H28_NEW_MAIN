@@ -89,6 +89,8 @@ class C_CONTR_ps2
 //protected
 inline E_LOGIC C_CONTR_ps2::Set_data(T_DATA _arg_contr_ps2_data)
 {
+	if (_arg_contr_ps2_data == IN_ERROR)	return FALES;
+	
 	static usint _sta_num[CON_BYTE_UART] = {0,1,2,3};
 	usint _temp_num = ((_arg_contr_ps2_data >> 6) & 0b11);
 	
@@ -163,7 +165,16 @@ void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 	
 	E_LOGIC flag = FALES;
 	
-	while (flag == FALES)	flag = Set_data(_arg_contr_ps2_uart_r.In());
+	usint i = 0;
+	
+	while (flag == FALES)	
+	{		
+		flag = Set_data(_arg_contr_ps2_uart_r.In());
+		
+		if (i == 15)	break;
+		
+//		i++;
+	}
 }
 
 void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
