@@ -173,7 +173,7 @@ void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 		
 		if (i == 15)	break;
 		
-//		i++;
+		i++;
 	}
 }
 
@@ -192,7 +192,16 @@ void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 	
 	E_LOGIC flag = FALES;
 	
-	while (flag == FALES)	flag = Set_data(_arg_contr_ps2_uart_r2.In());
+	usint i = 0;
+	
+	while (flag == FALES)
+	{
+		flag = Set_data(_arg_contr_ps2_uart_r2.In());
+		
+		if (i == 15)	break;
+		
+		i++;
+	}
 }
 
 inline void C_CONTR_ps2::Reset()
