@@ -187,7 +187,7 @@ void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 	if (_arg_contr_ps2_uart_r2.Ret_flag() == EU_ERROR)
 	{
 		Reset();
-		return (void)IN_ERROR;
+		return (void)0;
 	}
 	
 	E_LOGIC flag = FALES;

@@ -67,6 +67,7 @@ class C_AIR
 	E_LOGIC Ret_7()	{	return _mem_air_data.data_bit.air7;	}
 	
 	void Do(T_NUM ,E_LOGIC );
+	void Do(T_NUM ,T_NUM ,E_LOGIC ,E_LOGIC &);
 	
 	void Out(C_UART_T );
 };
@@ -114,6 +115,7 @@ inline void C_AIR::Turn_num(T_NUM  _arg_air_num)
 }
 
 inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
+//3port or 2port
 {
 	if(_arg_air_nf == TRUE)
 	{
@@ -124,6 +126,55 @@ inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
 	else
 	{
 		_mem_array_air_flag[_arg_air_num] = TRUE;
+	}
+}
+
+inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_air_flag ,E_LOGIC &_arg_nf_timer)
+//5port
+{	
+	if ((_arg_air_flag | _mem_array_air_flag[_arg_air_num_0]) == TRUE)
+	{
+		if (_mem_array_air_flag[_arg_air_num_0])
+		{
+			switch (_mem_array_air_flag[_arg_air_num_1])
+			{
+				case TRUE:
+				
+				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
+					
+				Set_num(_arg_air_num_0,FALES);
+				
+				if (_arg_nf_timer)
+				{
+					Set_num(_arg_air_num_1,TRUE);
+					
+					_mem_array_air_flag[_arg_air_num_0] = FALES;
+					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+				}
+					
+				break;
+				
+				case FALES:
+				
+				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
+					
+				Set_num(_arg_air_num_1,FALES);
+					
+				if (_arg_nf_timer)
+				{
+					Set_num(_arg_air_num_0,TRUE);
+					
+					_mem_array_air_flag[_arg_air_num_0] = FALES;
+					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+				}
+				
+				break;
+			}
+		}
+	}
+	else
+	{
+		_mem_array_air_flag[_arg_air_num_0] = TRUE;
 	}
 }
 
