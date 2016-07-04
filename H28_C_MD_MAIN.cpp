@@ -62,6 +62,8 @@ class C_MD_MAIN
 	void Chan_md(T_NUM );
 	
 	void Out(C_UART_T &);
+	
+	void Set_turn(E_LOGIC );
 	void Set_data(E_SIG ,T_PWM ,E_LOGIC);
 	void Set_pwm(T_PWM );
 	void Set_sig(E_SIG );
@@ -91,6 +93,8 @@ inline C_MD_MAIN::C_MD_MAIN(T_NUM _arg_md_main_num_mdc, T_NUM _arg_md_main_num_m
 	
 	_mem_md_main_data_0.md_0_data_bit.md_0_without = 0;
 	
+	_mem_md_main_data_0.md_0_data_bit.md_0_sig_mode = ES_STOP;
+	
 	_mem_md_main_pwm_revis = _arg_md_main_pwm_revis;
 	
 	_mem_md_main_nf_turn = _arg_md_main_nf_turn;
@@ -100,6 +104,11 @@ inline void C_MD_MAIN::Chan_md(T_NUM  _arg_md_main_num_md)
 {
 	_mem_md_main_data_0.md_0_data_bit.md_0_num_md = _arg_md_main_num_md;
 	_mem_md_main_data_1.md_1_data_bit.md_1_num_md = _arg_md_main_num_md;
+}
+
+inline void C_MD_MAIN::Set_turn(E_LOGIC _arg_md_main_nf_turn)
+{
+	_mem_md_main_nf_turn = _arg_md_main_nf_turn;
 }
 
 inline void C_MD_MAIN::Set_pwm(T_PWM _arg_md_main_pwm_value)
