@@ -132,41 +132,44 @@ inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
 inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_air_flag ,E_LOGIC &_arg_nf_timer)
 //5port
 {	
-	if (_arg_air_flag & _mem_array_air_flag[_arg_air_num_0])
+	if (_arg_air_flag | _arg_nf_timer)
 	{
-		switch (_mem_array_air_flag[_arg_air_num_1])
+		if (_mem_array_air_flag[_arg_air_num_0])
 		{
-			case TRUE:
-			
-			if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
-			
-			Set_num(_arg_air_num_0,FALES);
-			
-			if (_arg_nf_timer)
+			switch (_mem_array_air_flag[_arg_air_num_1])
 			{
-				Set_num(_arg_air_num_1,TRUE);
+				case TRUE:
 				
-				_mem_array_air_flag[_arg_air_num_0] = FALES;
-				_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
-			}
-			
-			break;
-			
-			case FALES:
-			
-			if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
-			
-			Set_num(_arg_air_num_1,FALES);
-			
-			if (_arg_nf_timer)
-			{
-				Set_num(_arg_air_num_0,TRUE);
+				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
 				
-				_mem_array_air_flag[_arg_air_num_0] = FALES;
-				_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+				Set_num(_arg_air_num_0,FALES);
+				
+				if (_arg_nf_timer)
+				{
+					Set_num(_arg_air_num_1,TRUE);
+					
+					_mem_array_air_flag[_arg_air_num_0] = FALES;
+					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+				}
+				
+				break;
+				
+				case FALES:
+				
+				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
+				
+				Set_num(_arg_air_num_1,FALES);
+				
+				if (_arg_nf_timer)
+				{
+					Set_num(_arg_air_num_0,TRUE);
+					
+					_mem_array_air_flag[_arg_air_num_0] = FALES;
+					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+				}
+				
+				break;
 			}
-			
-			break;
 		}
 	}
 //	else if (_arg_air_flag == FALES)

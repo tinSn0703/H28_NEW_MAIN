@@ -73,8 +73,8 @@ inline void F_Set_wheel_2(C_MD_MAIN &_arg_motor_0, C_MD_MAIN &_arg_motor_1, E_DI
 {
 	if ((_arg_turn_right | _arg_turn_left) == TRUE)
 	{
-		E_SIG _sig_0 = ES_FALES;
-		E_SIG _sig_1 = ES_FALES;
+		E_SIG _sig_0 = ES_FREE;
+		E_SIG _sig_1 = ES_FREE;
 		
 		if (_arg_turn_right)
 		{
