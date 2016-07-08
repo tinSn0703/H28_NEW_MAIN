@@ -132,50 +132,62 @@ inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
 inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_air_flag ,E_LOGIC &_arg_nf_timer)
 //5port
 {	
-	if (_arg_air_flag | _arg_nf_timer)
+	if (_arg_air_flag)
 	{
-		if (_mem_array_air_flag[_arg_air_num_0])
+		if (_mem_array_air_flag[_arg_air_num_0] == FALES)	return (void)0;
+		
+		switch (_mem_array_air_flag[_arg_air_num_1])
 		{
-			switch (_mem_array_air_flag[_arg_air_num_1])
+			case TRUE:
 			{
-				case TRUE:
-				
 				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
 				
 				Set_num(_arg_air_num_0,FALES);
 				
-				if (_arg_nf_timer)
-				{
-					Set_num(_arg_air_num_1,TRUE);
-					
-					_mem_array_air_flag[_arg_air_num_0] = FALES;
-					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
-				}
-				
 				break;
-				
-				case FALES:
-				
+			}
+			case FALES:
+			{
 				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
 				
 				Set_num(_arg_air_num_1,FALES);
-				
-				if (_arg_nf_timer)
-				{
-					Set_num(_arg_air_num_0,TRUE);
-					
-					_mem_array_air_flag[_arg_air_num_0] = FALES;
-					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
-				}
 				
 				break;
 			}
 		}
 	}
-//	else if (_arg_air_flag == FALES)
 	else
 	{
-		_mem_array_air_flag[_arg_air_num_0] = TRUE;
+		if (_mem_array_air_flag[_arg_air_num_0])
+		{			
+			if (Ret_num(_arg_air_num_0) | Ret_num(_arg_air_num_1) | TURN_TF(_arg_nf_timer))	return (void)0;
+			
+			switch (_mem_array_air_flag[_arg_air_num_1])
+			{
+				case TRUE:
+				{
+					Set_num(_arg_air_num_1,TRUE);
+					
+					_mem_array_air_flag[_arg_air_num_0] = FALES;
+					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+					
+					break;
+				}
+				case FALES:
+				{
+					Set_num(_arg_air_num_0,TRUE);
+					
+					_mem_array_air_flag[_arg_air_num_0] = FALES;
+					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+					
+					break;
+				}
+			}
+		}
+		else
+		{
+			_mem_array_air_flag[_arg_air_num_0] = TRUE;
+		}
 	}
 }
 

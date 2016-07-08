@@ -40,30 +40,36 @@ inline T_PWM F_Set_pwm(DIREC _arg_pwm_hl, T_PWM &_arg_pwm, E_LOGIC &_arg_flag)
 	return _arg_pwm;
 }
 
-inline T_PWM F_Set_pwm(E_LOGIC _arg_nf_pwm_high, E_LOGIC _arg_nf_pwm_low, T_PWM &_arg_pwm, E_LOGIC _arg_flag, E_LOGIC _arg_pwm_recet = FALES)
+inline T_PWM F_Set_pwm(E_LOGIC _arg_nf_pwm_high, E_LOGIC _arg_nf_pwm_low, T_PWM &_arg_pwm, E_LOGIC &_arg_flag, E_LOGIC _arg_pwm_recet = FALES)
 {
 	if (_arg_pwm_recet)
 	{
-		return PWM_NOR;
-	}
-	
-	if (_arg_nf_pwm_high)
-	{
-		if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
-		{
-			_arg_pwm ++;
-		}
-	}
-	else if (_arg_nf_pwm_low)
-	{
-		if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
-		{
-			_arg_pwm --;
-		}
+		_arg_pwm = PWM_NOR;
 	}
 	else
 	{
-		_arg_flag = TRUE;
+		if (_arg_nf_pwm_high)
+		{
+			if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
+			{
+				_arg_pwm ++;
+				
+				_arg_flag = FALES;
+			}
+		}
+		else if (_arg_nf_pwm_low)
+		{
+			if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
+			{
+				_arg_pwm --;
+				
+				_arg_flag = FALES;
+			}
+		}
+		else
+		{
+			_arg_flag = TRUE;
+		}
 	}
 	
 	return _arg_pwm;
