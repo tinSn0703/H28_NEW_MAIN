@@ -195,7 +195,7 @@ void C_AIR::Out(C_UART_T _arg_air_uart_t)
 {
 	_arg_air_uart_t.Set_bit9(FALES);
 	
-	_arg_air_uart_t.Out(_mem_air_data._data_byte);
+	_arg_air_uart_t << _mem_air_data._data_byte;
 }
 
 #endif

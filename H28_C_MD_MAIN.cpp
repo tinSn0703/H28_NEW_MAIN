@@ -148,8 +148,8 @@ void C_MD_MAIN::Out(C_UART_T &_arg_md_main_uart_t)
 	
 	_arg_md_main_uart_t.Set_bit9(TRUE);
 	
-	_arg_md_main_uart_t.Out(_mem_md_main_data_0._md_0_data);
-	_arg_md_main_uart_t.Out(_mem_md_main_data_1._md_1_data);
+	_arg_md_main_uart_t << _mem_md_main_data_0._md_0_data;
+	_arg_md_main_uart_t << _mem_md_main_data_1._md_1_data;
 	
 	_delay_us(250);
 }

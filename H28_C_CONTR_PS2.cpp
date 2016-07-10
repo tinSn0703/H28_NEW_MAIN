@@ -127,7 +127,7 @@ void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 	
 	_arg_contr_ps2_uart_r.Check();
 	
-	if (_arg_contr_ps2_uart_r.Ret_flag() == EU_ERROR)
+	if (_arg_contr_ps2_uart_r == EU_ERROR)
 	{
 		Reset();
 		return (void)0;
