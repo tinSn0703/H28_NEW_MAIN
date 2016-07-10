@@ -25,7 +25,7 @@ inline E_DIRECX SET_DIREC_X(T_DATA _arg_direc_x_data,T_NUM _arg_direc_x_bit)
 
 inline E_DIRECX SET_DIREC_X(E_LOGIC _arg_direc_x_east,E_LOGIC _arg_direc_x_west)
 {
-	usint _direc_num = (((_arg_direc_x_east << 0) | (_arg_direc_x_west << 1)) * 2);
+	usint _direc_num = (((_arg_direc_x_east << 1) | (_arg_direc_x_west << 0)) * 2);
 	
 	return (E_DIRECX)((0b100111 >> _direc_num) & 3);
 }
@@ -51,7 +51,7 @@ inline E_DIRECY SET_DIREC_Y(T_DATA _arg_direc_y_data,T_NUM _arg_direc_y_bit)
 
 inline E_DIRECY SET_DIREC_Y(E_LOGIC _arg_direc_y_north,E_LOGIC _arg_direc_y_south)
 {
-	usint _direc_num = (((_arg_direc_y_north << 0) | (_arg_direc_y_south << 1)) * 2);
+	usint _direc_num = (((_arg_direc_y_north << 1) | (_arg_direc_y_south << 0)) * 2);
 	
 	return (E_DIRECY)((0b100111 >> _direc_num) & 3);
 }
