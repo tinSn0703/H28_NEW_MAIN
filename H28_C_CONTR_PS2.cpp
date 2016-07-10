@@ -48,36 +48,36 @@ class C_CONTR_ps2
 			E_LOGIC nf_select  :1; //7bit
 		};
 		
-		uchar	_arr_data_byte[CON_BYTE];
+		uchar _arr_data_byte[CON_BYTE];
 		S_CONTR_ps2 data_bit;
 	};
 	
 	U_CONTR_ps2 _mem_contr_ps2_data;
 	
 	protected:
-	E_LOGIC Set_data(T_DATA );
+	void Set_data(T_DATA []);
 	
 	public:
 	C_CONTR_ps2();
 	
 	E_DIRECX Ret_cross_x()	{	return _mem_contr_ps2_data.data_bit.cross_x;		}
+	E_DIRECY Ret_cross_y()	{	return _mem_contr_ps2_data.data_bit.cross_y;		}
 	E_DIRECX Ret_rsti_x()	{	return _mem_contr_ps2_data.data_bit.stick_right_x;	}
 	E_DIRECX Ret_lsti_x()	{	return _mem_contr_ps2_data.data_bit.stick_left_x;	}
-	E_DIRECY Ret_cross_y()	{	return _mem_contr_ps2_data.data_bit.cross_y;		}
 	E_DIRECY Ret_rsti_y()	{	return _mem_contr_ps2_data.data_bit.stick_right_y;	}
 	E_DIRECY Ret_lsti_y()	{	return _mem_contr_ps2_data.data_bit.stick_left_y;	}
+	E_LOGIC  Ret_select()	{	return _mem_contr_ps2_data.data_bit.nf_select;		}
+	E_LOGIC  Ret_start()	{	return _mem_contr_ps2_data.data_bit.nf_start;		}
+	E_LOGIC  Ret_tri()		{	return _mem_contr_ps2_data.data_bit.nf_tri;			}
+	E_LOGIC  Ret_cir()		{	return _mem_contr_ps2_data.data_bit.nf_cir;			}
+	E_LOGIC  Ret_squ()		{	return _mem_contr_ps2_data.data_bit.nf_squ;			}
+	E_LOGIC  Ret_cro()		{	return _mem_contr_ps2_data.data_bit.nf_cro;			}
 	E_LOGIC  Ret_r1()		{	return _mem_contr_ps2_data.data_bit.nf_right_1;		}
 	E_LOGIC  Ret_r2()		{	return _mem_contr_ps2_data.data_bit.nf_right_2;		}
 	E_LOGIC  Ret_r3()		{	return _mem_contr_ps2_data.data_bit.nf_right_3;		}
 	E_LOGIC  Ret_l1()		{	return _mem_contr_ps2_data.data_bit.nf_left_1;		}
 	E_LOGIC  Ret_l2()		{	return _mem_contr_ps2_data.data_bit.nf_left_2;		}
 	E_LOGIC  Ret_l3()		{	return _mem_contr_ps2_data.data_bit.nf_left_3;		}
-	E_LOGIC  Ret_tri()		{	return _mem_contr_ps2_data.data_bit.nf_tri;			}
-	E_LOGIC  Ret_cir()		{	return _mem_contr_ps2_data.data_bit.nf_cir;			}
-	E_LOGIC  Ret_squ()		{	return _mem_contr_ps2_data.data_bit.nf_squ;			}
-	E_LOGIC  Ret_cro()		{	return _mem_contr_ps2_data.data_bit.nf_cro;			}
-	E_LOGIC  Ret_start()	{	return _mem_contr_ps2_data.data_bit.nf_start;		}
-	E_LOGIC  Ret_select()	{	return _mem_contr_ps2_data.data_bit.nf_select;		}
 	
 	uchar Ret_data(usint _arg_num_data)	{	return _mem_contr_ps2_data._arr_data_byte[_arg_num_data];	}
 	
@@ -87,62 +87,47 @@ class C_CONTR_ps2
 };
 
 //protected
-inline E_LOGIC C_CONTR_ps2::Set_data(T_DATA _arg_contr_ps2_data)
-{
-	if (_arg_contr_ps2_data == IN_ERROR)	return FALES;
+inline void C_CONTR_ps2::Set_data(T_DATA _arg_contr_ps2_data[CON_BYTE_UART])
+{	
+	if (CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],5))		_mem_contr_ps2_data.data_bit.cross_x = ED_EAST;
+	else if (CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],1))	_mem_contr_ps2_data.data_bit.cross_x = ED_WEST;
+	else													_mem_contr_ps2_data.data_bit.cross_x = ED_XZERO;
 	
-	static usint _sta_num[CON_BYTE_UART] = {0,1,2,3};
-	usint _temp_num = ((_arg_contr_ps2_data >> 6) & 0b11);
+	if (CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],0))		_mem_contr_ps2_data.data_bit.cross_y = ED_SOUTH;
+	else if (CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],4))	_mem_contr_ps2_data.data_bit.cross_y = ED_NORTH;
+	else													_mem_contr_ps2_data.data_bit.cross_y = ED_YZERO;
 	
-	if (_temp_num == _sta_num[0])		//BYTE 0 0b00xxxxxx
-	{
-		_mem_contr_ps2_data.data_bit.cross_x = ED_XZERO;
-		_mem_contr_ps2_data.data_bit.cross_y = ED_YZERO;
-		
-		if (CHECK_TURN_BIT_TF(_arg_contr_ps2_data,5))	_mem_contr_ps2_data.data_bit.cross_x = ED_EAST;
-		if (CHECK_TURN_BIT_TF(_arg_contr_ps2_data,4))	_mem_contr_ps2_data.data_bit.cross_y = ED_NORTH;
-		_mem_contr_ps2_data.data_bit.nf_start   = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,3);
-		_mem_contr_ps2_data.data_bit.nf_right_3 = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,2);
-		_mem_contr_ps2_data.data_bit.nf_left_3  = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,1);
-		_mem_contr_ps2_data.data_bit.nf_select  = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,0);
-	}
-	else if (_temp_num == _sta_num[1])	//BYTE 1 0b01xxxxxx
-	{
-		_mem_contr_ps2_data.data_bit.nf_right_1 = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,5);
-		_mem_contr_ps2_data.data_bit.nf_left_1  = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,4);
-		_mem_contr_ps2_data.data_bit.nf_right_2 = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,3);
-		_mem_contr_ps2_data.data_bit.nf_left_2  = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,2);
-		if(CHECK_TURN_BIT_TF(_arg_contr_ps2_data,1))	_mem_contr_ps2_data.data_bit.cross_x = ED_WEST;
-		if(CHECK_TURN_BIT_TF(_arg_contr_ps2_data,0))	_mem_contr_ps2_data.data_bit.cross_y = ED_SOUTH;
-	}
-	else if (_temp_num == _sta_num[2])	//BYTE 2 0b10xxxxxx
-	{
-		_mem_contr_ps2_data.data_bit.stick_right_x = SET_DIREC_X(_arg_contr_ps2_data,4);
-		_mem_contr_ps2_data.data_bit.nf_squ = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,3);
-		_mem_contr_ps2_data.data_bit.nf_cro = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,2);
-		_mem_contr_ps2_data.data_bit.nf_cir = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,1);
-		_mem_contr_ps2_data.data_bit.nf_tri = CHECK_TURN_BIT_TF(_arg_contr_ps2_data,0);
-	}
-	else if (_temp_num == _sta_num[3])	//BYTE 3 0b11xxxxxx
-	{
-		_mem_contr_ps2_data.data_bit.stick_left_y  = SET_DIREC_Y(_arg_contr_ps2_data,4);
-		_mem_contr_ps2_data.data_bit.stick_left_x  = SET_DIREC_X(_arg_contr_ps2_data,2);
-		_mem_contr_ps2_data.data_bit.stick_right_y = SET_DIREC_Y(_arg_contr_ps2_data,0);
-	}
+	if (CHECK_BIT_TF(_arg_contr_ps2_data[3],5))			_mem_contr_ps2_data.data_bit.stick_left_y = ED_SOUTH;
+	else if (CHECK_BIT_TF(_arg_contr_ps2_data[3],4))	_mem_contr_ps2_data.data_bit.stick_left_y = ED_NORTH;
+	else												_mem_contr_ps2_data.data_bit.stick_left_y = ED_YZERO;
 	
-	_sta_num[_temp_num] = CON_BYTE_UART;
+	if (CHECK_BIT_TF(_arg_contr_ps2_data[3],3))			_mem_contr_ps2_data.data_bit.stick_left_x = ED_WEST;
+	else if (CHECK_BIT_TF(_arg_contr_ps2_data[3],2))	_mem_contr_ps2_data.data_bit.stick_left_x = ED_EAST;
+	else												_mem_contr_ps2_data.data_bit.stick_left_x = ED_XZERO;
 	
-	if ((_sta_num[0] & _sta_num[1] & _sta_num[2] & _sta_num[3]) == CON_BYTE_UART)
-	{
-		_sta_num[0] = 0;
-		_sta_num[1] = 1;
-		_sta_num[2] = 2;
-		_sta_num[3] = 3;
-		
-		return TRUE;
-	}
+	if (CHECK_BIT_TF(_arg_contr_ps2_data[3],1))			_mem_contr_ps2_data.data_bit.stick_right_y = ED_SOUTH;
+	else if (CHECK_BIT_TF(_arg_contr_ps2_data[3],0))	_mem_contr_ps2_data.data_bit.stick_right_y = ED_NORTH;
+	else												_mem_contr_ps2_data.data_bit.stick_right_y = ED_YZERO;
 	
-	return FALES;
+	if (CHECK_BIT_TF(_arg_contr_ps2_data[2],5))			_mem_contr_ps2_data.data_bit.stick_right_x = ED_WEST;
+	else if (CHECK_BIT_TF(_arg_contr_ps2_data[2],4))	_mem_contr_ps2_data.data_bit.stick_right_x = ED_EAST;
+	else												_mem_contr_ps2_data.data_bit.stick_right_x = ED_XZERO;
+	
+	_mem_contr_ps2_data.data_bit.nf_start   = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],3);
+	_mem_contr_ps2_data.data_bit.nf_select  = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],0);
+	
+	_mem_contr_ps2_data.data_bit.nf_right_1 = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],5);
+	_mem_contr_ps2_data.data_bit.nf_right_2 = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],3);
+	_mem_contr_ps2_data.data_bit.nf_right_3 = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],2);
+	
+	_mem_contr_ps2_data.data_bit.nf_left_1  = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],4);
+	_mem_contr_ps2_data.data_bit.nf_left_2  = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],2);
+	_mem_contr_ps2_data.data_bit.nf_left_3  = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],1);
+	
+	_mem_contr_ps2_data.data_bit.nf_squ = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[2],3);
+	_mem_contr_ps2_data.data_bit.nf_cro = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[2],2);
+	_mem_contr_ps2_data.data_bit.nf_cir = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[2],1);
+	_mem_contr_ps2_data.data_bit.nf_tri = CHECK_TURN_BIT_TF(_arg_contr_ps2_data[2],0);
 }
 
 //public
@@ -160,21 +145,32 @@ void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 	if (_arg_contr_ps2_uart_r.Ret_flag() == EU_ERROR)
 	{
 		Reset();
-		return (void)IN_ERROR;
+		return (void)0;
 	}
 	
-	E_LOGIC flag = FALES;
+	usint _flag = 0;
 	
 	usint i = 0;
 	
-	while (flag == FALES)	
-	{		
-		flag = Set_data(_arg_contr_ps2_uart_r.In());
+	T_DATA _temp_data[CON_BYTE_UART] = {};
+	
+	while (_flag != 0x0f)
+	{
+		T_DATA _temp = _arg_contr_ps2_uart_r.In();
+		
+		if (_temp != IN_ERROR)
+		{
+			_temp_data[(_temp & 0xc0) >> 6] = _temp;
+			
+			_flag |= (1 << ((_temp & 0xc0) >> 6));
+		}
 		
 		if (i == 15)	break;
 		
 		i++;
 	}
+	
+	Set_data(_temp_data);
 }
 
 void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
@@ -190,18 +186,29 @@ void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 		return (void)0;
 	}
 	
-	E_LOGIC flag = FALES;
+	usint _flag = 0;
 	
 	usint i = 0;
 	
-	while (flag == FALES)
+	T_DATA _temp_data[CON_BYTE_UART] = {};
+	
+	while (_flag != 0x0f)
 	{
-		flag = Set_data(_arg_contr_ps2_uart_r2.In());
+		T_DATA _temp = _arg_contr_ps2_uart_r2.In();
+		
+		if (_temp != IN_ERROR)
+		{
+			_temp_data[(_temp >> 6) & 0x03] = _temp;
+			
+			_flag |= (1 << ((_temp >> 6) & 0x03));
+		}
 		
 		if (i == 15)	break;
 		
 		i++;
 	}
+	
+	Set_data(_temp_data);
 }
 
 inline void C_CONTR_ps2::Reset()
