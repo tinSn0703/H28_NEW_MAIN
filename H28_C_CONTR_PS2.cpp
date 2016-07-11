@@ -165,7 +165,7 @@ void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 	
 	_arg_contr_ps2_uart_r2.Check();
 	
-	if (_arg_contr_ps2_uart_r2.Ret_flag() == EU_ERROR)
+	if (_arg_contr_ps2_uart_r2 == EU_ERROR)
 	{
 		Reset();
 		return (void)0;
@@ -179,7 +179,9 @@ void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 	
 	while (_flag != 0x0f)
 	{
-		T_DATA _temp = _arg_contr_ps2_uart_r2.In();
+		T_DATA _temp = 0;
+		
+		_arg_contr_ps2_uart_r2 >> _temp;
 		
 		if (_temp != IN_ERROR)
 		{
