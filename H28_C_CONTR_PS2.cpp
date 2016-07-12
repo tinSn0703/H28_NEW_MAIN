@@ -141,7 +141,9 @@ void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 	
 	while (_flag != 0x0f)
 	{
-		T_DATA _temp = _arg_contr_ps2_uart_r.In();
+		T_DATA _temp = 0;
+		
+		_arg_contr_ps2_uart_r >> _temp;
 		
 		if (_temp != IN_ERROR)
 		{
