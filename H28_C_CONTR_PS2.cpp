@@ -55,7 +55,7 @@ class C_CONTR_ps2
 	U_CONTR_ps2 _mem_contr_ps2_data;
 	
 	protected:
-	void Set_data(T_DATA []);
+	void Set_data(T_DATA_8 []);
 	
 	public:
 	C_CONTR_ps2();
@@ -86,8 +86,7 @@ class C_CONTR_ps2
 	void Reset();
 };
 
-//protected
-inline void C_CONTR_ps2::Set_data(T_DATA _arg_contr_ps2_data[CON_BYTE_UART])
+inline void C_CONTR_ps2::Set_data(T_DATA_8 _arg_contr_ps2_data[CON_BYTE_UART])
 {	
 	_mem_contr_ps2_data._data_bit._cross_x = SET_DIREC_X(CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],5),CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],1));
 	_mem_contr_ps2_data._data_bit._cross_y = SET_DIREC_Y(CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],4),CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],0));
@@ -121,13 +120,19 @@ inline C_CONTR_ps2::C_CONTR_ps2()
 	Reset();
 }
 
+/*
+BT_RX回路からの受信。単線時用
+
+C_UART_R &_arg_contr_ps2_uart_r
+	受信するUART。
+*/
 void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 {
 	_arg_contr_ps2_uart_r.Set_bit9(FALES);
 	
 	_arg_contr_ps2_uart_r.Check();
 	
-	if (_arg_contr_ps2_uart_r == EU_ERROR)
+	if (_arg_contr_ps2_uart_r == EU_ERROR) //受信失敗
 	{
 		Reset();
 		return (void)0;
@@ -135,31 +140,36 @@ void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 	
 	usint _flag = 0;
 	
-	usint i = 0;
+	T_DATA_8 _temp_data[CON_BYTE_UART] = {};
 	
-	T_DATA _temp_data[CON_BYTE_UART] = {};
-	
-	while (_flag != 0x0f)
+	for (usint i = 0; i < 15; i++) //さすがに無限ループ化するのはまずいので
 	{
-		T_DATA _temp = 0;
+		T_DATA_8 _temp = 0;
 		
 		_arg_contr_ps2_uart_r >> _temp;
 		
-		if (_temp != IN_ERROR)
+		if (_arg_contr_ps2_uart_r != EU_ERROR)
 		{
 			_temp_data[(_temp & 0xc0) >> 6] = _temp;
 			
 			_flag |= (1 << ((_temp & 0xc0) >> 6));
 		}
 		
-		if (i == 15)	break;
-		
-		i++;
+		if (_flag == 0x0f) //データを全て得るまで続く
+		{
+			break;
+		}
 	}
 	
 	Set_data(_temp_data);
 }
 
+/*
+BT_RX回路からの受信。2線時用
+
+C_UART_R2 &_arg_contr_ps2_uart_r2
+	受信するUART。
+*/
 void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 {
 	_arg_contr_ps2_uart_r2.Set_bit9_0(FALES);
@@ -175,26 +185,25 @@ void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 	
 	usint _flag = 0;
 	
-	usint i = 0;
+	T_DATA_8 _temp_data[CON_BYTE_UART] = {};
 	
-	T_DATA _temp_data[CON_BYTE_UART] = {};
-	
-	while (_flag != 0x0f)
+	for (usint i = 0; i < 15; i++)
 	{
-		T_DATA _temp = 0;
+		T_DATA_8 _temp = 0;
 		
 		_arg_contr_ps2_uart_r2 >> _temp;
 		
-		if (_temp != IN_ERROR)
+		if (_arg_contr_ps2_uart_r2 != EU_ERROR)
 		{
 			_temp_data[(_temp >> 6) & 0x03] = _temp;
 			
 			_flag |= (1 << ((_temp >> 6) & 0x03));
 		}
 		
-		if (i == 15)	break;
-		
-		i++;
+		if (_flag == 0x0f)
+		{
+			break;
+		}
 	}
 	
 	Set_data(_temp_data);

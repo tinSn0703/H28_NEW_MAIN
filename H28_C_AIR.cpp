@@ -65,7 +65,8 @@ class C_AIR
 	E_LOGIC Ret_5()	{	return _mem_air_data._data_bit._air5;	}
 	E_LOGIC Ret_6()	{	return _mem_air_data._data_bit._air6;	}
 	E_LOGIC Ret_7()	{	return _mem_air_data._data_bit._air7;	}
-	
+
+	void Do(T_NUM ,E_LOGIC );	
 	void Do(T_NUM ,E_LOGIC ,E_LOGIC &);
 	void Do(T_NUM ,T_NUM ,E_LOGIC ,E_LOGIC &);
 	
@@ -114,12 +115,31 @@ inline void C_AIR::Turn_num(T_NUM  _arg_air_num)
 	}
 }
 
+
+inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
+//3port or 2port
+{
+	if (_arg_air_nf == TRUE)
+	{
+		if (_mem_array_air_flag[_arg_air_num] == TRUE)
+		{
+			Turn_num(_arg_air_num);
+		}
+		
+		_mem_array_air_flag[_arg_air_num] = FALES;
+	}
+	else
+	{
+		_mem_array_air_flag[_arg_air_num] = TRUE;
+	}
+}
+
 inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf, E_LOGIC &_arg_nf_timer)
 //3port or 2port
 {
-	if(_arg_air_nf == TRUE)
+	if (_arg_air_nf == TRUE)
 	{
-		if((_mem_array_air_flag[_arg_air_num] & _arg_nf_timer) == TRUE)
+		if ((_mem_array_air_flag[_arg_air_num] & _arg_nf_timer) == TRUE)
 		{
 			Turn_num(_arg_air_num);
 		}
