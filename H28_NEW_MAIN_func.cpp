@@ -97,30 +97,8 @@ inline void F_Set_wheel_2(C_MD_MAIN &_arg_motor_0, C_MD_MAIN &_arg_motor_1, E_DI
 	}
 	else
 	{
-		switch (_arg_direc_move)
-		{
-			case ED_NORTH:
-			{
-				_arg_motor_0.Set_data(ES_TRUE,_arg_pwm);
-				_arg_motor_1.Set_data(ES_TRUE,_arg_pwm);
-				
-				break;
-			}
-			case ED_SOUTH:
-			{
-				_arg_motor_0.Set_data(ES_FALES,_arg_pwm);
-				_arg_motor_1.Set_data(ES_FALES,_arg_pwm);
-				
-				break;
-			}
-			case ED_YZERO:
-			{
-				_arg_motor_0.Set_data(ES_STOP,0);
-				_arg_motor_1.Set_data(ES_STOP,0);
-				
-				break;
-			}
-		}
+		_arg_motor_0.Set_data(SET_SIG(_arg_direc_move));
+		_arg_motor_1.Set_data(SET_SIG(_arg_direc_move));
 	}
 }
 

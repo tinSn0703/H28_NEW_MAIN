@@ -29,33 +29,9 @@ class C_AIR
 	
 	public:
 	C_AIR(T_DATA );
-		
-	void Set(T_DATA );
-	void Set_num(T_NUM ,E_LOGIC );
 	
-	void Turn();
-	void Turn_num(T_NUM );
-	
-	T_DATA Ret()						{	return _mem_air_data._data_byte;								}
+	T_DATA Ret()						{	return _mem_air_data._data_byte;							}
 	E_LOGIC Ret_num(T_NUM _arg_air_num)	{	return CHECK_BIT_TF(_mem_air_data._data_byte,_arg_air_num);	}
-	
-	void Set_0(E_LOGIC _arg_air_nf_0)	{	_mem_air_data._data_bit._air0 = _arg_air_nf_0;	}
-	void Set_1(E_LOGIC _arg_air_nf_1)	{	_mem_air_data._data_bit._air1 = _arg_air_nf_1;	}
-	void Set_2(E_LOGIC _arg_air_nf_2)	{	_mem_air_data._data_bit._air2 = _arg_air_nf_2;	}
-	void Set_3(E_LOGIC _arg_air_nf_3)	{	_mem_air_data._data_bit._air3 = _arg_air_nf_3;	}
-	void Set_4(E_LOGIC _arg_air_nf_4)	{	_mem_air_data._data_bit._air4 = _arg_air_nf_4;	}
-	void Set_5(E_LOGIC _arg_air_nf_5)	{	_mem_air_data._data_bit._air5 = _arg_air_nf_5;	}
-	void Set_6(E_LOGIC _arg_air_nf_6)	{	_mem_air_data._data_bit._air6 = _arg_air_nf_6;	}
-	void Set_7(E_LOGIC _arg_air_nf_7)	{	_mem_air_data._data_bit._air7 = _arg_air_nf_7;	}
-
-	void Turn_0()	{	_mem_air_data._data_bit._air0 = TURN_TF(_mem_air_data._data_bit._air0);	}
-	void Turn_1()	{	_mem_air_data._data_bit._air1 = TURN_TF(_mem_air_data._data_bit._air1);	}
-	void Turn_2()	{	_mem_air_data._data_bit._air2 = TURN_TF(_mem_air_data._data_bit._air2);	}
-	void Turn_3()	{	_mem_air_data._data_bit._air3 = TURN_TF(_mem_air_data._data_bit._air3);	}
-	void Turn_4()	{	_mem_air_data._data_bit._air4 = TURN_TF(_mem_air_data._data_bit._air4);	}
-	void Turn_5()	{	_mem_air_data._data_bit._air5 = TURN_TF(_mem_air_data._data_bit._air5);	}
-	void Turn_6()	{	_mem_air_data._data_bit._air6 = TURN_TF(_mem_air_data._data_bit._air6);	}
-	void Turn_7()	{	_mem_air_data._data_bit._air7 = TURN_TF(_mem_air_data._data_bit._air7);	}
 		
 	E_LOGIC Ret_0()	{	return _mem_air_data._data_bit._air0;	}
 	E_LOGIC Ret_1()	{	return _mem_air_data._data_bit._air1;	}
@@ -65,12 +41,41 @@ class C_AIR
 	E_LOGIC Ret_5()	{	return _mem_air_data._data_bit._air5;	}
 	E_LOGIC Ret_6()	{	return _mem_air_data._data_bit._air6;	}
 	E_LOGIC Ret_7()	{	return _mem_air_data._data_bit._air7;	}
+	
+	void Set(T_DATA );
+	void Set_num(T_NUM ,E_LOGIC );
+	
+	void Set_0(E_LOGIC _arg_air_nf_0)	{	_mem_air_data._data_bit._air0 = _arg_air_nf_0;	}
+	void Set_1(E_LOGIC _arg_air_nf_1)	{	_mem_air_data._data_bit._air1 = _arg_air_nf_1;	}
+	void Set_2(E_LOGIC _arg_air_nf_2)	{	_mem_air_data._data_bit._air2 = _arg_air_nf_2;	}
+	void Set_3(E_LOGIC _arg_air_nf_3)	{	_mem_air_data._data_bit._air3 = _arg_air_nf_3;	}
+	void Set_4(E_LOGIC _arg_air_nf_4)	{	_mem_air_data._data_bit._air4 = _arg_air_nf_4;	}
+	void Set_5(E_LOGIC _arg_air_nf_5)	{	_mem_air_data._data_bit._air5 = _arg_air_nf_5;	}
+	void Set_6(E_LOGIC _arg_air_nf_6)	{	_mem_air_data._data_bit._air6 = _arg_air_nf_6;	}
+	void Set_7(E_LOGIC _arg_air_nf_7)	{	_mem_air_data._data_bit._air7 = _arg_air_nf_7;	}
+	
+	void Turn();
+	void Turn_num(T_NUM );
+
+	void Turn_0()	{	_mem_air_data._data_bit._air0 = TURN_TF(_mem_air_data._data_bit._air0);	}
+	void Turn_1()	{	_mem_air_data._data_bit._air1 = TURN_TF(_mem_air_data._data_bit._air1);	}
+	void Turn_2()	{	_mem_air_data._data_bit._air2 = TURN_TF(_mem_air_data._data_bit._air2);	}
+	void Turn_3()	{	_mem_air_data._data_bit._air3 = TURN_TF(_mem_air_data._data_bit._air3);	}
+	void Turn_4()	{	_mem_air_data._data_bit._air4 = TURN_TF(_mem_air_data._data_bit._air4);	}
+	void Turn_5()	{	_mem_air_data._data_bit._air5 = TURN_TF(_mem_air_data._data_bit._air5);	}
+	void Turn_6()	{	_mem_air_data._data_bit._air6 = TURN_TF(_mem_air_data._data_bit._air6);	}
+	void Turn_7()	{	_mem_air_data._data_bit._air7 = TURN_TF(_mem_air_data._data_bit._air7);	}
 
 	void Do(T_NUM ,E_LOGIC );	
 	void Do(T_NUM ,E_LOGIC ,E_LOGIC &);
 	void Do(T_NUM ,T_NUM ,E_LOGIC ,E_LOGIC &);
 	
 	void Out(C_UART_T );
+	
+	void Lcd_2 (T_ADRS );
+	void Lcd_16(T_ADRS );
+	
+	void Lcd_num(T_ADRS ,T_NUM );
 };
 
 inline C_AIR::C_AIR(T_DATA _arg_air_data = 0x00)
@@ -115,7 +120,6 @@ inline void C_AIR::Turn_num(T_NUM  _arg_air_num)
 	}
 }
 
-
 inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
 //3port or 2port
 {
@@ -154,30 +158,19 @@ inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf, E_LOGIC &_arg_nf_
 
 inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_air_flag ,E_LOGIC &_arg_nf_timer)
 //5port
-{	
+{
+	const T_NUM _num_0 = (T_NUM)TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+	const T_NUM _num_1 = (T_NUM)_mem_array_air_flag[_arg_air_num_1];
+	
+	const T_NUM _air_num[2] = {_arg_air_num_0,_arg_air_num_1};
+	
 	if (_arg_air_flag)
 	{
 		if (_mem_array_air_flag[_arg_air_num_0] == FALES)	return (void)0;
 		
-		switch (_mem_array_air_flag[_arg_air_num_1])
-		{
-			case TRUE:
-			{
-				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
-				
-				Set_num(_arg_air_num_0,FALES);
-				
-				break;
-			}
-			case FALES:
-			{
-				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
-				
-				Set_num(_arg_air_num_1,FALES);
-				
-				break;
-			}
-		}
+		if (Ret_num(_air_num[_num_0]))	_arg_nf_timer = FALES;
+		
+		Set_num(_air_num[_num_0],FALES);
 	}
 	else
 	{
@@ -185,27 +178,10 @@ inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_a
 		{			
 			if (Ret_num(_arg_air_num_0) | Ret_num(_arg_air_num_1) | TURN_TF(_arg_nf_timer))	return (void)0;
 			
-			switch (_mem_array_air_flag[_arg_air_num_1])
-			{
-				case TRUE:
-				{
-					Set_num(_arg_air_num_1,TRUE);
-					
-					_mem_array_air_flag[_arg_air_num_0] = FALES;
-					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
-					
-					break;
-				}
-				case FALES:
-				{
-					Set_num(_arg_air_num_0,TRUE);
-					
-					_mem_array_air_flag[_arg_air_num_0] = FALES;
-					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
-					
-					break;
-				}
-			}
+			Set_num(_air_num[_num_0],TRUE);
+			
+			_mem_array_air_flag[_air_num[_num_1]] = FALES;
+			_mem_array_air_flag[_air_num[_num_0]] = TURN_TF(_mem_array_air_flag[_air_num[_num_0]]);
 		}
 		else
 		{
@@ -219,6 +195,24 @@ void C_AIR::Out(C_UART_T _arg_air_uart_t)
 	_arg_air_uart_t.Set_bit9(FALES);
 	
 	_arg_air_uart_t << _mem_air_data._data_byte;
+}
+
+inline void C_AIR::Lcd_2(T_ADRS _arg_air_adrs)
+//8桁
+{
+	Lcd_put_num(_arg_air_adrs,_mem_air_data._data_byte,8,ED_02);
+}
+
+inline void C_AIR::Lcd_16(T_ADRS _arg_air_adrs)
+//2桁
+{
+	Lcd_put_num(_arg_air_adrs,_mem_air_data._data_byte,2,ED_16);
+}
+
+inline void C_AIR::Lcd_num(T_ADRS _arg_air_adrs,T_NUM _arg_air_num)
+//1桁
+{
+	Lcd_put_num(_arg_air_adrs,Ret_num(_arg_air_num),1,ED_02);
 }
 
 #endif
