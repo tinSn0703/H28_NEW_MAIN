@@ -97,8 +97,8 @@ inline void F_Set_wheel_2(C_MD_MAIN &_arg_motor_0, C_MD_MAIN &_arg_motor_1, E_DI
 	}
 	else
 	{
-		_arg_motor_0.Set_data(SET_SIG(_arg_direc_move));
-		_arg_motor_1.Set_data(SET_SIG(_arg_direc_move));
+		_arg_motor_0.Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
+		_arg_motor_1.Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
 	}
 }
 

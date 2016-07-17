@@ -175,19 +175,30 @@ inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_a
 	_arg_air_nf   : 電磁弁のONOFF
 	_arg_nf_timer : タイマカウンタのフラグ。外部でカウント完了したら、TRUEにしといてくさい。
 */
-{
-	const T_NUM _num_0 = (T_NUM)TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
-	const T_NUM _num_1 = (T_NUM)_mem_array_air_flag[_arg_air_num_1];
-	
-	const T_NUM _air_num[2] = {_arg_air_num_0,_arg_air_num_1};
-	
+{	
 	if (_arg_air_nf)
 	{
 		if (_mem_array_air_flag[_arg_air_num_0] == FALES)	return (void)0;
 		
-		if (Ret_num(_air_num[_num_0]))	_arg_nf_timer = FALES;
-		
-		Set_num(_air_num[_num_0],FALES);
+		switch (_mem_array_air_flag[_arg_air_num_1])
+		{
+			case TRUE:
+			{
+				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
+				
+				Set_num(_arg_air_num_0,FALES);
+				
+				break;
+			}
+			case FALES:
+			{
+				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
+				
+				Set_num(_arg_air_num_1,FALES);
+				
+				break;
+			}
+		}
 	}
 	else
 	{
@@ -195,10 +206,27 @@ inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_a
 		{			
 			if (Ret_num(_arg_air_num_0) | Ret_num(_arg_air_num_1) | TURN_TF(_arg_nf_timer))	return (void)0;
 			
-			Set_num(_air_num[_num_0],TRUE);
-			
-			_mem_array_air_flag[_air_num[_num_1]] = FALES;
-			_mem_array_air_flag[_air_num[_num_0]] = TURN_TF(_mem_array_air_flag[_air_num[_num_0]]);
+			switch (_mem_array_air_flag[_arg_air_num_1])
+			{
+				case TRUE:
+				{
+					Set_num(_arg_air_num_1,TRUE);
+					
+					_mem_array_air_flag[_arg_air_num_0] = FALES;
+					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+					
+					break;
+				}
+				case FALES:
+				{
+					Set_num(_arg_air_num_0,TRUE);
+					
+					_mem_array_air_flag[_arg_air_num_0] = FALES;
+					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+					
+					break;
+				}
+			}
 		}
 		else
 		{
