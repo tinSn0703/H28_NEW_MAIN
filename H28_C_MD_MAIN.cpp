@@ -138,6 +138,10 @@ inline void C_MD_MAIN::Set_steps(E_LOGIC _arg_md_main_nf_steps = TRUE)
 }
 
 inline void C_MD_MAIN::Set_pwm_revis(sint _arg_md_main_pwm_revis)
+/*
+補正PWMの設定
+-31 ~ +31の範囲にしてね
+*/
 {
 	_mem_md_main_pwm_revis = _arg_md_main_pwm_revis;
 }

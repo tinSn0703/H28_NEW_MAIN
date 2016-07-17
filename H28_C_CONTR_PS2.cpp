@@ -8,7 +8,7 @@ PS2コントローラ用
 
 class C_CONTR_ps2
 {
-	private:
+	protected:
 	
 	#define CON_BYTE_UART 4	//受信したコントローラのデータのバイト数
 	#define CON_BYTE 3			//プログラム内で扱うコントローラのデータのバイト数
@@ -54,7 +54,6 @@ class C_CONTR_ps2
 	
 	U_CONTR_ps2 _mem_contr_ps2_data;
 	
-	protected:
 	void Set_data(T_DATA_8 []);
 	
 	public:
@@ -120,13 +119,12 @@ inline C_CONTR_ps2::C_CONTR_ps2()
 	Reset();
 }
 
+void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 /*
 BT_RX回路からの受信。単線時用
 
-C_UART_R &_arg_contr_ps2_uart_r
-	受信するUART。
+	_arg_contr_ps2_uart_r : 受信するUART。
 */
-void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 {
 	_arg_contr_ps2_uart_r.Set_bit9(FALES);
 	
@@ -164,13 +162,12 @@ void C_CONTR_ps2::In(C_UART_R &_arg_contr_ps2_uart_r)
 	Set_data(_temp_data);
 }
 
+void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 /*
 BT_RX回路からの受信。2線時用
 
-C_UART_R2 &_arg_contr_ps2_uart_r2
-	受信するUART。
+	_arg_contr_ps2_uart_r2 : 受信するUART。
 */
-void C_CONTR_ps2::In(C_UART_R2 &_arg_contr_ps2_uart_r2)
 {
 	_arg_contr_ps2_uart_r2.Set_bit9_0(FALES);
 	_arg_contr_ps2_uart_r2.Set_bit9_1(FALES);

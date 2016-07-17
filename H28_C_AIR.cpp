@@ -121,7 +121,12 @@ inline void C_AIR::Turn_num(T_NUM  _arg_air_num)
 }
 
 inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
-//3port or 2port
+/*
+3port or 2port電磁弁用
+
+	_arg_air_num : 動かす電磁弁のポートの番号
+	_arg_air_nf  : 電磁弁のONOFF。
+*/
 {
 	if (_arg_air_nf == TRUE)
 	{
@@ -139,7 +144,13 @@ inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
 }
 
 inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf, E_LOGIC &_arg_nf_timer)
-//3port or 2port
+/*
+3port or 2port電磁弁用。タイマ付き
+
+	_arg_air_num  : 動かす電磁弁のポートの番号
+	_arg_air_nf   : 電磁弁のONOFF
+	_arg_nf_timer : タイマカウンタのフラグ。外部でカウント完了したら、TRUEにしといてくさい。
+*/
 {
 	if (_arg_air_nf == TRUE)
 	{
@@ -156,15 +167,21 @@ inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf, E_LOGIC &_arg_nf_
 	}
 }
 
-inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_air_flag ,E_LOGIC &_arg_nf_timer)
-//5port
+inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_air_nf ,E_LOGIC &_arg_nf_timer)
+/*
+5port電磁弁用。タイマ付き
+
+	_arg_air_num_0,_arg_air_num_1  : 動かす電磁弁のポートの番号
+	_arg_air_nf   : 電磁弁のONOFF
+	_arg_nf_timer : タイマカウンタのフラグ。外部でカウント完了したら、TRUEにしといてくさい。
+*/
 {
 	const T_NUM _num_0 = (T_NUM)TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
 	const T_NUM _num_1 = (T_NUM)_mem_array_air_flag[_arg_air_num_1];
 	
 	const T_NUM _air_num[2] = {_arg_air_num_0,_arg_air_num_1};
 	
-	if (_arg_air_flag)
+	if (_arg_air_nf)
 	{
 		if (_mem_array_air_flag[_arg_air_num_0] == FALES)	return (void)0;
 		
