@@ -75,7 +75,7 @@ inline T_PWM F_Set_pwm(E_LOGIC _arg_nf_pwm_high, E_LOGIC _arg_nf_pwm_low, T_PWM 
 	return _arg_pwm;
 }
 
-inline void F_Set_wheel_2(C_MD_MAIN &_arg_motor_0, C_MD_MAIN &_arg_motor_1, E_DIRECY _arg_direc_move, E_LOGIC _arg_turn_right, E_LOGIC _arg_turn_left, T_PWM _arg_pwm)
+inline void F_Set_wheel_2(C_MD_MAIN _arg_motor[2], E_DIRECY _arg_direc_move, E_LOGIC _arg_turn_right, E_LOGIC _arg_turn_left, T_PWM _arg_pwm)
 {
 	if ((_arg_turn_right | _arg_turn_left) == TRUE)
 	{
@@ -92,13 +92,13 @@ inline void F_Set_wheel_2(C_MD_MAIN &_arg_motor_0, C_MD_MAIN &_arg_motor_1, E_DI
 			_sig_1 = ES_TRUE;
 		}
 		
-		_arg_motor_0.Set_data(_sig_0,_arg_pwm);
-		_arg_motor_1.Set_data(_sig_1,_arg_pwm);
+		_arg_motor[0].Set_data(_sig_0,_arg_pwm);
+		_arg_motor[1].Set_data(_sig_1,_arg_pwm);
 	}
 	else
 	{
-		_arg_motor_0.Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
-		_arg_motor_1.Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
+		_arg_motor[0].Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
+		_arg_motor[1].Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
 	}
 }
 
