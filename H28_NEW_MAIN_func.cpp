@@ -75,19 +75,28 @@ inline T_PWM F_Set_pwm(E_LOGIC _arg_nf_pwm_high, E_LOGIC _arg_nf_pwm_low, T_PWM 
 	return _arg_pwm;
 }
 
-inline void F_Set_wheel_2(C_MD_MAIN _arg_motor[2], E_DIRECY _arg_direc_move, E_LOGIC _arg_turn_right, E_LOGIC _arg_turn_left, T_PWM _arg_pwm)
+inline void F_Set_wheel_2(C_MD_MAIN _arg_motor[2], E_DIRECY _arg_direc_move, E_LOGIC _arg_turn_0, E_LOGIC _arg_turn_1, T_PWM _arg_pwm)
+/*
+2輪を扱う関数。旋回のほうが優先。
+
+	_arg_motor[2] : 要素数2の配列にしといてね
+	_arg_direc_move : 進む方向
+	_arg_turn_0 : _arg_motor[0]をES_TRUEにする
+	_arg_turn_1 : _arg_motor[1]をES_TRUEにする
+	_arg_pwm : PWM
+*/
 {
-	if ((_arg_turn_right | _arg_turn_left) == TRUE)
+	if ((_arg_turn_0 | _arg_turn_1) == TRUE)
 	{
 		E_SIG _sig_0 = ES_FREE;
 		E_SIG _sig_1 = ES_FREE;
 		
-		if (_arg_turn_right)
+		if (_arg_turn_0)
 		{
 			_sig_0 = ES_TRUE;
 		}
 		
-		if (_arg_turn_left)
+		if (_arg_turn_1)
 		{
 			_sig_1 = ES_TRUE;
 		}
@@ -118,14 +127,23 @@ inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_LOGIC _arg_nf_true, E_LOGI
 	}
 }
 
-template <class DIREC>
-inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, DIREC _arg_motor_tf, T_PWM _arg_pwm)
+inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_DIRECY _arg_motor_tf, T_PWM _arg_pwm)
 {
 	switch (_arg_motor_tf)
 	{
-		case NOREA:	_arg_motor.Set_data(ES_TRUE,_arg_pwm);	break;
-		case SOUWE:	_arg_motor.Set_data(ES_FALES,_arg_pwm);	break;
-		case ZERO:	_arg_motor.Set_data(ES_STOP);			break;
+		case ED_NORTH:	_arg_motor.Set_data(ES_TRUE,_arg_pwm);	break;
+		case ED_SOUTH:	_arg_motor.Set_data(ES_FALES,_arg_pwm);	break;
+		case ED_YZERO:	_arg_motor.Set_data(ES_STOP);			break;
+	}
+}
+
+inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_DIRECX _arg_motor_tf, T_PWM _arg_pwm)
+{
+	switch (_arg_motor_tf)
+	{
+		case ED_EAST:	_arg_motor.Set_data(ES_TRUE,_arg_pwm);	break;
+		case ED_WEST:	_arg_motor.Set_data(ES_FALES,_arg_pwm);	break;
+		case ED_XZERO:	_arg_motor.Set_data(ES_STOP);			break;
 	}
 }
 

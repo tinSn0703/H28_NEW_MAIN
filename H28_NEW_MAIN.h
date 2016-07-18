@@ -55,7 +55,13 @@ inline E_DIRECX SET_DIREC_X(E_LOGIC _arg_direc_x_east,E_LOGIC _arg_direc_x_west)
 }
 
 inline E_DIRECX TURN_DIREC_X(E_DIRECX _arg_direc_x )
-//_arg_direc_x‚ð”½“]‚³‚¹‚½’l‚ð•Ô‚·
+/*
+_arg_direc_x‚ð”½“]‚³‚¹‚½’l‚ð•Ô‚·
+
+	ED_EAST  -> ED_WEST
+	ED_WEST  -> ED_EAST
+	ED_XZERO -> ED_XZERO
+*/
 {
 	return (E_DIRECX)((0b11011000 >> (((usint)_arg_direc_x) * 2)) & 3);
 }
@@ -105,7 +111,13 @@ inline E_DIRECY SET_DIREC_Y(E_LOGIC _arg_direc_y_north,E_LOGIC _arg_direc_y_sout
 }
 
 inline E_DIRECY TURN_DIREC_Y(E_DIRECY _arg_direc_y )
-//_arg_direc_y‚ð”½“]‚³‚¹‚½’l‚ð•Ô‚·
+/*
+_arg_direc_y‚ð”½“]‚³‚¹‚½’l‚ð•Ô‚·
+
+	ED_NORTH -> ED_SOUTH
+	ED_SOUTH -> ED_NORTH
+	ED_YZERO -> ED_YZERO
+*/
 {
 	return (E_DIRECY)((0b11011000 >> (((usint)_arg_direc_y) * 2)) & 3);
 }
@@ -128,14 +140,14 @@ enum E_SIG
 	ES_STOP  = 3,
 };
 
-inline E_SIG SET_SIG(E_LOGIC _arg_set)
+inline E_SIG SET_SIG(E_LOGIC _arg_set_tf)
 /*
-_arg_set‚©‚çÝ’è‚µ‚½E_SIG‚ð•Ô‚·
+_arg_set_tf‚©‚çÝ’è‚µ‚½E_SIG‚ð•Ô‚·
 	TRUE  -> ES_TRUE
 	FALES -> ES_FALES
 */
 {
-	return (E_SIG)(0b01 << _arg_set);
+	return (E_SIG)(0b01 << _arg_set_tf);
 }
 
 inline E_SIG SET_SIG(E_DIRECY _arg_set_direc_y)
@@ -160,6 +172,15 @@ _arg_set_direc_x‚©‚çÝ’è‚µ‚½E_SIG‚ð•Ô‚·
 	return (E_SIG)TURN_DIREC_X(_arg_set_direc_x);
 }
 
+inline E_SIG SET_SIG(E_LOGIC _arg_set_tf_0, E_LOGIC _arg_set_tf_1)
+/*
+_arg_set_tf_0,_arg_set_tf_1
+
+*/
+{
+	return (E_SIG)((_arg_set_tf_0 << 1) | (_arg_set_tf_1 << 0));
+}
+
 inline E_SIG SET_SIG(E_DIRECY _arg_set_direc_y, E_DIRECX _arg_set_direc_x)
 {
 	return (E_SIG)((usint)_arg_set_direc_y & (usint)_arg_set_direc_x);
@@ -178,9 +199,13 @@ inline E_SIG TURN_SIG_FIX(E_SIG _arg_turn_sig)
 }
 
 inline E_LOGIC CHECK_MOVE(E_SIG _arg_check_sig_mode)
-
+/*
+PWM‚ð0‚É‚·‚×‚«‚©‚Ì”»’fBE_LOGIC‚Å•Ô‚·
+	TRUE  -> ‚µ‚È‚­‚Ä‚¢‚¢
+	FALES -> ‚µ‚æ‚¤ 
+*/
 {
-	return(E_LOGIC)(0b0110 >> _arg_check_sig_mode);
+	return (E_LOGIC)(0b0110 >> _arg_check_sig_mode);
 }
 
 /************************************************************************/
