@@ -3,7 +3,17 @@
 #define _H28_NEW_MAIN_FUNC_CPP_ 1
 
 template <class DIREC>
-inline T_PWM F_Set_pwm(DIREC _arg_pwm_hl, T_PWM &_arg_pwm, E_LOGIC &_arg_flag)
+inline 
+T_PWM F_Set_pwm
+(
+	DIREC _arg_pwm_hl, 
+	T_PWM &_arg_pwm, 
+	E_LOGIC &_arg_flag
+)
+/*
+
+
+*/
 {
 	switch (_arg_pwm_hl)
 	{
@@ -40,7 +50,17 @@ inline T_PWM F_Set_pwm(DIREC _arg_pwm_hl, T_PWM &_arg_pwm, E_LOGIC &_arg_flag)
 	return _arg_pwm;
 }
 
-inline T_PWM F_Set_pwm(E_LOGIC _arg_nf_pwm_high, E_LOGIC _arg_nf_pwm_low, T_PWM &_arg_pwm, E_LOGIC &_arg_flag, E_LOGIC _arg_pwm_recet = FALES)
+inline T_PWM 
+F_Set_pwm
+(
+	E_LOGIC _arg_nf_pwm_high, 
+	E_LOGIC _arg_nf_pwm_low, 
+	T_PWM &_arg_pwm, 
+	E_LOGIC &_arg_flag, 
+	E_LOGIC _arg_pwm_recet = FALES
+)
+/*
+*/
 {
 	if (_arg_pwm_recet)
 	{
@@ -75,7 +95,15 @@ inline T_PWM F_Set_pwm(E_LOGIC _arg_nf_pwm_high, E_LOGIC _arg_nf_pwm_low, T_PWM 
 	return _arg_pwm;
 }
 
-inline void F_Set_wheel_2(C_MD_MAIN _arg_motor[2], E_DIRECY _arg_direc_move, E_LOGIC _arg_turn_0, E_LOGIC _arg_turn_1, T_PWM _arg_pwm)
+inline void 
+F_Set_wheel_2
+(
+	C_MD_MAIN _arg_motor[2], 
+	E_DIRECY _arg_direc_move, 
+	E_LOGIC _arg_turn_0, 
+	E_LOGIC _arg_turn_1, 
+	T_PWM _arg_pwm
+)
 /*
 2輪を扱う関数。旋回のほうが優先。
 
@@ -111,7 +139,17 @@ inline void F_Set_wheel_2(C_MD_MAIN _arg_motor[2], E_DIRECY _arg_direc_move, E_L
 	}
 }
 
-inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_LOGIC _arg_nf_true, E_LOGIC _arg_nf_fales, T_PWM _arg_pwm)
+inline void 
+F_Set_motor_tf_1
+(
+	C_MD_MAIN &_arg_motor, 
+	E_LOGIC _arg_nf_true, 
+	E_LOGIC _arg_nf_fales, 
+	T_PWM _arg_pwm
+)
+/*
+
+*/
 {
 	if (_arg_nf_true == TRUE)
 	{
@@ -127,7 +165,25 @@ inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_LOGIC _arg_nf_true, E_LOGI
 	}
 }
 
-inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_DIRECY _arg_motor_tf, T_PWM _arg_pwm)
+inline void 
+F_Set_motor_tf_1
+(
+	C_MD_MAIN &_arg_motor, 
+	E_DIRECY _arg_motor_tf, 
+	T_PWM _arg_pwm
+)
+/*
+モーターを正逆転させる
+
+	_arg_motor : 設定するモータ
+	_arg_motor_tf : 方向キー y方向
+	
+	ED_NORTH -> ES_TRUE
+	ED_SOUTH -> ES_FALES
+	ED_YZERO -> ES_STOP
+	
+	_arg_pwm : モーターのPWM
+*/
 {
 	switch (_arg_motor_tf)
 	{
@@ -137,7 +193,25 @@ inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_DIRECY _arg_motor_tf, T_PW
 	}
 }
 
-inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_DIRECX _arg_motor_tf, T_PWM _arg_pwm)
+inline void 
+F_Set_motor_tf_1
+(
+	C_MD_MAIN &_arg_motor, 
+	E_DIRECX _arg_motor_tf, 
+	T_PWM _arg_pwm
+)
+/*
+モーターを正逆転させる
+
+	_arg_motor : 設定するモータ
+	_arg_motor_tf : 方向キー x方向
+	
+	ED_EAST  -> ES_TRUE
+	ED_WEST  -> ES_FALES
+	ED_XZERO -> ES_STOP
+	
+	_arg_pwm : モーターのPWM
+*/
 {
 	switch (_arg_motor_tf)
 	{

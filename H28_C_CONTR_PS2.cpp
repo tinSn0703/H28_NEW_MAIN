@@ -11,7 +11,7 @@ class C_CONTR_ps2
 	protected:
 	
 	#define CON_BYTE_UART 4	//受信したコントローラのデータのバイト数
-	#define CON_BYTE 3			//プログラム内で扱うコントローラのデータのバイト数
+	#define CON_BYTE 3		//プログラム内で扱うコントローラのデータのバイト数
 	
 	union U_CONTR_ps2
 	{
@@ -61,34 +61,53 @@ class C_CONTR_ps2
 	
 	E_DIRECX Ret_cross_x()	{	return _mem_contr_ps2_data._data_bit._cross_x;			}
 	E_DIRECY Ret_cross_y()	{	return _mem_contr_ps2_data._data_bit._cross_y;			}
-	E_DIRECX Ret_rsti_x()	{	return _mem_contr_ps2_data._data_bit._stick_right_x;	}
-	E_DIRECX Ret_lsti_x()	{	return _mem_contr_ps2_data._data_bit._stick_left_x;		}
-	E_DIRECY Ret_rsti_y()	{	return _mem_contr_ps2_data._data_bit._stick_right_y;	}
-	E_DIRECY Ret_lsti_y()	{	return _mem_contr_ps2_data._data_bit._stick_left_y;		}
+	E_DIRECX Ret_Rsti_x()	{	return _mem_contr_ps2_data._data_bit._stick_right_x;	}
+	E_DIRECX Ret_Lsti_x()	{	return _mem_contr_ps2_data._data_bit._stick_left_x;		}
+	E_DIRECY Ret_Rsti_y()	{	return _mem_contr_ps2_data._data_bit._stick_right_y;	}
+	E_DIRECY Ret_Lsti_y()	{	return _mem_contr_ps2_data._data_bit._stick_left_y;		}
 	E_LOGIC  Ret_select()	{	return _mem_contr_ps2_data._data_bit._nf_select;		}
 	E_LOGIC  Ret_start()	{	return _mem_contr_ps2_data._data_bit._nf_start;			}
 	E_LOGIC  Ret_tri()		{	return _mem_contr_ps2_data._data_bit._nf_tri;			}
 	E_LOGIC  Ret_cir()		{	return _mem_contr_ps2_data._data_bit._nf_cir;			}
 	E_LOGIC  Ret_squ()		{	return _mem_contr_ps2_data._data_bit._nf_squ;			}
 	E_LOGIC  Ret_cro()		{	return _mem_contr_ps2_data._data_bit._nf_cro;			}
-	E_LOGIC  Ret_r1()		{	return _mem_contr_ps2_data._data_bit._nf_right_1;		}
-	E_LOGIC  Ret_r2()		{	return _mem_contr_ps2_data._data_bit._nf_right_2;		}
-	E_LOGIC  Ret_r3()		{	return _mem_contr_ps2_data._data_bit._nf_right_3;		}
-	E_LOGIC  Ret_l1()		{	return _mem_contr_ps2_data._data_bit._nf_left_1;		}
-	E_LOGIC  Ret_l2()		{	return _mem_contr_ps2_data._data_bit._nf_left_2;		}
-	E_LOGIC  Ret_l3()		{	return _mem_contr_ps2_data._data_bit._nf_left_3;		}
+	E_LOGIC  Ret_R1()		{	return _mem_contr_ps2_data._data_bit._nf_right_1;		}
+	E_LOGIC  Ret_R2()		{	return _mem_contr_ps2_data._data_bit._nf_right_2;		}
+	E_LOGIC  Ret_R3()		{	return _mem_contr_ps2_data._data_bit._nf_right_3;		}
+	E_LOGIC  Ret_L1()		{	return _mem_contr_ps2_data._data_bit._nf_left_1;		}
+	E_LOGIC  Ret_L2()		{	return _mem_contr_ps2_data._data_bit._nf_left_2;		}
+	E_LOGIC  Ret_L3()		{	return _mem_contr_ps2_data._data_bit._nf_left_3;		}
 	
 	uchar Ret_data(usint _arg_num_data)	{	return _mem_contr_ps2_data._arr_data_byte[_arg_num_data];	}
 	
 	void In(C_UART_R &);
 	void In(C_UART_R2 &);
 	void Reset();
+	
+	void Lcd_cross_x(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_cross_x(),1,ED_10);	}
+	void Lcd_cross_y(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_cross_y(),1,ED_10);	}
+	void Lcd_Rsti_x	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_Rsti_x(),1,ED_10);	}
+	void Lcd_Rsti_y	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_Rsti_y(),1,ED_10);	}
+	void Lcd_Lsti_x	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_Lsti_x(),1,ED_10);	}
+	void Lcd_Lsti_y	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_Lsti_y(),1,ED_10);	}
+	void Lcd_select	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_select(),1,ED_10);	}
+	void Lcd_start	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_start(),1,ED_10);	}
+	void Lcd_tri	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_tri(),1,ED_10);		}
+	void Lcd_cir	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_cir(),1,ED_10);		}
+	void Lcd_squ	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_squ(),1,ED_10);		}
+	void Lcd_cro	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_cro(),1,ED_10);		}
+	void Lcd_R1		(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_R1(),1,ED_10);		}
+	void Lcd_R2		(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_R2(),1,ED_10);		}
+	void Lcd_R3		(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_R3(),1,ED_10);		}
+	void Lcd_L1		(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_L1(),1,ED_10);		}
+	void Lcd_L2		(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_L2(),1,ED_10);		}
+	void Lcd_L3		(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_L3(),1,ED_10);		}
 };
 
 inline void C_CONTR_ps2::Set_data(T_DATA_8 _arg_contr_ps2_data[CON_BYTE_UART])
 {	
-	_mem_contr_ps2_data._data_bit._cross_x = SET_DIREC_X(CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],5),CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],1));
-	_mem_contr_ps2_data._data_bit._cross_y = SET_DIREC_Y(CHECK_TURN_BIT_TF(_arg_contr_ps2_data[0],4),CHECK_TURN_BIT_TF(_arg_contr_ps2_data[1],0));
+	_mem_contr_ps2_data._data_bit._cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_contr_ps2_data[1],1),CHECK_BIT_TF(_arg_contr_ps2_data[0],5));
+	_mem_contr_ps2_data._data_bit._cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_contr_ps2_data[1],0),CHECK_BIT_TF(_arg_contr_ps2_data[0],4));
 	
 	_mem_contr_ps2_data._data_bit._stick_left_x = SET_DIREC_X(_arg_contr_ps2_data[3],2);
 	_mem_contr_ps2_data._data_bit._stick_left_y = SET_DIREC_Y(_arg_contr_ps2_data[3],4);
