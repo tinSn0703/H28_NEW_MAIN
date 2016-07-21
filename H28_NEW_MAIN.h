@@ -199,7 +199,6 @@ inline E_DIRECY
 TURN_DIREC_Y (E_DIRECY _arg_direc_y )
 /*
 _arg_direc_y‚ğ”½“]‚³‚¹‚½’l‚ğ•Ô‚·
-
 	ED_NORTH -> ED_SOUTH
 	ED_SOUTH -> ED_NORTH
 	ED_YZERO -> ED_YZERO
@@ -232,6 +231,7 @@ inline E_SIG
 SET_SIG (E_LOGIC _arg_set_tf)
 /*
 _arg_set_tf‚©‚çİ’è‚µ‚½E_SIG‚ğ•Ô‚·
+
 	TRUE  -> ES_TRUE
 	FALES -> ES_FALES
 */
@@ -245,6 +245,7 @@ inline E_SIG
 SET_SIG (E_DIRECY _arg_set_direc_y)
 /*
 _arg_set_direc_y‚©‚çİ’è‚µ‚½E_SIG‚ğ•Ô‚·
+
 	ED_NORTH -> ES_TRUE
 	ED_SOUTH -> ES_FALES
 	ED_YZERO -> ES_STOP
@@ -259,6 +260,7 @@ inline E_SIG
 SET_SIG (E_DIRECX _arg_set_direc_x)
 /*
 _arg_set_direc_x‚©‚çİ’è‚µ‚½E_SIG‚ğ•Ô‚·
+
 	ED_EAST  -> ES_TRUE
 	ED_WEST  -> ES_FALES
 	ED_XZERO -> ES_STOP
@@ -269,36 +271,27 @@ _arg_set_direc_x‚©‚çİ’è‚µ‚½E_SIG‚ğ•Ô‚·
 
 /************************************************************************/
 
-/**
- * \brief _arg_set_tf_0,_arg_set_tf_1‚ğ‚à‚Æ‚Éİ’è‚µ‚½SIG‚ğreturn‚·‚é
- * 
- * \return E_SIG
- *    1   |   0   | Œ‹‰Ê
- *	TRUE  | TRUE  | ES_STOP
- *	FALES | TRUE  | ES_FALES
- *	TRUE  | FALES | ES_TRUE
- *	FALES | FALES | ES_FREE
- */
 inline E_SIG 
 SET_SIG
 (
 	E_LOGIC _arg_set_tf_1, 
 	E_LOGIC _arg_set_tf_0
 )
+/*
+_arg_set_tf_0,_arg_set_tf_1‚ğ‚à‚Æ‚Éİ’è‚µ‚½SIG‚ğreturn‚·‚é
+
+	  1   |   0   | Œ‹‰Ê
+	TRUE  | TRUE  | ES_STOP
+	FALES | TRUE  | ES_FALES
+	TRUE  | FALES | ES_TRUE
+	FALES | FALES | ES_FREE
+ */
 {
 	return (E_SIG)((_arg_set_tf_1 << 1) | (_arg_set_tf_0 << 0));
 }
 
 /************************************************************************/
 
-/**
- * \brief 
- * 
- * \param _arg_set_direc_y
- * \param _arg_set_direc_x
- * 
- * \return E_SIG
- */
 inline E_SIG 
 SET_SIG
 (
@@ -309,19 +302,16 @@ SET_SIG
 	return (E_SIG)((usint)_arg_set_direc_y & (usint)_arg_set_direc_x);
 }
 
-/**
- * \brief 
- *	_arg_turn_sig‚Ì³“]‹t“]‚ğ”½“]‚³‚¹‚½‚à‚Ì‚ğreturn‚·‚é
- * 
- * \param _arg_turn_sig
- *	Šm”F‚·‚éˆø”
- *
- * \return E_SIG
-  *	ES_TRUE  -> ES_FALES
-  *	ES_FALES -> ES_TRUE
- */
 inline E_SIG 
 TURN_SIG_ROTATE (E_SIG _arg_turn_sig)
+/*
+_arg_turn_sig‚Ì³“]‹t“]‚ğ”½“]‚³‚¹‚½‚à‚Ì‚ğreturn‚·‚é
+
+	_arg_turn_sig : Šm”F‚·‚éˆø”
+
+	ES_TRUE  -> ES_FALES
+	ES_FALES -> ES_TRUE
+*/
 {
 	return (E_SIG)(0b11011000 >> ((usint)_arg_turn_sig * 2));
 }

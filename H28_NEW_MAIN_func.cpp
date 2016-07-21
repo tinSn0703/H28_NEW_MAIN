@@ -8,13 +8,30 @@ T_PWM F_Set_pwm
 (
 	DIREC _arg_pwm_hl, 
 	T_PWM &_arg_pwm, 
-	E_LOGIC &_arg_flag
+	E_LOGIC &_arg_flag,
+	E_LOGIC _arg_pwm_recet = FALES
 )
 /*
+_arg_pwmを++,--する
 
+	_arg_pwm_hl : _arg_pwmを++するか--するか
+		NORTH,EAST -> ++ 
+		SOUTH,WEST -> --
 
-*/
+	_arg_pwm : 変更するPWM
+	_arg_flag : 連打防止。外部で作ってね。
+	_arg_pwm_recet : _arg_pwmをPWM_NORにする。
+
+	return : ついでの出力
+ */
 {
+	if (_arg_pwm_recet)
+	{
+		_arg_pwm = PWM_NOR;
+		
+		return _arg_pwm;
+	}
+	
 	switch (_arg_pwm_hl)
 	{
 		case NOREA:
@@ -60,36 +77,45 @@ F_Set_pwm
 	E_LOGIC _arg_pwm_recet = FALES
 )
 /*
-*/
+_arg_pwmを++,--する。 
+
+	_arg_pwm_high :	TRUEのとき_arg_pwmを++する
+	_arg_pwm_high :	TRUEのとき_arg_pwmを--する
+	_arg_pwm : 変更するPWM
+	_arg_flag : 連打防止。外部で作ってね。
+	_arg_pwm_recet : TRUEのとき_arg_pwmをPWM_NORにする。
+
+	return : ついでの出力
+ */
 {
 	if (_arg_pwm_recet)
 	{
 		_arg_pwm = PWM_NOR;
+		
+		return _arg_pwm;
+	}
+	
+	if (_arg_nf_pwm_high)
+	{
+		if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
+		{
+			_arg_pwm ++;
+			
+			_arg_flag = FALES;
+		}
+	}
+	else if (_arg_nf_pwm_low)
+	{
+		if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
+		{
+			_arg_pwm --;
+			
+			_arg_flag = FALES;
+		}
 	}
 	else
 	{
-		if (_arg_nf_pwm_high)
-		{
-			if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
-			{
-				_arg_pwm ++;
-				
-				_arg_flag = FALES;
-			}
-		}
-		else if (_arg_nf_pwm_low)
-		{
-			if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
-			{
-				_arg_pwm --;
-				
-				_arg_flag = FALES;
-			}
-		}
-		else
-		{
-			_arg_flag = TRUE;
-		}
+		_arg_flag = TRUE;
 	}
 	
 	return _arg_pwm;
