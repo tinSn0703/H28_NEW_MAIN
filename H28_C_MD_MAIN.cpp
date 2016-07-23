@@ -89,7 +89,15 @@ class C_MD_MAIN
 	void Lcd_md_num(T_ADRS );
 };
 
-inline C_MD_MAIN::C_MD_MAIN(T_NUM _arg_md_main_num_mdc, T_NUM _arg_md_main_num_md ,E_LOGIC _arg_md_main_nf_turn = FALES ,sint _arg_md_main_pwm_revis = 0)
+inline 
+C_MD_MAIN::
+C_MD_MAIN
+(
+	T_NUM _arg_md_main_num_mdc, 
+	T_NUM _arg_md_main_num_md ,
+	E_LOGIC _arg_md_main_nf_turn = FALES ,
+	sint _arg_md_main_pwm_revis = 0
+)
 {
 	_mem_md_main_data_0._md_0_data_bit._md_0_num_mdc = _arg_md_main_num_mdc;
 	_mem_md_main_data_1._md_1_data_bit._md_1_num_mdc = _arg_md_main_num_mdc;
@@ -109,35 +117,47 @@ inline C_MD_MAIN::C_MD_MAIN(T_NUM _arg_md_main_num_mdc, T_NUM _arg_md_main_num_m
 	_mem_md_main_nf_turn = _arg_md_main_nf_turn;
 }
 
-inline void C_MD_MAIN::Chan_md(T_NUM  _arg_md_main_num_md)
+inline void 
+C_MD_MAIN::
+Chan_md (T_NUM  _arg_md_main_num_md)
 {
 	_mem_md_main_data_0._md_0_data_bit._md_0_num_md = _arg_md_main_num_md;
 	_mem_md_main_data_1._md_1_data_bit._md_1_num_md = _arg_md_main_num_md;
 }
 
-inline void C_MD_MAIN::Set_turn(E_LOGIC _arg_md_main_nf_turn)
+inline void 
+C_MD_MAIN::
+Set_turn (E_LOGIC _arg_md_main_nf_turn)
 {
 	_mem_md_main_nf_turn = _arg_md_main_nf_turn;
 }
 
-inline void C_MD_MAIN::Set_pwm(T_PWM _arg_md_main_pwm_value)
+inline void 
+C_MD_MAIN::
+Set_pwm (T_PWM _arg_md_main_pwm_value)
 {
 	_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value = _arg_md_main_pwm_value;
 }
 
-inline void C_MD_MAIN::Set_sig(E_SIG _arg_md_main_sig_mode)
+inline void 
+C_MD_MAIN::
+Set_sig (E_SIG _arg_md_main_sig_mode)
 {
 	if (CHECK_MOVE(_arg_md_main_sig_mode) == FALES)	_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value = 0;
 	
 	_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode = _arg_md_main_sig_mode;
 }
 
-inline void C_MD_MAIN::Set_steps(E_LOGIC _arg_md_main_nf_steps = TRUE)
+inline void 
+C_MD_MAIN::
+Set_steps (E_LOGIC _arg_md_main_nf_steps = TRUE)
 {
 	_mem_md_main_data_0._md_0_data_bit._md_0_nf_steps = _arg_md_main_nf_steps;
 }
 
-inline void C_MD_MAIN::Set_pwm_revis(sint _arg_md_main_pwm_revis)
+inline void 
+C_MD_MAIN::
+Set_pwm_revis (sint _arg_md_main_pwm_revis)
 /*
 補正PWMの設定
 -31 ~ +31の範囲にしてね
@@ -146,14 +166,23 @@ inline void C_MD_MAIN::Set_pwm_revis(sint _arg_md_main_pwm_revis)
 	_mem_md_main_pwm_revis = _arg_md_main_pwm_revis;
 }
 
-inline void C_MD_MAIN::Set_data(E_SIG _arg_md_main_sig_mode, T_PWM _arg_md_main_pwm_value = 0, E_LOGIC _arg_md_main_nf_steps = TRUE)
+inline void 
+C_MD_MAIN::
+Set_data
+(
+	E_SIG _arg_md_main_sig_mode, 
+	T_PWM _arg_md_main_pwm_value = 0, 
+	E_LOGIC _arg_md_main_nf_steps = TRUE
+)
 {
 	Set_pwm(_arg_md_main_pwm_value);
 	Set_sig(_arg_md_main_sig_mode);
 	Set_steps(_arg_md_main_nf_steps);
 }
 
-void C_MD_MAIN::Out(C_UART_T &_arg_md_main_uart_t)
+void 
+C_MD_MAIN::
+Out (C_UART_T &_arg_md_main_uart_t)
 {
 	if (_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value != 0)
 	{
@@ -173,7 +202,9 @@ void C_MD_MAIN::Out(C_UART_T &_arg_md_main_uart_t)
 	_delay_us(250);
 }
 
-void C_MD_MAIN::Lcd_sig_num(T_ADRS _arg_md_main_adrs)
+void 
+C_MD_MAIN::
+Lcd_sig_num (T_ADRS _arg_md_main_adrs)
 //1桁
 //	0 FREE
 //	1 FALES
@@ -183,7 +214,9 @@ void C_MD_MAIN::Lcd_sig_num(T_ADRS _arg_md_main_adrs)
 	Lcd_put_num(_arg_md_main_adrs,_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode,1,ED_10);
 }
 
-void C_MD_MAIN::Lcd_sig_str(T_ADRS _arg_md_main_adrs)
+void 
+C_MD_MAIN::
+Lcd_sig_str (T_ADRS _arg_md_main_adrs)
 //2桁
 {
 	switch (_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode)
@@ -195,11 +228,22 @@ void C_MD_MAIN::Lcd_sig_str(T_ADRS _arg_md_main_adrs)
 	}
 }
 
-void C_MD_MAIN::Lcd_pwm(T_ADRS _arg_md_main_adrs,E_DECIMAL _arg_md_main_decimal)
-//2桁
-//ED_10、ED_16だけ
+void 
+C_MD_MAIN::
+Lcd_pwm
+(
+	T_ADRS _arg_md_main_adrs,
+	E_DECIMAL _arg_md_main_decimal
+)
+/*
+設定されたPWMをLCDに表示する
+2桁
+
+	_arg_md_main_adrs : 表示するLCDの場所
+	_arg_md_main_decimal : 表示する進数。ED_10、ED_16だけにしてね
+*/
 {
-	if ((_arg_md_main_decimal == ED_02) || (_arg_md_main_decimal == ED_08))
+	if ((_arg_md_main_decimal != ED_10) && (_arg_md_main_decimal != ED_16))
 	{
 		Lcd_put_str(_arg_md_main_adrs,"ERROR");
 		return (void)0;
@@ -208,7 +252,13 @@ void C_MD_MAIN::Lcd_pwm(T_ADRS _arg_md_main_adrs,E_DECIMAL _arg_md_main_decimal)
 	Lcd_put_num(_arg_md_main_adrs, _mem_md_main_data_1._md_1_data_bit._md_1_pwm_value, 2, _arg_md_main_decimal);
 }
 
-void C_MD_MAIN::Lcd_data_2(T_ADRS _arg_md_main_adrs,T_NUM _arg_md_main_num_data)
+void 
+C_MD_MAIN::
+Lcd_data_2
+(
+	T_ADRS _arg_md_main_adrs,
+	T_NUM _arg_md_main_num_data
+)
 //9桁
 {
 	switch (_arg_md_main_num_data)
@@ -231,7 +281,13 @@ void C_MD_MAIN::Lcd_data_2(T_ADRS _arg_md_main_adrs,T_NUM _arg_md_main_num_data)
 	}
 }
 
-void C_MD_MAIN::Lcd_data_16(T_ADRS _arg_md_main_adrs,T_NUM _arg_md_main_num_data)
+void 
+C_MD_MAIN::
+Lcd_data_16
+(
+	T_ADRS _arg_md_main_adrs,
+	T_NUM _arg_md_main_num_data
+)
 //3桁
 {
 	switch (_arg_md_main_num_data)
@@ -254,7 +310,9 @@ void C_MD_MAIN::Lcd_data_16(T_ADRS _arg_md_main_adrs,T_NUM _arg_md_main_num_data
 	}
 }
 
-void C_MD_MAIN::Lcd_md_num(T_ADRS _arg_md_main_adrs)
+void 
+C_MD_MAIN::
+Lcd_md_num (T_ADRS _arg_md_main_adrs)
 //1桁
 {
 	Lcd_put_num(_arg_md_main_adrs,_mem_md_main_data_0._md_0_data_bit._md_0_num_md,1,ED_10);

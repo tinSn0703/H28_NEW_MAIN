@@ -85,6 +85,8 @@ Wiiコントローラ用
 	void In(C_UART_R2 &);
 	void Reset();
 	
+	void Lcd_data(T_ADRS );
+	
 	void Lcd_cross_x(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_cross_x(),1,ED_10);	}
 	void Lcd_cross_y(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_cross_y(),1,ED_10);	}
 	void Lcd_Rsti_x	(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_Rsti_x(),1,ED_10);	}
@@ -237,6 +239,22 @@ inline void C_CONTR_Wii::Reset()
 	_mem_contr_wii_data._arr_data_byte[0] = 0xff;
 	_mem_contr_wii_data._arr_data_byte[1] = 0x0f;
 	_mem_contr_wii_data._arr_data_byte[2] = 0x00;
+}
+
+inline void
+C_CONTR_Wii::
+Lcd_data (T_ADRS _arg_contr_wii_addr)
+/*
+Wiiコントローラからのデータを全て表示する。
+16進数、6桁
+
+	_arg_contr_wii_addr : 表示するLCDの場所
+*/
+{
+	for (usint i = 0; i < CON_BYTE; i++)
+	{
+		Lcd_put_num(_arg_contr_wii_addr + i * 2,Ret_data(i),2,ED_16);
+	}
 }
 
 #endif
