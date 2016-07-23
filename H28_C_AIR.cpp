@@ -1,6 +1,5 @@
 ﻿
-#ifndef _H28_C_AIR_CPP_
-#define _H28_C_AIR_CPP_ 1
+#pragma once
 
 class C_AIR
 {
@@ -20,7 +19,7 @@ class C_AIR
 			E_LOGIC _air7 :1;
 		};
 		
-		T_DATA _data_byte :8;
+		T_DATA_8 _data_byte :8;
 		S_AIR _data_bit;
 	};
 	
@@ -28,10 +27,10 @@ class C_AIR
 	E_LOGIC _mem_array_air_flag[8];
 	
 	public:
-	C_AIR(T_DATA );
+	C_AIR(T_DATA_8 );
 	
-	T_DATA Ret()						{	return _mem_air_data._data_byte;							}
-	E_LOGIC Ret_num(T_NUM _arg_air_num)	{	return CHECK_BIT_TF(_mem_air_data._data_byte,_arg_air_num);	}
+	T_DATA_8 Ret();
+	E_LOGIC Ret_num(T_NUM _arg_air_num);
 		
 	E_LOGIC Ret_0()	{	return _mem_air_data._data_bit._air0;	}
 	E_LOGIC Ret_1()	{	return _mem_air_data._data_bit._air1;	}
@@ -42,7 +41,7 @@ class C_AIR
 	E_LOGIC Ret_6()	{	return _mem_air_data._data_bit._air6;	}
 	E_LOGIC Ret_7()	{	return _mem_air_data._data_bit._air7;	}
 	
-	void Set(T_DATA );
+	void Set(T_DATA_8 );
 	void Set_num(T_NUM ,E_LOGIC );
 	
 	void Set_0(E_LOGIC _arg_air_nf_0)	{	_mem_air_data._data_bit._air0 = _arg_air_nf_0;	}
@@ -78,19 +77,43 @@ class C_AIR
 	void Lcd_num(T_ADRS ,T_NUM );
 };
 
-inline C_AIR::C_AIR(T_DATA _arg_air_data = 0x00)
+inline 
+C_AIR::
+C_AIR (T_DATA_8 _arg_air_data = 0x00)
 {
 	_mem_air_data._data_byte = _arg_air_data;
 	
 	for (usint i = 0; i < 8; i++)	_mem_array_air_flag[i] = TRUE;
 }
 
-inline void C_AIR::Set(T_DATA _arg_air_data)
+inline T_DATA_8
+C_AIR::
+Ret ()
+{
+	return _mem_air_data._data_byte;
+}
+
+inline E_LOGIC
+C_AIR::
+Ret_num (T_NUM _arg_air_num)
+{
+	return CHECK_BIT_TF(_mem_air_data._data_byte,_arg_air_num);
+}
+
+inline void 
+C_AIR::
+Set (T_DATA_8 _arg_air_data)
 {
 	_mem_air_data._data_byte = _arg_air_data;
 }
 
-inline void C_AIR::Set_num(T_NUM _arg_air_num,E_LOGIC _arg_air_nf)
+inline void 
+C_AIR::
+Set_num
+(
+	T_NUM _arg_air_num,
+	E_LOGIC _arg_air_nf
+)
 {
 	switch (_arg_air_nf)
 	{
@@ -99,12 +122,24 @@ inline void C_AIR::Set_num(T_NUM _arg_air_num,E_LOGIC _arg_air_nf)
 	}
 }
 
-inline void C_AIR::Turn()
+inline void 
+C_AIR::
+Turn ()
+/*
+電磁弁の設定を反転させる
+*/
 {
 	_mem_air_data._data_byte = ~(_mem_air_data._data_byte);
 }
 
-inline void C_AIR::Turn_num(T_NUM  _arg_air_num)
+inline void 
+C_AIR::
+Turn_num (T_NUM _arg_air_num)
+/*
+指定された電磁弁ポートの設定を反転させる
+
+	_arg_air_num : 反転させる電磁弁ポート
+*/
 {
 	switch (_arg_air_num)
 	{
@@ -120,7 +155,13 @@ inline void C_AIR::Turn_num(T_NUM  _arg_air_num)
 	}
 }
 
-inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
+inline void 
+C_AIR::
+Do
+(
+	T_NUM _arg_air_num, 
+	E_LOGIC _arg_air_nf
+)
 /*
 3port or 2port電磁弁用
 
@@ -143,7 +184,14 @@ inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf)
 	}
 }
 
-inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf, E_LOGIC &_arg_nf_timer)
+inline void 
+C_AIR::
+Do
+(
+	T_NUM _arg_air_num, 
+	E_LOGIC _arg_air_nf, 
+	E_LOGIC &_arg_nf_timer
+)
 /*
 3port or 2port電磁弁用。タイマ付き
 
@@ -167,7 +215,15 @@ inline void C_AIR::Do(T_NUM _arg_air_num, E_LOGIC _arg_air_nf, E_LOGIC &_arg_nf_
 	}
 }
 
-inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_air_nf ,E_LOGIC &_arg_nf_timer)
+inline void 
+C_AIR::
+Do
+(
+	T_NUM _arg_air_num_0, 
+	T_NUM _arg_air_num_1, 
+	E_LOGIC _arg_air_nf ,
+	E_LOGIC &_arg_nf_timer
+)
 /*
 5port電磁弁用。タイマ付き
 
@@ -178,25 +234,26 @@ inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_a
 {	
 	if (_arg_air_nf)
 	{
-		if (_mem_array_air_flag[_arg_air_num_0] == FALES)	return (void)0;
-		
-		switch (_mem_array_air_flag[_arg_air_num_1])
-		{
-			case TRUE:
+		if (_mem_array_air_flag[_arg_air_num_0])
+		{			
+			switch (_mem_array_air_flag[_arg_air_num_1])
 			{
-				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
-				
-				Set_num(_arg_air_num_0,FALES);
-				
-				break;
-			}
-			case FALES:
-			{
-				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
-				
-				Set_num(_arg_air_num_1,FALES);
-				
-				break;
+				case TRUE:
+				{
+					if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
+					
+					Set_num(_arg_air_num_0,FALES);
+					
+					break;
+				}
+				case FALES:
+				{
+					if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
+					
+					Set_num(_arg_air_num_1,FALES);
+					
+					break;
+				}
 			}
 		}
 	}
@@ -204,28 +261,16 @@ inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_a
 	{
 		if (_mem_array_air_flag[_arg_air_num_0])
 		{			
-			if (Ret_num(_arg_air_num_0) | Ret_num(_arg_air_num_1) | TURN_TF(_arg_nf_timer))	return (void)0;
-			
-			switch (_mem_array_air_flag[_arg_air_num_1])
+			if ((Ret_num(_arg_air_num_0) & Ret_num(_arg_air_num_1) & TURN_TF(_arg_nf_timer)) == FALES)
 			{
-				case TRUE:
+				switch (_mem_array_air_flag[_arg_air_num_1])
 				{
-					Set_num(_arg_air_num_1,TRUE);
-					
-					_mem_array_air_flag[_arg_air_num_0] = FALES;
-					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
-					
-					break;
+					case TRUE:	Set_num(_arg_air_num_1,TRUE);	break;
+					case FALES:	Set_num(_arg_air_num_0,TRUE);	break;
 				}
-				case FALES:
-				{
-					Set_num(_arg_air_num_0,TRUE);
-					
-					_mem_array_air_flag[_arg_air_num_0] = FALES;
-					_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
-					
-					break;
-				}
+				
+				_mem_array_air_flag[_arg_air_num_0] = FALES;
+				_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
 			}
 		}
 		else
@@ -235,29 +280,55 @@ inline void C_AIR::Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, E_LOGIC _arg_a
 	}
 }
 
-void C_AIR::Out(C_UART_T _arg_air_uart_t)
+void 
+C_AIR::
+Out (C_UART_T _arg_air_uart_t)
+/*
+電磁弁回路へデータを送信する
+*/
 {
 	_arg_air_uart_t.Set_bit9(FALES);
 	
 	_arg_air_uart_t << _mem_air_data._data_byte;
 }
 
-inline void C_AIR::Lcd_2(T_ADRS _arg_air_adrs)
-//8桁
+inline void 
+C_AIR::
+Lcd_2 (T_ADRS _arg_air_adrs)
+/*
+電磁弁の設定を2進数8桁でLCDに表示する
+
+	_arg_air_adrs : 表示する場所
+*/
 {
 	Lcd_put_num(_arg_air_adrs,_mem_air_data._data_byte,8,ED_02);
 }
 
-inline void C_AIR::Lcd_16(T_ADRS _arg_air_adrs)
-//2桁
+inline void 
+C_AIR::
+Lcd_16 (T_ADRS _arg_air_adrs)
+/*
+電磁弁の設定を16進数2桁でLCDに表示する
+
+	_arg_air_adrs : 表示する場所
+*/
 {
 	Lcd_put_num(_arg_air_adrs,_mem_air_data._data_byte,2,ED_16);
 }
 
-inline void C_AIR::Lcd_num(T_ADRS _arg_air_adrs,T_NUM _arg_air_num)
-//1桁
+inline void 
+C_AIR::
+Lcd_num
+(
+	T_ADRS _arg_air_adrs,
+	T_NUM _arg_air_num
+)
+/*
+指定された電磁弁ポートの設定を1桁でLCDに表示する
+
+	_arg_air_adrs : 表示する場所
+	_arg_air_num : 表示する電磁弁ポート
+*/
 {
 	Lcd_put_num(_arg_air_adrs,Ret_num(_arg_air_num),1,ED_02);
 }
-
-#endif

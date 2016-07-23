@@ -1,6 +1,5 @@
 ﻿
-#ifndef _H28_C_MD_MAIN_CPP_
-#define _H28_C_MD_MAIN_CPP_ 1
+#pragma once
 
 /*
 H28 05 04 現在のMDのデータをまとめた構造体
@@ -317,5 +316,3 @@ Lcd_md_num (T_ADRS _arg_md_main_adrs)
 {
 	Lcd_put_num(_arg_md_main_adrs,_mem_md_main_data_0._md_0_data_bit._md_0_num_md,1,ED_10);
 }
-
-#endif

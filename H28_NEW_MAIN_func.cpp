@@ -1,6 +1,5 @@
 ﻿
-#ifndef _H28_NEW_MAIN_FUNC_CPP_
-#define _H28_NEW_MAIN_FUNC_CPP_ 1
+#pragma once
 
 template <class DIREC>
 inline 
@@ -246,5 +245,3 @@ F_Set_motor_tf_1
 		case ED_XZERO:	_arg_motor.Set_data(ES_STOP);			break;
 	}
 }
-
-#endif

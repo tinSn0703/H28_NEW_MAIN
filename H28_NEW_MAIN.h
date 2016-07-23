@@ -1,6 +1,5 @@
 
-#ifndef _H28_NEW_MAIN__H_
-#define _H28_NEW_MAIN__H_ 1
+#pragma once
 
 #include <H28_AVR/H28_AVR.h>
 #include <FallMoon/akilcd_nm.h>
@@ -15,7 +14,7 @@ enum E_DIRECX
 {
 	ED_EAST  = NOREA, /*âE*/
 	ED_WEST  = SOUWE, /*ç∂*/
-	ED_XZERO = ZERO, /*ñ≥*/
+	ED_XZERO = ZERO,  /*ñ≥*/
 };
 
 /************************************************************************/
@@ -115,7 +114,7 @@ enum E_DIRECY
 {
 	ED_NORTH = NOREA, /*è„*/
 	ED_SOUTH = SOUWE, /*â∫*/
-	ED_YZERO = ZERO, /*ñ≥*/
+	ED_YZERO = ZERO,  /*ñ≥*/
 };
 
 /************************************************************************/
@@ -355,5 +354,3 @@ PWMÇ0Ç…Ç∑Ç◊Ç´Ç©ÇÃîªífÅBE_LOGICÇ≈ï‘Ç∑
 
 #include "H28_NEW_MAIN/H28_NEW_MAIN_class.h"
 #include "H28_NEW_MAIN/H28_NEW_MAIN_func.cpp"
-
-#endif /*_H28_MAIN_FUNK_H_*/

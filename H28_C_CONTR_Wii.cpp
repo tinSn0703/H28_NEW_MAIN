@@ -1,62 +1,16 @@
 ﻿
-#ifndef _H28_C_CONTR_Wii_CPP_
-#define _H28_C_CONTR_Wii_CPP_ 1
+#pragma once
 
-class C_CONTR_Wii
+#include "H28_C_CONTR.cpp"
+
+class C_CONTR_Wii : public C_CONTR
 /*
 Wiiコントローラ用
 */
 {
 	protected:
 	
-	#define CON_BYTE_UART 4	//受信したコントローラのデータのバイト数
-	#define CON_BYTE 3		//プログラム内で扱うコントローラのデータのバイト数
-	
-	union U_CONTR_Wii
-	{
-		struct S_CONTR_Wii
-		{
-			//Wii controler data
-			//byte0 5bit east, 4bit north, 3bit start, 2bit NO, 1bit home, 0bit select
-			//byte1 5bit R, 4bit L, 3bit ZR, 2bit ZL, 1bit west, 0bit south
-			//byte2 5bit R_west, 4bit R_east, 3bit y, 2bit b, 1bit a, 0bit x
-			//byte3 5bit L_south, 4bit L_north, 3bit L_west, 2bit L_east, 1bit R_south, 0bit R_north
-			
-			//_mem_data_controler[0]
-			E_DIRECX _stick_right_x :2; //右スティック x方向 0,1bit
-			E_DIRECY _stick_right_y :2; //右スティック y方向 2,3bit
-			
-			E_DIRECX _stick_left_x :2; //左スティック x方向 4,5bit
-			E_DIRECY _stick_left_y :2; //左スティック y方向 6,7bit
-			
-			//_mem_data_controler[1]
-			E_DIRECX _cross_x :2; //十字キー x軸 0,1bit
-			E_DIRECY _cross_y :2; //十字キー y軸 2,3bit
-			
-			E_LOGIC _nf_x :1; //x 4bit
-			E_LOGIC _nf_a :1; //a 5bit
-			E_LOGIC _nf_y :1; //y 6bit
-			E_LOGIC _nf_b :1; //b 7bit
-			
-			//_mem_data_controler[2]
-			E_LOGIC _nf_right :1; //0bit
-			E_LOGIC _nf_left  :1; //1bit
-			E_LOGIC _nf_z_right :1; //2bit
-			E_LOGIC _nf_z_left  :1; //3bit
-			
-			E_LOGIC _none_		:1; //4bit
-			E_LOGIC _nf_home	:1; //5bit
-			E_LOGIC _nf_start   :1; //6bit
-			E_LOGIC _nf_select  :1; //7bit
-		};
-		
-		uchar _arr_data_byte[CON_BYTE];
-		S_CONTR_Wii _data_bit;
-	};
-	
 	U_CONTR_Wii _mem_contr_wii_data;
-	
-	void Set_data(T_DATA_8 []);
 	
 	public:
 	C_CONTR_Wii();
@@ -106,35 +60,6 @@ Wiiコントローラ用
 	void Lcd_ZL		(T_ADRS _arg_contr_wii_addr)	{	Lcd_put_num(_arg_contr_wii_addr,Ret_ZL(),1,ED_10);		}
 };
 
-inline void 
-C_CONTR_Wii::
-Set_data (T_DATA_8 _arg_contr_wii_data[CON_BYTE_UART])
-{	
-	_mem_contr_wii_data._data_bit._cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_contr_wii_data[0],5),CHECK_BIT_TF(_arg_contr_wii_data[1],1));
-	_mem_contr_wii_data._data_bit._cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_contr_wii_data[0],4),CHECK_BIT_TF(_arg_contr_wii_data[1],0));
-	
-	_mem_contr_wii_data._data_bit._stick_left_x = SET_DIREC_X(_arg_contr_wii_data[3],2);
-	_mem_contr_wii_data._data_bit._stick_left_y = SET_DIREC_Y(_arg_contr_wii_data[3],4);
-	
-	_mem_contr_wii_data._data_bit._stick_right_x = SET_DIREC_X(_arg_contr_wii_data[2],4);
-	_mem_contr_wii_data._data_bit._stick_right_y = SET_DIREC_Y(_arg_contr_wii_data[3],0);
-	
-	_mem_contr_wii_data._data_bit._nf_start  = CHECK_TURN_BIT_TF(_arg_contr_wii_data[0],3);
-	_mem_contr_wii_data._data_bit._nf_select = CHECK_TURN_BIT_TF(_arg_contr_wii_data[0],0);
-	_mem_contr_wii_data._data_bit._nf_home   = CHECK_TURN_BIT_TF(_arg_contr_wii_data[0],1);
-	
-	_mem_contr_wii_data._data_bit._nf_right = CHECK_TURN_BIT_TF(_arg_contr_wii_data[1],5);
-	_mem_contr_wii_data._data_bit._nf_z_right = CHECK_TURN_BIT_TF(_arg_contr_wii_data[1],3);
-	
-	_mem_contr_wii_data._data_bit._nf_left  = CHECK_TURN_BIT_TF(_arg_contr_wii_data[1],4);
-	_mem_contr_wii_data._data_bit._nf_z_left  = CHECK_TURN_BIT_TF(_arg_contr_wii_data[1],2);
-	
-	_mem_contr_wii_data._data_bit._nf_y = CHECK_TURN_BIT_TF(_arg_contr_wii_data[2],3);
-	_mem_contr_wii_data._data_bit._nf_b = CHECK_TURN_BIT_TF(_arg_contr_wii_data[2],2);
-	_mem_contr_wii_data._data_bit._nf_a = CHECK_TURN_BIT_TF(_arg_contr_wii_data[2],1);
-	_mem_contr_wii_data._data_bit._nf_x = CHECK_TURN_BIT_TF(_arg_contr_wii_data[2],0);
-}
-
 //public
 inline 
 C_CONTR_Wii::
@@ -152,40 +77,11 @@ BT_RX回路からの受信。単線時用
 	_arg_contr_wii_uart_r : 受信するUART。
 */
 {
-	_arg_contr_wii_uart_r.Set_bit9(FALES);
-	
-	_arg_contr_wii_uart_r.Check();
-	
-	if (_arg_contr_wii_uart_r == EU_ERROR) //受信失敗
-	{
-		Reset();
-		return (void)0;
-	}
-	
-	usint _flag = 0;
-	
 	T_DATA_8 _temp_data[CON_BYTE_UART] = {};
 	
-	for (usint i = 0; i < 15; i++) //さすがに無限ループ化するのはまずいので
-	{
-		T_DATA_8 _temp = 0;
-		
-		_arg_contr_wii_uart_r >> _temp;
-		
-		if (_arg_contr_wii_uart_r != EU_ERROR)
-		{
-			_temp_data[(_temp & 0xc0) >> 6] = _temp;
-			
-			_flag |= (1 << ((_temp & 0xc0) >> 6));
-		}
-		
-		if (_flag == 0x0f) //データを全て得るまで続く
-		{
-			break;
-		}
-	}
+	C_CONTR::In(_arg_contr_wii_uart_r,_temp_data);
 	
-	Set_data(_temp_data);
+	_mem_contr_wii_data.Set_data(_temp_data);
 }
 
 void 
@@ -197,41 +93,11 @@ BT_RX回路からの受信。2線時用
 	_arg_contr_wii_uart_r2 : 受信するUART。
 */
 {
-	_arg_contr_wii_uart_r2.Set_bit9_0(FALES);
-	_arg_contr_wii_uart_r2.Set_bit9_1(FALES);
-	
-	_arg_contr_wii_uart_r2.Check();
-	
-	if (_arg_contr_wii_uart_r2 == EU_ERROR)
-	{
-		Reset();
-		return (void)0;
-	}
-	
-	usint _flag = 0;
-	
 	T_DATA_8 _temp_data[CON_BYTE_UART] = {};
 	
-	for (usint i = 0; i < 15; i++)
-	{
-		T_DATA_8 _temp = 0;
-		
-		_arg_contr_wii_uart_r2 >> _temp;
-		
-		if (_arg_contr_wii_uart_r2 != EU_ERROR)
-		{
-			_temp_data[(_temp >> 6) & 0x03] = _temp;
-			
-			_flag |= (1 << ((_temp >> 6) & 0x03));
-		}
-		
-		if (_flag == 0x0f)
-		{
-			break;
-		}
-	}
+	C_CONTR::In(_arg_contr_wii_uart_r2,_temp_data);
 	
-	Set_data(_temp_data);
+	_mem_contr_wii_data.Set_data(_temp_data);
 }
 
 inline void C_CONTR_Wii::Reset()
@@ -256,5 +122,3 @@ Wiiコントローラからのデータを全て表示する。
 		Lcd_put_num(_arg_contr_wii_addr + i * 2,Ret_data(i),2,ED_16);
 	}
 }
-
-#endif
