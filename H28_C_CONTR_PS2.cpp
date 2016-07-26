@@ -22,18 +22,18 @@ class C_CONTR_ps2 : public C_CONTR
 	E_DIRECX Ret_Lsti_x()	{	return _mem_contr_ps2_data._data_bit._stick_left_x;		}
 	E_DIRECY Ret_Rsti_y()	{	return _mem_contr_ps2_data._data_bit._stick_right_y;	}
 	E_DIRECY Ret_Lsti_y()	{	return _mem_contr_ps2_data._data_bit._stick_left_y;		}
-	E_LOGIC  Ret_select()	{	return _mem_contr_ps2_data._data_bit._nf_select;		}
-	E_LOGIC  Ret_start()	{	return _mem_contr_ps2_data._data_bit._nf_start;			}
-	E_LOGIC  Ret_tri()		{	return _mem_contr_ps2_data._data_bit._nf_tri;			}
-	E_LOGIC  Ret_cir()		{	return _mem_contr_ps2_data._data_bit._nf_cir;			}
-	E_LOGIC  Ret_squ()		{	return _mem_contr_ps2_data._data_bit._nf_squ;			}
-	E_LOGIC  Ret_cro()		{	return _mem_contr_ps2_data._data_bit._nf_cro;			}
-	E_LOGIC  Ret_R1()		{	return _mem_contr_ps2_data._data_bit._nf_right_1;		}
-	E_LOGIC  Ret_R2()		{	return _mem_contr_ps2_data._data_bit._nf_right_2;		}
-	E_LOGIC  Ret_R3()		{	return _mem_contr_ps2_data._data_bit._nf_right_3;		}
-	E_LOGIC  Ret_L1()		{	return _mem_contr_ps2_data._data_bit._nf_left_1;		}
-	E_LOGIC  Ret_L2()		{	return _mem_contr_ps2_data._data_bit._nf_left_2;		}
-	E_LOGIC  Ret_L3()		{	return _mem_contr_ps2_data._data_bit._nf_left_3;		}
+	BOOL  Ret_select()		{	return _mem_contr_ps2_data._data_bit._nf_select;		}
+	BOOL  Ret_start()		{	return _mem_contr_ps2_data._data_bit._nf_start;			}
+	BOOL  Ret_tri()			{	return _mem_contr_ps2_data._data_bit._nf_tri;			}
+	BOOL  Ret_cir()			{	return _mem_contr_ps2_data._data_bit._nf_cir;			}
+	BOOL  Ret_squ()			{	return _mem_contr_ps2_data._data_bit._nf_squ;			}
+	BOOL  Ret_cro()			{	return _mem_contr_ps2_data._data_bit._nf_cro;			}
+	BOOL  Ret_R1()			{	return _mem_contr_ps2_data._data_bit._nf_right_1;		}
+	BOOL  Ret_R2()			{	return _mem_contr_ps2_data._data_bit._nf_right_2;		}
+	BOOL  Ret_R3()			{	return _mem_contr_ps2_data._data_bit._nf_right_3;		}
+	BOOL  Ret_L1()			{	return _mem_contr_ps2_data._data_bit._nf_left_1;		}
+	BOOL  Ret_L2()			{	return _mem_contr_ps2_data._data_bit._nf_left_2;		}
+	BOOL  Ret_L3()			{	return _mem_contr_ps2_data._data_bit._nf_left_3;		}
 	
 	uchar Ret_data(usint _arg_num_data)	{	return _mem_contr_ps2_data._arr_data_byte[_arg_num_data];	}
 	

@@ -27,20 +27,20 @@ class C_CONTR
 			//_mem_data_controler[1]
 			E_DIRECX _cross_x :2; //十字キー x軸 0,1bit
 			E_DIRECY _cross_y :2; //十字キー y軸 2,3bit
-			E_LOGIC _nf_tri :1; //三角 4bit
-			E_LOGIC _nf_cir :1; //円   5bit
-			E_LOGIC _nf_squ :1; //四角 6bit
-			E_LOGIC _nf_cro :1; //罰印 7bit
+			BOOL _nf_tri :1; //三角 4bit
+			BOOL _nf_cir :1; //円   5bit
+			BOOL _nf_squ :1; //四角 6bit
+			BOOL _nf_cro :1; //罰印 7bit
 			
 			//_mem_data_controler[2]
-			E_LOGIC _nf_right_1 :1; //0bit
-			E_LOGIC _nf_left_1  :1; //1bit
-			E_LOGIC _nf_right_2 :1; //2bit
-			E_LOGIC _nf_left_2  :1; //3bit
-			E_LOGIC _nf_right_3 :1; //4bit
-			E_LOGIC _nf_left_3  :1; //5bit
-			E_LOGIC _nf_start   :1; //6bit
-			E_LOGIC _nf_select  :1; //7bit
+			BOOL _nf_right_1 :1; //0bit
+			BOOL _nf_left_1  :1; //1bit
+			BOOL _nf_right_2 :1; //2bit
+			BOOL _nf_left_2  :1; //3bit
+			BOOL _nf_right_3 :1; //4bit
+			BOOL _nf_left_3  :1; //5bit
+			BOOL _nf_start   :1; //6bit
+			BOOL _nf_select  :1; //7bit
 		};
 		
 		T_DATA_8 _arr_data_byte[CON_BYTE];
@@ -96,21 +96,21 @@ class C_CONTR
 			E_DIRECX _cross_x :2; //十字キー x軸 0,1bit
 			E_DIRECY _cross_y :2; //十字キー y軸 2,3bit
 			
-			E_LOGIC _nf_x :1; //x 4bit
-			E_LOGIC _nf_a :1; //a 5bit
-			E_LOGIC _nf_y :1; //y 6bit
-			E_LOGIC _nf_b :1; //b 7bit
+			BOOL _nf_x :1; //x 4bit
+			BOOL _nf_a :1; //a 5bit
+			BOOL _nf_y :1; //y 6bit
+			BOOL _nf_b :1; //b 7bit
 			
 			//_mem_data_controler[2]
-			E_LOGIC _nf_right :1; //0bit
-			E_LOGIC _nf_left  :1; //1bit
-			E_LOGIC _nf_z_right :1; //2bit
-			E_LOGIC _nf_z_left  :1; //3bit
+			BOOL _nf_right :1; //0bit
+			BOOL _nf_left  :1; //1bit
+			BOOL _nf_z_right :1; //2bit
+			BOOL _nf_z_left  :1; //3bit
 			
-			E_LOGIC _none_		:1; //4bit
-			E_LOGIC _nf_home	:1; //5bit
-			E_LOGIC _nf_start   :1; //6bit
-			E_LOGIC _nf_select  :1; //7bit
+			BOOL _none_		:1; //4bit
+			BOOL _nf_home	:1; //5bit
+			BOOL _nf_start   :1; //6bit
+			BOOL _nf_select  :1; //7bit
 		};
 		
 		T_DATA_8 _arr_data_byte[CON_BYTE];

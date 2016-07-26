@@ -9,14 +9,14 @@ class C_AIR
 	{	
 		struct S_AIR
 		{
-			E_LOGIC _air0 :1;
-			E_LOGIC _air1 :1;
-			E_LOGIC _air2 :1;
-			E_LOGIC _air3 :1;
-			E_LOGIC _air4 :1;
-			E_LOGIC _air5 :1;
-			E_LOGIC _air6 :1;
-			E_LOGIC _air7 :1;
+			BOOL _air0 :1;
+			BOOL _air1 :1;
+			BOOL _air2 :1;
+			BOOL _air3 :1;
+			BOOL _air4 :1;
+			BOOL _air5 :1;
+			BOOL _air6 :1;
+			BOOL _air7 :1;
 		};
 		
 		T_DATA_8 _data_byte :8;
@@ -24,34 +24,34 @@ class C_AIR
 	};
 	
 	U_AIR _mem_air_data;
-	E_LOGIC _mem_array_air_flag[8];
+	BOOL _mem_array_air_flag[8];
 	
 	public:
 	C_AIR(T_DATA_8 );
 	
 	T_DATA_8 Ret();
-	E_LOGIC Ret_num(T_NUM _arg_air_num);
+	BOOL Ret_num(T_NUM _arg_air_num);
 		
-	E_LOGIC Ret_0()	{	return _mem_air_data._data_bit._air0;	}
-	E_LOGIC Ret_1()	{	return _mem_air_data._data_bit._air1;	}
-	E_LOGIC Ret_2()	{	return _mem_air_data._data_bit._air2;	}
-	E_LOGIC Ret_3()	{	return _mem_air_data._data_bit._air3;	}
-	E_LOGIC Ret_4()	{	return _mem_air_data._data_bit._air4;	}
-	E_LOGIC Ret_5()	{	return _mem_air_data._data_bit._air5;	}
-	E_LOGIC Ret_6()	{	return _mem_air_data._data_bit._air6;	}
-	E_LOGIC Ret_7()	{	return _mem_air_data._data_bit._air7;	}
+	BOOL Ret_0()	{	return _mem_air_data._data_bit._air0;	}
+	BOOL Ret_1()	{	return _mem_air_data._data_bit._air1;	}
+	BOOL Ret_2()	{	return _mem_air_data._data_bit._air2;	}
+	BOOL Ret_3()	{	return _mem_air_data._data_bit._air3;	}
+	BOOL Ret_4()	{	return _mem_air_data._data_bit._air4;	}
+	BOOL Ret_5()	{	return _mem_air_data._data_bit._air5;	}
+	BOOL Ret_6()	{	return _mem_air_data._data_bit._air6;	}
+	BOOL Ret_7()	{	return _mem_air_data._data_bit._air7;	}
 	
 	void Set(T_DATA_8 );
-	void Set_num(T_NUM ,E_LOGIC );
+	void Set_num(T_NUM ,BOOL );
 	
-	void Set_0(E_LOGIC _arg_air_nf_0)	{	_mem_air_data._data_bit._air0 = _arg_air_nf_0;	}
-	void Set_1(E_LOGIC _arg_air_nf_1)	{	_mem_air_data._data_bit._air1 = _arg_air_nf_1;	}
-	void Set_2(E_LOGIC _arg_air_nf_2)	{	_mem_air_data._data_bit._air2 = _arg_air_nf_2;	}
-	void Set_3(E_LOGIC _arg_air_nf_3)	{	_mem_air_data._data_bit._air3 = _arg_air_nf_3;	}
-	void Set_4(E_LOGIC _arg_air_nf_4)	{	_mem_air_data._data_bit._air4 = _arg_air_nf_4;	}
-	void Set_5(E_LOGIC _arg_air_nf_5)	{	_mem_air_data._data_bit._air5 = _arg_air_nf_5;	}
-	void Set_6(E_LOGIC _arg_air_nf_6)	{	_mem_air_data._data_bit._air6 = _arg_air_nf_6;	}
-	void Set_7(E_LOGIC _arg_air_nf_7)	{	_mem_air_data._data_bit._air7 = _arg_air_nf_7;	}
+	void Set_0(BOOL _arg_air_nf_0)	{	_mem_air_data._data_bit._air0 = _arg_air_nf_0;	}
+	void Set_1(BOOL _arg_air_nf_1)	{	_mem_air_data._data_bit._air1 = _arg_air_nf_1;	}
+	void Set_2(BOOL _arg_air_nf_2)	{	_mem_air_data._data_bit._air2 = _arg_air_nf_2;	}
+	void Set_3(BOOL _arg_air_nf_3)	{	_mem_air_data._data_bit._air3 = _arg_air_nf_3;	}
+	void Set_4(BOOL _arg_air_nf_4)	{	_mem_air_data._data_bit._air4 = _arg_air_nf_4;	}
+	void Set_5(BOOL _arg_air_nf_5)	{	_mem_air_data._data_bit._air5 = _arg_air_nf_5;	}
+	void Set_6(BOOL _arg_air_nf_6)	{	_mem_air_data._data_bit._air6 = _arg_air_nf_6;	}
+	void Set_7(BOOL _arg_air_nf_7)	{	_mem_air_data._data_bit._air7 = _arg_air_nf_7;	}
 	
 	void Turn();
 	void Turn_num(T_NUM );
@@ -65,9 +65,9 @@ class C_AIR
 	void Turn_6()	{	_mem_air_data._data_bit._air6 = TURN_TF(_mem_air_data._data_bit._air6);	}
 	void Turn_7()	{	_mem_air_data._data_bit._air7 = TURN_TF(_mem_air_data._data_bit._air7);	}
 
-	void Do(T_NUM ,E_LOGIC );	
-	void Do(T_NUM ,E_LOGIC ,E_LOGIC &);
-	void Do(T_NUM ,T_NUM ,E_LOGIC ,E_LOGIC &);
+	void Do(T_NUM ,BOOL );	
+	void Do(T_NUM ,BOOL ,BOOL &);
+	void Do(T_NUM ,T_NUM ,BOOL ,BOOL &);
 	
 	void Out(C_UART_T );
 	
@@ -93,7 +93,7 @@ Ret ()
 	return _mem_air_data._data_byte;
 }
 
-inline E_LOGIC
+inline BOOL
 C_AIR::
 Ret_num (T_NUM _arg_air_num)
 {
@@ -112,7 +112,7 @@ C_AIR::
 Set_num
 (
 	T_NUM _arg_air_num,
-	E_LOGIC _arg_air_nf
+	BOOL _arg_air_nf
 )
 {
 	switch (_arg_air_nf)
@@ -160,7 +160,7 @@ C_AIR::
 Do
 (
 	T_NUM _arg_air_num, 
-	E_LOGIC _arg_air_nf
+	BOOL _arg_air_nf
 )
 /*
 3port or 2port電磁弁用
@@ -189,8 +189,8 @@ C_AIR::
 Do
 (
 	T_NUM _arg_air_num, 
-	E_LOGIC _arg_air_nf, 
-	E_LOGIC &_arg_nf_timer
+	BOOL _arg_air_nf, 
+	BOOL &_arg_nf_timer
 )
 /*
 3port or 2port電磁弁用。タイマ付き
@@ -221,8 +221,8 @@ Do
 (
 	T_NUM _arg_air_num_0, 
 	T_NUM _arg_air_num_1, 
-	E_LOGIC _arg_air_nf ,
-	E_LOGIC &_arg_nf_timer
+	BOOL _arg_air_nf ,
+	BOOL &_arg_nf_timer
 )
 /*
 5port電磁弁用。タイマ付き
@@ -234,26 +234,28 @@ Do
 {	
 	if (_arg_air_nf)
 	{
-		if (_mem_array_air_flag[_arg_air_num_0])
+		if (_mem_array_air_flag[_arg_air_num_0] == FALES)
 		{			
-			switch (_mem_array_air_flag[_arg_air_num_1])
+			return (void)0;
+		}
+		
+		switch (_mem_array_air_flag[_arg_air_num_1])
+		{
+			case TRUE:
 			{
-				case TRUE:
-				{
-					if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
-					
-					Set_num(_arg_air_num_0,FALES);
-					
-					break;
-				}
-				case FALES:
-				{
-					if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
-					
-					Set_num(_arg_air_num_1,FALES);
-					
-					break;
-				}
+				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
+				
+				Set_num(_arg_air_num_0,FALES);
+				
+				break;
+			}
+			case FALES:
+			{
+				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
+				
+				Set_num(_arg_air_num_1,FALES);
+				
+				break;
 			}
 		}
 	}
@@ -261,17 +263,19 @@ Do
 	{
 		if (_mem_array_air_flag[_arg_air_num_0])
 		{			
-			if ((Ret_num(_arg_air_num_0) & Ret_num(_arg_air_num_1) & TURN_TF(_arg_nf_timer)) == FALES)
+			if ((Ret_num(_arg_air_num_0) | Ret_num(_arg_air_num_1) | TURN_TF(_arg_nf_timer)))
 			{
-				switch (_mem_array_air_flag[_arg_air_num_1])
-				{
-					case TRUE:	Set_num(_arg_air_num_1,TRUE);	break;
-					case FALES:	Set_num(_arg_air_num_0,TRUE);	break;
-				}
-				
-				_mem_array_air_flag[_arg_air_num_0] = FALES;
-				_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+				return (void)0;
 			}
+			
+			switch (_mem_array_air_flag[_arg_air_num_1])
+			{
+				case TRUE:	Set_num(_arg_air_num_1,TRUE);	break;
+				case FALES:	Set_num(_arg_air_num_0,TRUE);	break;
+			}
+			
+			_mem_array_air_flag[_arg_air_num_0] = FALES;
+			_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
 		}
 		else
 		{

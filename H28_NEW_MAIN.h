@@ -1,8 +1,11 @@
 
 #pragma once
 
+#define USED_H28_AM_640
+
 #include <H28_AVR/H28_AVR.h>
 #include <FallMoon/akilcd_nm.h>
+
 /* CONTROLER ************************************************************/
 #define NOREA 1
 #define SOUWE 2
@@ -71,8 +74,8 @@ E_DIRECX‚Æ‚Í‹t‚É‚È‚é
 inline E_DIRECX 
 SET_DIREC_X
 (
-	E_LOGIC _arg_direc_x_east,
-	E_LOGIC _arg_direc_x_west
+	BOOL _arg_direc_x_east,
+	BOOL _arg_direc_x_west
 )
 /*
 2‚Â‚ÌE_LOGIC‚©‚çÝ’è‚³‚ê‚½E_DIRECX‚ð•Ô‚·
@@ -171,8 +174,8 @@ SET_DIREC_Y‚Æ‚Í‹t‚É‚È‚é
 inline E_DIRECY 
 SET_DIREC_Y
 (
-	E_LOGIC _arg_direc_y_north,
-	E_LOGIC _arg_direc_y_south
+	BOOL _arg_direc_y_north,
+	BOOL _arg_direc_y_south
 )
 /*
 2‚Â‚ÌE_LOGIC‚©‚çÝ’è‚³‚ê‚½E_DIRECY‚ð•Ô‚·
@@ -227,7 +230,7 @@ enum E_SIG
 /************************************************************************/
 
 inline E_SIG 
-SET_SIG (E_LOGIC _arg_set_tf)
+SET_SIG (BOOL _arg_set_tf)
 /*
 _arg_set_tf‚©‚çÝ’è‚µ‚½E_SIG‚ð•Ô‚·
 
@@ -273,8 +276,8 @@ _arg_set_direc_x‚©‚çÝ’è‚µ‚½E_SIG‚ð•Ô‚·
 inline E_SIG 
 SET_SIG
 (
-	E_LOGIC _arg_set_tf_1, 
-	E_LOGIC _arg_set_tf_0
+	BOOL _arg_set_tf_1, 
+	BOOL _arg_set_tf_0
 )
 /*
 _arg_set_tf_0,_arg_set_tf_1‚ð‚à‚Æ‚ÉÝ’è‚µ‚½SIG‚ðreturn‚·‚é
@@ -331,7 +334,7 @@ _arg_turn_sig‚ÌƒtƒŠ[AƒuƒŒ[ƒL‚ð”½“]‚³‚¹‚½‚à‚Ì‚ðreturn‚·‚é
 
 /************************************************************************/
 
-inline E_LOGIC 
+inline BOOL 
 CHECK_MOVE (E_SIG _arg_check_sig_mode)
 /*
 PWM‚ð0‚É‚·‚×‚«‚©‚Ì”»’fBE_LOGIC‚Å•Ô‚·
@@ -342,7 +345,7 @@ PWM‚ð0‚É‚·‚×‚«‚©‚Ì”»’fBE_LOGIC‚Å•Ô‚·
 	FALES -> ‚µ‚æ‚¤ 
 */
 {
-	return (E_LOGIC)(0b0110 >> _arg_check_sig_mode);
+	return (BOOL)(0b0110 >> _arg_check_sig_mode);
 }
 
 /************************************************************************/

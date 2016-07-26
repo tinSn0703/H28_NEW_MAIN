@@ -7,8 +7,8 @@ T_PWM F_Set_pwm
 (
 	DIREC _arg_pwm_hl, 
 	T_PWM &_arg_pwm, 
-	E_LOGIC &_arg_flag,
-	E_LOGIC _arg_pwm_recet = FALES
+	BOOL &_arg_flag,
+	BOOL _arg_pwm_recet = FALES
 )
 /*
 _arg_pwmを++,--する
@@ -69,11 +69,11 @@ _arg_pwmを++,--する
 inline T_PWM 
 F_Set_pwm
 (
-	E_LOGIC _arg_nf_pwm_high, 
-	E_LOGIC _arg_nf_pwm_low, 
+	BOOL _arg_nf_pwm_high, 
+	BOOL _arg_nf_pwm_low, 
 	T_PWM &_arg_pwm, 
-	E_LOGIC &_arg_flag, 
-	E_LOGIC _arg_pwm_recet = FALES
+	BOOL &_arg_flag, 
+	BOOL _arg_pwm_recet = FALES
 )
 /*
 _arg_pwmを++,--する。 
@@ -125,8 +125,8 @@ F_Set_wheel_2
 (
 	C_MD_MAIN _arg_motor[2], 
 	E_DIRECY _arg_direc_move, 
-	E_LOGIC _arg_turn_0, 
-	E_LOGIC _arg_turn_1, 
+	BOOL _arg_turn_0, 
+	BOOL _arg_turn_1, 
 	T_PWM _arg_pwm
 )
 /*
@@ -168,8 +168,8 @@ inline void
 F_Set_motor_tf_1
 (
 	C_MD_MAIN &_arg_motor, 
-	E_LOGIC _arg_nf_true, 
-	E_LOGIC _arg_nf_fales, 
+	BOOL _arg_nf_true, 
+	BOOL _arg_nf_fales, 
 	T_PWM _arg_pwm
 )
 /*

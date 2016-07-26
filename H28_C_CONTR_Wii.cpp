@@ -21,17 +21,17 @@ Wiiコントローラ用
 	E_DIRECY Ret_Rsti_y()	{	return _mem_contr_wii_data._data_bit._stick_right_y;	}
 	E_DIRECX Ret_Lsti_x()	{	return _mem_contr_wii_data._data_bit._stick_left_x;		}
 	E_DIRECY Ret_Lsti_y()	{	return _mem_contr_wii_data._data_bit._stick_left_y;		}
-	E_LOGIC  Ret_select()	{	return _mem_contr_wii_data._data_bit._nf_select;		}
-	E_LOGIC  Ret_start()	{	return _mem_contr_wii_data._data_bit._nf_start;			}
-	E_LOGIC  Ret_home()		{	return _mem_contr_wii_data._data_bit._nf_home;			}
-	E_LOGIC  Ret_X()		{	return _mem_contr_wii_data._data_bit._nf_x;				}
-	E_LOGIC  Ret_A()		{	return _mem_contr_wii_data._data_bit._nf_a;				}
-	E_LOGIC  Ret_Y()		{	return _mem_contr_wii_data._data_bit._nf_y;				}
-	E_LOGIC  Ret_B()		{	return _mem_contr_wii_data._data_bit._nf_b;				}
-	E_LOGIC  Ret_R()		{	return _mem_contr_wii_data._data_bit._nf_right;			}
-	E_LOGIC  Ret_L()		{	return _mem_contr_wii_data._data_bit._nf_left;			}
-	E_LOGIC  Ret_ZR()		{	return _mem_contr_wii_data._data_bit._nf_z_right;		}
-	E_LOGIC  Ret_ZL()		{	return _mem_contr_wii_data._data_bit._nf_z_left;		}
+	BOOL  Ret_select()		{	return _mem_contr_wii_data._data_bit._nf_select;		}
+	BOOL  Ret_start()		{	return _mem_contr_wii_data._data_bit._nf_start;			}
+	BOOL  Ret_home()		{	return _mem_contr_wii_data._data_bit._nf_home;			}
+	BOOL  Ret_X()			{	return _mem_contr_wii_data._data_bit._nf_x;				}
+	BOOL  Ret_A()			{	return _mem_contr_wii_data._data_bit._nf_a;				}
+	BOOL  Ret_Y()			{	return _mem_contr_wii_data._data_bit._nf_y;				}
+	BOOL  Ret_B()			{	return _mem_contr_wii_data._data_bit._nf_b;				}
+	BOOL  Ret_R()			{	return _mem_contr_wii_data._data_bit._nf_right;			}
+	BOOL  Ret_L()			{	return _mem_contr_wii_data._data_bit._nf_left;			}
+	BOOL  Ret_ZR()			{	return _mem_contr_wii_data._data_bit._nf_z_right;		}
+	BOOL  Ret_ZL()			{	return _mem_contr_wii_data._data_bit._nf_z_left;		}
 	
 	uchar Ret_data(usint _arg_num_data)	{	return _mem_contr_wii_data._arr_data_byte[_arg_num_data];	}
 	

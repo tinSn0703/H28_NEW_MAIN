@@ -17,7 +17,7 @@ class C_MD_MAIN
 		struct S_MD_0 //順番変えるな
 		{
 			E_SIG _md_0_sig_mode	:2;
-			E_LOGIC _md_0_nf_steps	:1;
+			BOOL _md_0_nf_steps	:1;
 			T_NUM _md_0_without		:2;
 			T_NUM _md_0_num_data	:1;
 			T_NUM _md_0_num_md		:2;
@@ -48,7 +48,7 @@ class C_MD_MAIN
 	
 	sint _mem_md_main_pwm_revis :6;
 	
-	E_LOGIC _mem_md_main_nf_turn :1;
+	BOOL _mem_md_main_nf_turn :1;
 	
 	#define MD_DATA_NUM_0 0
 	#define MD_DATA_NUM_1 1
@@ -56,18 +56,18 @@ class C_MD_MAIN
 	public:
 
 	C_MD_MAIN()	{}
-	C_MD_MAIN(T_NUM ,T_NUM ,E_LOGIC ,sint);
+	C_MD_MAIN(T_NUM ,T_NUM ,BOOL ,sint);
 	
 	void Chan_md(T_NUM );
 	
 	void Out(C_UART_T &);
 	
 	//データセット
-	void Set_turn(E_LOGIC );
-	void Set_data(E_SIG ,T_PWM ,E_LOGIC);
+	void Set_turn(BOOL );
+	void Set_data(E_SIG ,T_PWM ,BOOL);
 	void Set_pwm(T_PWM );
 	void Set_sig(E_SIG );
-	void Set_steps(E_LOGIC );
+	void Set_steps(BOOL );
 	void Set_pwm_revis(sint );
 	
 	//データ表示
@@ -77,7 +77,7 @@ class C_MD_MAIN
 	T_NUM Ret_num_md()	{	return _mem_md_main_data_0._md_0_data_bit._md_0_num_md;		}
 	E_SIG Ret_sig()		{	return _mem_md_main_data_0._md_0_data_bit._md_0_sig_mode;	}
 	T_PWM Ret_pwm()		{	return _mem_md_main_data_1._md_1_data_bit._md_1_pwm_value;	}
-	E_LOGIC Ret_steps()	{	return _mem_md_main_data_0._md_0_data_bit._md_0_nf_steps;	}
+	BOOL Ret_steps()	{	return _mem_md_main_data_0._md_0_data_bit._md_0_nf_steps;	}
 	
 	//Lcd表示
 	void Lcd_sig_num(T_ADRS );
@@ -94,7 +94,7 @@ C_MD_MAIN
 (
 	T_NUM _arg_md_main_num_mdc, 
 	T_NUM _arg_md_main_num_md ,
-	E_LOGIC _arg_md_main_nf_turn = FALES ,
+	BOOL _arg_md_main_nf_turn = FALES ,
 	sint _arg_md_main_pwm_revis = 0
 )
 {
@@ -126,7 +126,7 @@ Chan_md (T_NUM  _arg_md_main_num_md)
 
 inline void 
 C_MD_MAIN::
-Set_turn (E_LOGIC _arg_md_main_nf_turn)
+Set_turn (BOOL _arg_md_main_nf_turn)
 {
 	_mem_md_main_nf_turn = _arg_md_main_nf_turn;
 }
@@ -149,7 +149,7 @@ Set_sig (E_SIG _arg_md_main_sig_mode)
 
 inline void 
 C_MD_MAIN::
-Set_steps (E_LOGIC _arg_md_main_nf_steps = TRUE)
+Set_steps (BOOL _arg_md_main_nf_steps = TRUE)
 {
 	_mem_md_main_data_0._md_0_data_bit._md_0_nf_steps = _arg_md_main_nf_steps;
 }
@@ -171,7 +171,7 @@ Set_data
 (
 	E_SIG _arg_md_main_sig_mode, 
 	T_PWM _arg_md_main_pwm_value = 0, 
-	E_LOGIC _arg_md_main_nf_steps = TRUE
+	BOOL _arg_md_main_nf_steps = TRUE
 )
 {
 	Set_pwm(_arg_md_main_pwm_value);
