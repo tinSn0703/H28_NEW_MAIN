@@ -155,9 +155,7 @@ In
 	C_UART_R & _arg_contr_uart_r,
 	T_DATA_8 _arg_contr_data[CON_BYTE_UART] 
 )
-{
-	_arg_contr_uart_r.Set_bit9(FALES);
-	
+{	
 	_arg_contr_uart_r.Check();
 	
 	if (_arg_contr_uart_r == EU_ERROR) //éÛêMé∏îs
