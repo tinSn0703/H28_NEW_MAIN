@@ -135,6 +135,11 @@ inline void
 C_MD_MAIN::
 Set_pwm (T_PWM _arg_md_main_pwm_value)
 {
+	if (_arg_md_main_pwm_value != 0)
+	{
+		_arg_md_main_pwm_value += _mem_md_main_pwm_revis;
+	}
+	
 	_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value = _arg_md_main_pwm_value;
 }
 
@@ -142,7 +147,16 @@ inline void
 C_MD_MAIN::
 Set_sig (E_SIG _arg_md_main_sig_mode)
 {
-	if (CHECK_MOVE(_arg_md_main_sig_mode) == FALES)	_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value = 0;
+	if (CHECK_MOVE(_arg_md_main_sig_mode) == FALES)
+	{
+		_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value = 0;
+	}
+	
+	if (_mem_md_main_nf_turn)
+	{
+		_arg_md_main_sig_mode = TURN_SIG_ROTATE(_arg_md_main_sig_mode);
+	}
+	
 	
 	_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode = _arg_md_main_sig_mode;
 }
@@ -183,16 +197,6 @@ void
 C_MD_MAIN::
 Out (C_UART_T &_arg_md_main_uart_t)
 {
-	if (_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value != 0)
-	{
-		_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value += _mem_md_main_pwm_revis;
-	}
-	
-	if (_mem_md_main_nf_turn == TRUE)
-	{
-		_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode = TURN_SIG_ROTATE(_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode);
-	}
-	
 	_arg_md_main_uart_t.Set_bit9(TRUE);
 	
 	_arg_md_main_uart_t << _mem_md_main_data_0._md_0_data;
