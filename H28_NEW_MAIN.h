@@ -7,9 +7,13 @@
 #include <FallMoon/akilcd_nm.h>
 
 /* CONTROLER ************************************************************/
-#define NOREA 1
-#define SOUWE 2
-#define ZERO  3
+#define NOREA 0b01
+#define SOUWE 0b10
+#define ZERO  0b11
+
+#define DIREC_SET		0b11100111
+#define DIREC_TURN_SET	0b11011011
+#define DIREC_TURN		0b11011000
 
 /**
  * XŽ²•ûŒü 2bit
@@ -42,7 +46,7 @@ SET_DIREC_X
 	T_NUM _arg_direc_x_bit
 )
 {
-	return (E_DIRECX)((0b11100111 >> (((_arg_direc_x_data >> _arg_direc_x_bit) & 3) * 2)) & 3);
+	return (E_DIRECX)((DIREC_SET >> (((_arg_direc_x_data >> _arg_direc_x_bit) & 3) * 2)) & 3);
 }
 
 /**
@@ -67,7 +71,7 @@ SET_DIREC_X
 {
 	usint _direc_num = (((_arg_direc_x_east << 0) | (_arg_direc_x_west << 1)) * 2);
 	
-	return (E_DIRECX)((0b11100111 >> _direc_num) & 3);
+	return (E_DIRECX)((DIREC_SET >> _direc_num) & 3);
 }
 
 /**
@@ -92,7 +96,7 @@ SET_TURN_DIREC_X
 	T_NUM _arg_direc_x_bit
 )
 {
-	return (E_DIRECX)((0b11011011 >> (((_arg_direc_x_data >> _arg_direc_x_bit) & 3) * 2)) & 3);
+	return (E_DIRECX)((DIREC_TURN_SET >> (((_arg_direc_x_data >> _arg_direc_x_bit) & 3) * 2)) & 3);
 }
 
 /**
@@ -108,7 +112,7 @@ SET_TURN_DIREC_X
 inline E_DIRECX 
 TURN_DIREC_X (E_DIRECX _arg_direc_x )
 {
-	return (E_DIRECX)((0b11011000 >> (((usint)_arg_direc_x) * 2)) & 3);
+	return (E_DIRECX)((DIREC_TURN >> (((usint)_arg_direc_x) * 2)) & 3);
 }
 
 /************************************************************************/
@@ -143,7 +147,7 @@ SET_DIREC_Y
 	T_NUM _arg_direc_y_bit
 )
 {
-	return (E_DIRECY)((0b11011011 >> (((_arg_direc_y_data >> _arg_direc_y_bit) & 3) * 2)) & 3);
+	return (E_DIRECY)((DIREC_SET >> (((_arg_direc_y_data >> _arg_direc_y_bit) & 3) * 2)) & 3);
 }
 
 /**
@@ -168,7 +172,7 @@ SET_DIREC_Y
 {
 	usint _direc_num = (((_arg_direc_y_north << 1) | (_arg_direc_y_south << 0)) * 2);
 	
-	return (E_DIRECY)((0b11100111 >> _direc_num) & 3);
+	return (E_DIRECY)((DIREC_SET >> _direc_num) & 3);
 }
 
 /**
@@ -193,7 +197,7 @@ SET_TURN_DIREC_Y
 	T_NUM _arg_direc_y_bit
 )
 {
-	return (E_DIRECY)((0b11100111 >> (((_arg_direc_y_data >> _arg_direc_y_bit) & 3) * 2)) & 3);
+	return (E_DIRECY)((DIREC_TURN_SET >> (((_arg_direc_y_data >> _arg_direc_y_bit) & 3) * 2)) & 3);
 }
 
 /**
@@ -209,7 +213,7 @@ SET_TURN_DIREC_Y
 inline E_DIRECY 
 TURN_DIREC_Y (E_DIRECY _arg_direc_y )
 {
-	return (E_DIRECY)((0b11011000 >> (((usint)_arg_direc_y) * 2)) & 3);
+	return (E_DIRECY)((DIREC_TURN >> (((usint)_arg_direc_y) * 2)) & 3);
 }
 
 /************************************************************************/
@@ -354,7 +358,7 @@ TURN_SIG_FIX (E_SIG _arg_turn_sig)
 inline BOOL 
 CHECK_MOVE (E_SIG _arg_check_sig_mode)
 {
-	return (BOOL)(0b0110 >> _arg_check_sig_mode);
+	return (BOOL)((0b0110 >> _arg_check_sig_mode) & 1);
 }
 
 /**

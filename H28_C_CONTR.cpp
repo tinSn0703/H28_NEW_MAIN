@@ -122,10 +122,10 @@ class C_CONTR
 			_data_bit._cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_arr_contr_wii_data[0],4),CHECK_BIT_TF(_arg_arr_contr_wii_data[1],0));
 			
 			_data_bit._stick_left_x = SET_DIREC_X(_arg_arr_contr_wii_data[3],2);
-			_data_bit._stick_left_y = SET_TURN_DIREC_Y(_arg_arr_contr_wii_data[3],4);
+			_data_bit._stick_left_y = SET_DIREC_Y(_arg_arr_contr_wii_data[3],4);
 			
 			_data_bit._stick_right_x = SET_DIREC_X(_arg_arr_contr_wii_data[2],4);
-			_data_bit._stick_right_y = SET_TURN_DIREC_Y(_arg_arr_contr_wii_data[3],0);
+			_data_bit._stick_right_y = SET_DIREC_Y(_arg_arr_contr_wii_data[3],0);
 			
 			_data_bit._nf_start  = CHECK_TURN_BIT_TF(_arg_arr_contr_wii_data[0],3);
 			_data_bit._nf_select = CHECK_TURN_BIT_TF(_arg_arr_contr_wii_data[0],0);
