@@ -22,49 +22,7 @@ T_PWM F_Set_pwm
 	T_PWM &_arg_pwm, 
 	BOOL &_arg_flag,
 	BOOL _arg_pwm_recet = FALES
-)
-{
-	if (_arg_pwm_recet)
-	{
-		_arg_pwm = PWM_NOR;
-		
-		return _arg_pwm;
-	}
-	
-	switch (_arg_pwm_hl)
-	{
-		case NOREA:
-		{
-			if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
-			{
-				_arg_pwm++;
-				
-				_arg_flag = FALES;
-			}
-			
-			break;
-		}
-		case SOUWE:
-		{
-			if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
-			{
-				_arg_pwm--;
-				
-				_arg_flag = FALES;
-			}
-			
-			break;
-		}
-		case ZERO:
-		{
-			_arg_flag = TRUE;
-			
-			break;
-		}
-	}
-	
-	return _arg_pwm;
-}
+);
 
 /**
  * \brief : _arg_pwmを++,--する。 
@@ -84,41 +42,8 @@ F_Set_pwm
 	BOOL _arg_nf_pwm_low, 
 	T_PWM &_arg_pwm, 
 	BOOL &_arg_flag, 
-	BOOL _arg_pwm_recet = FALES
-)
-{
-	if (_arg_pwm_recet)
-	{
-		_arg_pwm = PWM_NOR;
-		
-		return _arg_pwm;
-	}
-	
-	if (_arg_nf_pwm_high)
-	{
-		if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
-		{
-			_arg_pwm ++;
-			
-			_arg_flag = FALES;
-		}
-	}
-	else if (_arg_nf_pwm_low)
-	{
-		if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
-		{
-			_arg_pwm --;
-			
-			_arg_flag = FALES;
-		}
-	}
-	else
-	{
-		_arg_flag = TRUE;
-	}
-	
-	return _arg_pwm;
-}
+	BOOL _arg_pwm_recet
+);
 
 /**
  * \brief : 2輪を扱う関数。旋回のほうが優先。
@@ -146,35 +71,8 @@ F_Set_wheel_2
 	BOOL _arg_turn_0, 
 	BOOL _arg_turn_1, 
 	T_PWM _arg_pwm,
-	BOOL _arg_sig_turn_base = TRUE
-)
-{
-	E_SIG _sig_0 = ES_FREE;
-	E_SIG _sig_1 = ES_FREE;
-	
-	if ((_arg_turn_0 | _arg_turn_1) == TRUE)
-	{		
-		const E_SIG _temp_sig = SET_SIG(_arg_sig_turn_base);
-		
-		if (_arg_turn_0)
-		{
-			_sig_0 = _temp_sig;
-		}
-		
-		if (_arg_turn_1)
-		{
-			_sig_1 = _temp_sig;
-		}
-	}
-	else
-	{
-		_sig_0 = SET_SIG(_arg_direc_move);
-		_sig_1 = SET_SIG(_arg_direc_move);
-	}
-	
-	_arg_motor[0].Set_data(_sig_0,_arg_pwm);
-	_arg_motor[1].Set_data(_sig_1,_arg_pwm);
-}
+	BOOL _arg_sig_turn_base
+);
 
 /**
  * \brief : 2輪を扱う関数。
@@ -190,14 +88,10 @@ F_Set_wheel_2
 	C_MD_MAIN _arg_motor[2], 
 	E_DIRECY _arg_direc_move,
 	T_PWM _arg_pwm
-)
-{
-	_arg_motor[0].Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
-	_arg_motor[1].Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
-}
+);
 
 /**
- * \brief 二輪の旋回。
+ * \brief 二輪の信地旋回。
  * 
  * \param _arg_motor : 旋回させるモータ。要素数は2
  * \param _arg_turn_0 : _arg_motor[0]を回転させる
@@ -212,27 +106,27 @@ F_Set_wheel_turn_2
 	BOOL _arg_turn_0,
 	BOOL _arg_turn_1,
 	T_PWM _arg_pwm,
-	BOOL _arg_sig_turn_base = TRUE 
-)
-{
-	E_SIG _sig_0 = ES_FREE;
-	E_SIG _sig_1 = ES_FREE;
-	
-	const E_SIG _temp_sig = SET_SIG(_arg_sig_turn_base);
-	
-	if (_arg_turn_0)
-	{
-		_sig_0 = _temp_sig;
-	}
-	
-	if (_arg_turn_1)
-	{
-		_sig_1 = _temp_sig;
-	}
-	
-	_arg_motor[0].Set_data(_sig_0,_arg_pwm);
-	_arg_motor[1].Set_data(_sig_1,_arg_pwm);
-}
+	BOOL _arg_sig_turn_base
+);
+
+/**
+ * \brief 二輪の超信地旋回。
+ * 
+ * \param _arg_motor : 旋回させるモータ。要素数は2
+ * \param _arg_turn_0 : _arg_motor[0]を回転させる
+ * \param _arg_turn_1 : _arg_motor[1]を回転させる
+ * \param _arg_pwm : 設定するPWM
+ * \param _arg_sig_turn_base : 旋回時の正逆転の設定
+ */
+inline void 
+F_Set_wheel_pivot_turn_2
+(
+	C_MD_MAIN _arg_motor[2],
+	BOOL _arg_turn_0,
+	BOOL _arg_turn_1,
+	T_PWM _arg_pwm,
+	BOOL _arg_sig_turn_base
+);
 
 /**
  * \brief モーターを正逆転させる
@@ -257,10 +151,7 @@ F_Set_motor_tf_1
 	BOOL _arg_nf_true, 
 	BOOL _arg_nf_fales, 
 	T_PWM _arg_pwm
-)
-{
-	_arg_motor.Set_data(SET_SIG(_arg_nf_true,_arg_nf_fales),_arg_pwm);
-}
+);
 
 /**
  * \brief モーターを正逆転させる
@@ -280,10 +171,7 @@ F_Set_motor_tf_1
 	C_MD_MAIN &_arg_motor, 
 	E_DIRECY _arg_motor_tf, 
 	T_PWM _arg_pwm
-)
-{
-	_arg_motor.Set_data(SET_SIG(_arg_motor_tf),_arg_pwm);
-}
+);
 
 /**
  * \brief モーターを正逆転させる
@@ -303,7 +191,42 @@ F_Set_motor_tf_1
 	C_MD_MAIN &_arg_motor, 
 	E_DIRECX _arg_motor_tf, 
 	T_PWM _arg_pwm
-)
-{
-	_arg_motor.Set_data(SET_SIG(_arg_motor_tf),_arg_pwm);
-}
+);
+
+/**
+ * \brief 
+ * _arg_set_tfで、_arg_nfのTFを入れ替える
+ * 一度_arg_set_tfがFALESになってから、TRUEにならないと_arg_nfが入れ替えらない仕組み
+ * 
+ * \param _arg_set_tf : 設定の入力
+ * \param _arg_nf : 変えられるの
+ * \param _arg_flag : フラグ。外部で変えないでね
+ */
+inline void
+F_Set_tf
+(
+	BOOL  _arg_set_tf,
+	BOOL &_arg_nf,
+	BOOL &_arg_flag
+);
+
+/**
+ * \brief 
+ * C_COUNTを動かす。
+ * _arg_set_highか_arg_set_lowが一度FALESにならないと動かない仕組み
+ * 
+ * \param _arg_set_high : カウントアップ
+ * \param _arg_set_low  : カウントダウン
+ * \param _arg_flag  : フラグ。外部で作ってね。あと外部で変えないでね
+ * \param _arg_count : カウンタ。変えられるやつ
+ */
+inline void 
+F_Set_count
+(
+	BOOL  _arg_set_high,
+	BOOL  _arg_set_low,
+	BOOL &_arg_flag,
+	C_COUNT &_arg_count
+);
+
+#include "H28_NEW_MAIN_func.cpp"
