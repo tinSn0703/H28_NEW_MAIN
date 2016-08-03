@@ -5,6 +5,7 @@
 
 #include <H28_AVR/H28_AVR.h>
 #include <FallMoon/akilcd_nm.h>
+#include <H28_OTHERS/H28_C_COUNT.h>
 
 /* CONTROLER ************************************************************/
 #define NOREA 0b01
@@ -328,7 +329,7 @@ SET_SIG
 inline E_SIG 
 TURN_SIG_ROTATE (E_SIG _arg_turn_sig)
 {
-	return (E_SIG)(0b11011000 >> ((usint)_arg_turn_sig * 2));
+	return (E_SIG)((0b11011000 >> ((usint)_arg_turn_sig * 2)) & 3);
 }
 
 /**
@@ -343,7 +344,7 @@ TURN_SIG_ROTATE (E_SIG _arg_turn_sig)
 inline E_SIG 
 TURN_SIG_FIX (E_SIG _arg_turn_sig)
 {
-	return (E_SIG)(0b00100111 >> ((usint)_arg_turn_sig * 2));
+	return (E_SIG)((0b00100111 >> ((usint)_arg_turn_sig * 2)) & 3);
 }
 
 /**
