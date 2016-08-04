@@ -217,7 +217,7 @@ F_Set_count
 	BOOL  _arg_set_high,
 	BOOL  _arg_set_low,
 	BOOL &_arg_flag,
-	C_COUNT &_arg_count
+	C_COUNT_UL &_arg_count
 );
 
 #include "H28_NEW_MAIN_func.cpp"

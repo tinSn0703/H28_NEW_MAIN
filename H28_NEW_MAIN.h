@@ -221,6 +221,7 @@ TURN_DIREC_Y (E_DIRECY _arg_direc_y )
 
 /* MD *******************************************************************/
 typedef unsigned char T_PWM;
+typedef C_COUNT <T_PWM> C_COUNT_PWM;
 
 #ifndef PWM_NOR
 #	define PWM_NOR 0x0a
