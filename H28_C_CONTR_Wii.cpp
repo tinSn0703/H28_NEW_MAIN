@@ -77,7 +77,7 @@ BT_RX回路からの受信。単線時用
 	_arg_contr_wii_uart_r : 受信するUART。
 */
 {
-	T_DATA_8 _temp_data[CON_BYTE_UART] = {};
+	T_DATA_8 _temp_data[__CON_BYTE_UART__] = {};
 	
 	C_CONTR::In(_arg_contr_wii_uart_r,_temp_data);
 	
@@ -93,7 +93,7 @@ BT_RX回路からの受信。2線時用
 	_arg_contr_wii_uart_r2 : 受信するUART。
 */
 {
-	T_DATA_8 _temp_data[CON_BYTE_UART] = {};
+	T_DATA_8 _temp_data[__CON_BYTE_UART__] = {};
 	
 	C_CONTR::In(_arg_contr_wii_uart_r2,_temp_data);
 	
@@ -117,7 +117,7 @@ Wiiコントローラからのデータを全て表示する。
 	_arg_contr_wii_addr : 表示するLCDの場所
 */
 {
-	for (usint i = 0; i < CON_BYTE; i++)
+	for (usint i = 0; i < __CON_BYTE__; i++)
 	{
 		Lcd_put_num(_arg_contr_wii_addr + i * 2,Ret_data(i),2,ED_16);
 	}

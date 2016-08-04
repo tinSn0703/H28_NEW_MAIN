@@ -232,7 +232,7 @@ typedef unsigned char T_PWM;
 enum E_SIG
 {
 	ES_FREE  = 0,
-	ES_FALES = 1,
+	ES_FALSE = 1,
 	ES_TRUE  = 2,
 	ES_STOP  = 3,
 };
@@ -244,7 +244,7 @@ enum E_SIG
  * 
  * \return E_SIG
  *	TRUE  -> ES_TRUE
- *	FALES -> ES_FALES
+ *	FALES -> ES_FALSE
  */
 inline E_SIG 
 SET_SIG (BOOL _arg_set_tf)
@@ -259,7 +259,7 @@ SET_SIG (BOOL _arg_set_tf)
  * 
  * \return E_SIG
  *	ED_NORTH -> ES_TRUE
- *	ED_SOUTH -> ES_FALES
+ *	ED_SOUTH -> ES_FALSE
  *	ED_YZERO -> ES_STOP
  */
 inline E_SIG 
@@ -275,7 +275,7 @@ SET_SIG (E_DIRECY _arg_set_direc_y)
  * 
  * \return E_SIG
  *	ED_EAST  -> ES_TRUE
- *	ED_WEST  -> ES_FALES
+ *	ED_WEST  -> ES_FALSE
  *	ED_XZERO -> ES_STOP
  */
 inline E_SIG 
@@ -293,7 +293,7 @@ SET_SIG (E_DIRECX _arg_set_direc_x)
  * \return E_SIG
  * 		 1   |   0   | Œ‹‰Ê
  *	   TRUE  | TRUE  | ES_STOP
- *	   FALES | TRUE  | ES_FALES
+ *	   FALES | TRUE  | ES_FALSE
  *	   TRUE  | FALES | ES_TRUE
  *	   FALES | FALES | ES_FREE
  */
@@ -307,6 +307,20 @@ SET_SIG
 	return (E_SIG)((_arg_set_tf_1 << 1) | (_arg_set_tf_0 << 0));
 }
 
+/**
+ * \brief 
+ * direc_y‚Ædirec_x‚ðˆ«–‚‡‘Ì‚³‚¹‚½E_SIG‚ð•Ô‚·
+ * ƒƒJƒiƒ€‚Ì‚½‚ß‚Éì‚Á‚½‚æ‚¤‚È‚à‚Ì
+ * 
+ * \param _arg_set_direc_y : Þ—¿‚»‚Ì0
+ * \param _arg_set_direc_x : Þ—¿‚»‚Ì1
+ * 
+ * \return E_SIG
+ *		 NORTH |  EAST 	-> ES_FALSE
+ *		 SOUTH |  WEST 	-> ES_TRUE
+ *		 YZERO | XZERO	-> ES_STOP
+ *			‚»‚Ì‘¼		-> ES_FREE 
+ */
 inline E_SIG 
 SET_SIG
 (
@@ -323,8 +337,8 @@ SET_SIG
  * \param _arg_turn_sig : Œ³
  * 
  * \return E_SIG
- *	ES_TRUE  -> ES_FALES
- *	ES_FALES -> ES_TRUE
+ *	ES_TRUE  -> ES_FALSE
+ *	ES_FALSE -> ES_TRUE
  */
 inline E_SIG 
 TURN_SIG_ROTATE (E_SIG _arg_turn_sig)
@@ -370,7 +384,7 @@ CHECK_MOVE (E_SIG _arg_check_sig_mode)
  * 
  * \return T_PWM
  *	ES_FREE,ES_STOP  -> pwm = 0
- *	ES_TRUE,ES_FALES -> Œ³‚Ì‚Ü‚Ü
+ *	ES_TRUE,ES_FALSE -> Œ³‚Ì‚Ü‚Ü
  */
 inline T_PWM
 CHECK_MOVE 

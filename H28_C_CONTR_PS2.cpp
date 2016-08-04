@@ -74,7 +74,7 @@ BT_RX回路からの受信。単線時用
 	_arg_contr_ps2_uart_r : 受信するUART。
 */
 {
-	T_DATA_8 _temp_data[CON_BYTE_UART] = {};
+	T_DATA_8 _temp_data[__CON_BYTE_UART__] = {};
 	
 	C_CONTR::In(_arg_contr_ps2_uart_r,_temp_data);
 	
@@ -88,7 +88,7 @@ BT_RX回路からの受信。2線時用
 	_arg_contr_ps2_uart_r2 : 受信するUART。
 */
 {
-	T_DATA_8 _temp_data[CON_BYTE_UART] = {};
+	T_DATA_8 _temp_data[__CON_BYTE_UART__] = {};
 	
 	C_CONTR::In(_arg_contr_ps2_uart_r2,_temp_data);
 	

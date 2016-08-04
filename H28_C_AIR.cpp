@@ -118,7 +118,7 @@ Set_num
 	switch (_arg_air_nf)
 	{
 		case TRUE:	_mem_air_data._data_byte |=  (1 << _arg_air_num);	break;
-		case FALES:	_mem_air_data._data_byte &= ~(1 << _arg_air_num);	break;
+		case FALSE:	_mem_air_data._data_byte &= ~(1 << _arg_air_num);	break;
 	}
 }
 
@@ -176,7 +176,7 @@ Do
 			Turn_num(_arg_air_num);
 		}
 		
-		_mem_array_air_flag[_arg_air_num] = FALES;
+		_mem_array_air_flag[_arg_air_num] = FALSE;
 	}
 	else
 	{
@@ -207,7 +207,7 @@ Do
 			Turn_num(_arg_air_num);
 		}
 		
-		_mem_array_air_flag[_arg_air_num] = FALES;
+		_mem_array_air_flag[_arg_air_num] = FALSE;
 	}
 	else
 	{
@@ -234,7 +234,7 @@ Do
 {	
 	if (_arg_air_nf)
 	{
-		if (_mem_array_air_flag[_arg_air_num_0] == FALES)
+		if (_mem_array_air_flag[_arg_air_num_0] == FALSE)
 		{			
 			return (void)0;
 		}
@@ -243,17 +243,17 @@ Do
 		{
 			case TRUE:
 			{
-				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALES;
+				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALSE;
 				
-				Set_num(_arg_air_num_0,FALES);
+				Set_num(_arg_air_num_0,FALSE);
 				
 				break;
 			}
-			case FALES:
+			case FALSE:
 			{
-				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALES;
+				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALSE;
 				
-				Set_num(_arg_air_num_1,FALES);
+				Set_num(_arg_air_num_1,FALSE);
 				
 				break;
 			}
@@ -271,10 +271,10 @@ Do
 			switch (_mem_array_air_flag[_arg_air_num_1])
 			{
 				case TRUE:	Set_num(_arg_air_num_1,TRUE);	break;
-				case FALES:	Set_num(_arg_air_num_0,TRUE);	break;
+				case FALSE:	Set_num(_arg_air_num_0,TRUE);	break;
 			}
 			
-			_mem_array_air_flag[_arg_air_num_0] = FALES;
+			_mem_array_air_flag[_arg_air_num_0] = FALSE;
 			_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
 		}
 		else
@@ -291,7 +291,7 @@ Out (C_UART_T _arg_air_uart_t)
 電磁弁回路へデータを送信する
 */
 {
-	_arg_air_uart_t.Set_bit9(FALES);
+	_arg_air_uart_t.Set_bit9(FALSE);
 	
 	_arg_air_uart_t << _mem_air_data._data_byte;
 }

@@ -94,7 +94,7 @@ C_MD_MAIN
 (
 	T_NUM _arg_md_main_num_mdc, 
 	T_NUM _arg_md_main_num_md ,
-	BOOL _arg_md_main_nf_turn = FALES ,
+	BOOL _arg_md_main_nf_turn = FALSE ,
 	sint _arg_md_main_pwm_revis = 0
 )
 {
@@ -147,7 +147,7 @@ inline void
 C_MD_MAIN::
 Set_sig (E_SIG _arg_md_main_sig_mode)
 {
-	if (CHECK_MOVE(_arg_md_main_sig_mode) == FALES)
+	if (CHECK_MOVE(_arg_md_main_sig_mode) == FALSE)
 	{
 		_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value = 0;
 	}
@@ -210,7 +210,7 @@ C_MD_MAIN::
 Lcd_sig_num (T_ADRS _arg_md_main_adrs)
 //1桁
 //	0 FREE
-//	1 FALES
+//	1 FALSE
 //	2 TRUE
 //	3 STOP
 {
@@ -225,7 +225,7 @@ Lcd_sig_str (T_ADRS _arg_md_main_adrs)
 	switch (_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode)
 	{
 		case ES_TRUE:	Lcd_put_str(_arg_md_main_adrs,"TR");	break;
-		case ES_FALES:	Lcd_put_str(_arg_md_main_adrs,"FA");	break;
+		case ES_FALSE:	Lcd_put_str(_arg_md_main_adrs,"FA");	break;
 		case ES_STOP:	Lcd_put_str(_arg_md_main_adrs,"ST");	break;
 		case ES_FREE:	Lcd_put_str(_arg_md_main_adrs,"FR");	break;
 	}

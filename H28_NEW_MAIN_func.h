@@ -21,7 +21,7 @@ T_PWM F_Set_pwm
 	DIREC _arg_pwm_hl, 
 	T_PWM &_arg_pwm, 
 	BOOL &_arg_flag,
-	BOOL _arg_pwm_recet = FALES
+	BOOL _arg_pwm_recet = FALSE
 );
 
 /**
@@ -43,35 +43,6 @@ F_Set_pwm
 	T_PWM &_arg_pwm, 
 	BOOL &_arg_flag, 
 	BOOL _arg_pwm_recet
-);
-
-/**
- * \brief : 2輪を扱う関数。旋回のほうが優先。
- * 
- * \param _arg_motor : 要素数2の配列にしといてね
- * \param _arg_direc_move : 進む方向
- *
- *	ED_NORTH -> ES_TRUE
- *	ED_SOUTH -> ES_FALES
- *	ES_YZERO -> ES_STOP
- *
- * \param _arg_turn_0 : _arg_motor[0]を回転させる
- * \param _arg_turn_1 : _arg_motor[1]を回転させる
- * \param _arg_pwm : PWM
- * \param _arg_sig_turn_base : 旋回時の正逆転の設定。
- *	
- *	TRUE  -> ES_TRUE
- *	FALES -> ES_FALES
- */
-inline void 
-F_Set_wheel_2
-(
-	C_MD_MAIN _arg_motor[2], 
-	E_DIRECY _arg_direc_move, 
-	BOOL _arg_turn_0, 
-	BOOL _arg_turn_1, 
-	T_PWM _arg_pwm,
-	BOOL _arg_sig_turn_base
 );
 
 /**
@@ -129,6 +100,26 @@ F_Set_wheel_pivot_turn_2
 );
 
 /**
+ * \brief 四輪メカナムを扱う関数
+ * 
+ * \param _arg_motor
+ *  動かすモータ。要素数は4
+ *  0を右前,1を右後,2を左前,3を左後に設定すること
+ *
+ * \param _arg_direc_x : x軸方向
+ * \param _arg_direc_y : y軸方向
+ * \param _arg_pwm : PWM
+ */
+inline void
+F_Set_mekanam_4
+(
+	C_MD_MAIN _arg_motor[4],
+	E_DIRECX _arg_direc_x,
+	E_DIRECY _arg_direc_y,
+	T_PWM _arg_pwm
+);
+
+/**
  * \brief モーターを正逆転させる
  * これメンバでもいい気がしてきた
  * 
@@ -139,7 +130,7 @@ F_Set_wheel_pivot_turn_2
  *		true  | fales | 結果
  *		TRUE  | TRUE  | ES_STOP
  *		TRUE  | FALES | ES_TRUE
- *		FALES | TRUE  | ES_FALES
+ *		FALES | TRUE  | ES_FALSE
  *		FALES | FALES | ES_FREE
  *
  * \param _arg_pwm : 設定するPWM
@@ -160,7 +151,7 @@ F_Set_motor_tf_1
  * \param _arg_motor_tf : 方向キー y方向
  *
  *	ED_NORTH -> ES_TRUE
- *	ED_SOUTH -> ES_FALES
+ *	ED_SOUTH -> ES_FALSE
  *	ED_YZERO -> ES_STOP
  *
  * \param _arg_pwm : モーターのPWM
@@ -180,7 +171,7 @@ F_Set_motor_tf_1
  * \param _arg_motor_tf : 方向キー x方向
  *
  *	ED_EAST  -> ES_TRUE
- *	ED_WEST  -> ES_FALES
+ *	ED_WEST  -> ES_FALSE
  *	ED_XZERO -> ES_STOP
  *
  * \param _arg_pwm : モーターのPWM
