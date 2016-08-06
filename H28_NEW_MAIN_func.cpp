@@ -136,6 +136,39 @@ F_Set_wheel_turn_2
 	}
 }
 
+inline void
+F_Set_wheel_turn_4
+(
+	C_MD_MAIN _arg_motor[4],
+	BOOL _arg_turn_0,
+	BOOL _arg_turn_1,
+	T_PWM _arg_pwm,
+	BOOL _arg_sig_turn_base = TRUE
+)
+{
+	E_SIG _sig_0 = ES_STOP;
+	E_SIG _sig_1 = ES_STOP;
+	
+	const E_SIG _temp_sig = SET_SIG(_arg_sig_turn_base);
+	
+	if (_arg_turn_0)
+	{
+		_sig_0 = _temp_sig;
+		_sig_1 = TURN_SIG_ROTATE(_temp_sig);
+	}
+	
+	if (_arg_turn_1)
+	{
+		_sig_1 = _temp_sig;
+		_sig_0 = TURN_SIG_ROTATE(_temp_sig);
+	}
+	
+	_arg_motor[0].Set_data(_sig_0,_arg_pwm);
+	_arg_motor[1].Set_data(_sig_0,_arg_pwm);
+	_arg_motor[2].Set_data(_sig_1,_arg_pwm);
+	_arg_motor[3].Set_data(_sig_1,_arg_pwm);
+}
+
 inline void 
 F_Set_wheel_pivot_turn_2
 (
@@ -180,6 +213,74 @@ F_Set_mekanam_4
 	_arg_motor[1].Set_data(	SET_SIG( TURN_DIREC_Y(_arg_direc_y),	TURN_DIREC_X(_arg_direc_x)), _arg_pwm);
 	_arg_motor[2].Set_data(	SET_SIG( TURN_DIREC_Y(_arg_direc_y),				 _arg_direc_x),	 _arg_pwm);
 	_arg_motor[3].Set_data(	SET_SIG( TURN_DIREC_Y(_arg_direc_y),	TURN_DIREC_X(_arg_direc_x)), _arg_pwm);
+}
+
+inline void
+F_Set_mekanamuni_3
+(
+C_MD_MAIN _arg_motor[3],
+E_DIRECX _arg_direc_x,
+E_DIRECY _arg_direc_y,
+T_PWM _arg_pwm
+)
+{	
+	E_SIG _temp_sig[3] = {};
+	T_PWM _temp_pwm[3] = {_arg_pwm,_arg_pwm,_arg_pwm};
+	
+	switch (_arg_direc_y)
+	{
+		case ED_NORTH:
+		{
+			_temp_sig[0] = ES_STOP;
+			_temp_sig[1] = ES_TRUE;
+			_temp_sig[2] = ES_TRUE;
+		}
+		break;
+		case ED_SOUTH:
+		{
+			_temp_sig[0] = ES_STOP;
+			_temp_sig[1] = ES_FALSE;
+			_temp_sig[2] = ES_FALSE;
+		}
+		break;
+		case ED_YZERO:
+		{
+			switch (_arg_direc_x)
+			{
+				case ED_EAST:
+				{
+					_temp_pwm[0] += 4;
+					
+					_temp_sig[0] = ES_TRUE;
+					_temp_sig[1] = ES_TRUE;
+					_temp_sig[2] = ES_FALSE;
+				}
+				break;
+				case ED_WEST:
+				{
+					_temp_pwm[0] += 4;
+					
+					_temp_sig[0] = ES_FALSE;
+					_temp_sig[1] = ES_FALSE;
+					_temp_sig[2] = ES_TRUE;
+				}
+				break;
+				case ED_XZERO:
+				{
+					_temp_sig[0] = ES_STOP;
+					_temp_sig[1] = ES_STOP;
+					_temp_sig[2] = ES_STOP;
+				}
+				break;
+			}
+		}
+		break;
+	}
+	
+	for (usint i = 0; i < 3; i++)
+	{
+		_arg_motor[i].Set_data(_temp_sig[i],_temp_pwm[i]);
+	}
 }
 
 inline void 
@@ -258,6 +359,7 @@ F_Set_count
 	BOOL  _arg_set_high,
 	BOOL  _arg_set_low,
 	BOOL &_arg_flag,
+	C_COUNT_UL &_arg_count
 )
 {
 	if (_arg_set_high | _arg_set_low)

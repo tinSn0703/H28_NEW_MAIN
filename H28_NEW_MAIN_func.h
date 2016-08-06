@@ -81,6 +81,25 @@ F_Set_wheel_turn_2
 );
 
 /**
+ * \brief 4輪の旋回
+ * 
+ * \param _arg_motor  : 旋回させるもーた。要素数は4
+ * \param _arg_turn_0 : 0番のモータ側を回転させる
+ * \param _arg_turn_1 : 2番のモータ側を回転させる
+ * \param _arg_pwm : PWM
+ * \param _arg_sig_turn_base : 旋回時の正逆転の設定 
+ */
+inline void 
+F_Set_wheel_turn_4
+(
+	C_MD_MAIN _arg_motor[4],
+	BOOL _arg_turn_0,
+	BOOL _arg_turn_1,
+	T_PWM _arg_pwm,
+	BOOL _arg_sig_turn_base
+);
+
+/**
  * \brief 二輪の超信地旋回。
  * 
  * \param _arg_motor : 旋回させるモータ。要素数は2
@@ -101,6 +120,7 @@ F_Set_wheel_pivot_turn_2
 
 /**
  * \brief 四輪メカナムを扱う関数
+ * ちゃんと動くかはわからん
  * 
  * \param _arg_motor
  *  動かすモータ。要素数は4
@@ -114,6 +134,27 @@ inline void
 F_Set_mekanam_4
 (
 	C_MD_MAIN _arg_motor[4],
+	E_DIRECX _arg_direc_x,
+	E_DIRECY _arg_direc_y,
+	T_PWM _arg_pwm
+);
+
+/**
+ * \brief 三輪メカナムニを扱う関数
+ * ちゃんと動くかわからんし、斜めには動けない
+ * 
+ * \param _arg_motor
+ *	動かすモータ。要素数は3
+ *	0を前(オムニ),1を右(メカナム),2を左(メカナム)に設定すること
+ *
+ * \param _arg_direc_x : x
+ * \param _arg_direc_y : y
+ * \param _arg_pwm : PWM
+ */
+inline void 
+F_Set_mekanamuni_3 
+(
+	C_MD_MAIN _arg_motor[3],
 	E_DIRECX _arg_direc_x,
 	E_DIRECY _arg_direc_y,
 	T_PWM _arg_pwm
