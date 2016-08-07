@@ -3,7 +3,7 @@
 
 class C_AIR
 {
-	private:
+private:
 	
 	union U_AIR
 	{	
@@ -26,7 +26,8 @@ class C_AIR
 	U_AIR _mem_air_data;
 	BOOL _mem_array_air_flag[8];
 	
-	public:
+public:
+	
 	C_AIR(T_DATA_8 );
 	
 	T_DATA_8 Ret();

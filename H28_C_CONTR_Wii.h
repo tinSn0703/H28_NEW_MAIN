@@ -1,0 +1,96 @@
+
+#pragma once
+
+#include "H28_C_CONTR.h"
+
+/**
+ * Wiiコントローラからデータを受け取る時用
+ */
+class C_CONTR_Wii : public C_CONTR
+{
+protected:
+	
+	U_CONTR_Wii _mem_contr_wii_data;
+	
+public:
+	
+	/**
+	 * \brief コンストラクタ。データを初期化する
+	 */
+	C_CONTR_Wii();
+	
+	/**
+	 * \brief BT_RX回路からの受信。(単線時用)
+	 * 
+	 * \param _arg_uart_r : 受信するUART
+	 */
+	void In(C_UART_R &_arg_uart_r);
+	
+	/**
+	 * \brief BT_RX回路からの受信。(二線時用)
+	 * 
+	 * \param _arg_uart_r2 : 受信するUART
+	 */
+	void In(C_UART_R2 &_arg_uart_r2);
+	
+	/**
+	 * \brief データをリセットする
+	 */
+	void Reset();
+	
+	/**
+	 * \brief データをreturnする
+	 * 
+	 * \param _arg_num : returnするデータの番号
+	 * 
+	 * \return T_DATA_8 出力
+	 */
+	T_DATA_8 Ret_data(usint _arg_num);
+	
+	E_DIRECX Ret_cross_x()	{	return _mem_contr_wii_data._data_bit._cross_x;			}
+	E_DIRECY Ret_cross_y()	{	return _mem_contr_wii_data._data_bit._cross_y;			}
+	E_DIRECX Ret_Rsti_x()	{	return _mem_contr_wii_data._data_bit._stick_right_x;	}
+	E_DIRECY Ret_Rsti_y()	{	return _mem_contr_wii_data._data_bit._stick_right_y;	}
+	E_DIRECX Ret_Lsti_x()	{	return _mem_contr_wii_data._data_bit._stick_left_x;		}
+	E_DIRECY Ret_Lsti_y()	{	return _mem_contr_wii_data._data_bit._stick_left_y;		}
+	BOOL  Ret_select()		{	return _mem_contr_wii_data._data_bit._nf_select;		}
+	BOOL  Ret_start()		{	return _mem_contr_wii_data._data_bit._nf_start;			}
+	BOOL  Ret_home()		{	return _mem_contr_wii_data._data_bit._nf_home;			}
+	BOOL  Ret_X()			{	return _mem_contr_wii_data._data_bit._nf_x;				}
+	BOOL  Ret_A()			{	return _mem_contr_wii_data._data_bit._nf_a;				}
+	BOOL  Ret_Y()			{	return _mem_contr_wii_data._data_bit._nf_y;				}
+	BOOL  Ret_B()			{	return _mem_contr_wii_data._data_bit._nf_b;				}
+	BOOL  Ret_R()			{	return _mem_contr_wii_data._data_bit._nf_right;			}
+	BOOL  Ret_L()			{	return _mem_contr_wii_data._data_bit._nf_left;			}
+	BOOL  Ret_ZR()			{	return _mem_contr_wii_data._data_bit._nf_z_right;		}
+	BOOL  Ret_ZL()			{	return _mem_contr_wii_data._data_bit._nf_z_left;		}
+	
+	/**
+	 * \brief 
+	 * データを全てLCDに表示する
+	 * 16進数 6桁
+	 * 
+	 * \param _arg_addr : LCDに表示する場所
+	 */
+	void Lcd_data(T_ADRS _arg_addr);
+	
+	void Lcd_cross_x(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_cross_x(),1,ED_10);	}
+	void Lcd_cross_y(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_cross_y(),1,ED_10);	}
+	void Lcd_Rsti_x	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Rsti_x(),1,ED_10);	}
+	void Lcd_Rsti_y	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Rsti_y(),1,ED_10);	}
+	void Lcd_Lsti_x	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Lsti_x(),1,ED_10);	}
+	void Lcd_Lsti_y	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Lsti_y(),1,ED_10);	}
+	void Lcd_select	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_select(),1,ED_10);	}
+	void Lcd_start	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_start(),1,ED_10);		}
+	void Lcd_home	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_home(),1,ED_10);		}
+	void Lcd_X		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_X(),1,ED_10);			}
+	void Lcd_A		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_A(),1,ED_10);			}
+	void Lcd_Y		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Y(),1,ED_10);			}
+	void Lcd_B		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_B(),1,ED_10);			}
+	void Lcd_R		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_R(),1,ED_10);			}
+	void Lcd_L		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_L(),1,ED_10);			}
+	void Lcd_ZR		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_ZR(),1,ED_10);		}
+	void Lcd_ZL		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_ZL(),1,ED_10);		}
+};
+
+#include "H28_C_CONTR_Wii.cpp"
