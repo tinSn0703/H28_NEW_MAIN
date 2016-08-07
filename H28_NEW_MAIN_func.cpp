@@ -218,10 +218,10 @@ F_Set_mekanam_4
 inline void
 F_Set_mekanamuni_3
 (
-C_MD_MAIN _arg_motor[3],
-E_DIRECX _arg_direc_x,
-E_DIRECY _arg_direc_y,
-T_PWM _arg_pwm
+	C_MD_MAIN _arg_motor[3],
+	E_DIRECX _arg_direc_x,
+	E_DIRECY _arg_direc_y,
+	T_PWM _arg_pwm
 )
 {	
 	E_SIG _temp_sig[3] = {};
@@ -248,21 +248,17 @@ T_PWM _arg_pwm
 			switch (_arg_direc_x)
 			{
 				case ED_EAST:
-				{
-					_temp_pwm[0] += 4;
-					
+				{					
 					_temp_sig[0] = ES_TRUE;
-					_temp_sig[1] = ES_TRUE;
-					_temp_sig[2] = ES_FALSE;
+					_temp_sig[1] = ES_FALSE;
+					_temp_sig[2] = ES_TRUE;
 				}
 				break;
 				case ED_WEST:
-				{
-					_temp_pwm[0] += 4;
-					
+				{					
 					_temp_sig[0] = ES_FALSE;
-					_temp_sig[1] = ES_FALSE;
-					_temp_sig[2] = ES_TRUE;
+					_temp_sig[1] = ES_TRUE;
+					_temp_sig[2] = ES_FALSE;
 				}
 				break;
 				case ED_XZERO:
@@ -359,7 +355,7 @@ F_Set_count
 	BOOL  _arg_set_high,
 	BOOL  _arg_set_low,
 	BOOL &_arg_flag,
-	C_COUNT_UL &_arg_count
+	C_COUNT_u1 &_arg_count
 )
 {
 	if (_arg_set_high | _arg_set_low)
