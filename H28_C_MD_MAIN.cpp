@@ -98,10 +98,6 @@ Set_steps (BOOL _arg_nf_steps = TRUE)
 inline void 
 C_MD_MAIN::
 Set_pwm_revis (sint _arg_pwm_revis)
-/*
-補正PWMの設定
--31 ~ +30の範囲にしてね
-*/
 {
 	if ((-31 <= _arg_pwm_revis) && (_arg_pwm_revis <= 30) )
 	{
@@ -138,11 +134,6 @@ Out (C_UART_T &_arg_uart_t)
 void 
 C_MD_MAIN::
 Lcd_sig_num (T_ADRS _arg_adrs)
-//1桁
-//	0 FREE
-//	1 FALSE
-//	2 TRUE
-//	3 STOP
 {
 	Lcd_put_num(_arg_adrs,_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode,1,ED_10);
 }
@@ -150,7 +141,6 @@ Lcd_sig_num (T_ADRS _arg_adrs)
 void 
 C_MD_MAIN::
 Lcd_sig_str (T_ADRS _arg_adrs)
-//2桁
 {
 	switch (_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode)
 	{
@@ -168,13 +158,6 @@ Lcd_pwm
 	T_ADRS _arg_adrs,
 	E_DECIMAL _arg_decimal
 )
-/*
-設定されたPWMをLCDに表示する
-2桁
-
-	_arg_adrs : 表示するLCDの場所
-	_arg_decimal : 表示する進数。ED_10、ED_16だけにしてね
-*/
 {
 	if ((_arg_decimal != ED_10) && (_arg_decimal != ED_16))
 	{
@@ -192,7 +175,6 @@ Lcd_data_2
 	T_ADRS _arg_adrs,
 	usint _arg_num_data
 )
-//9桁
 {
 	switch (_arg_num_data)
 	{
@@ -221,7 +203,6 @@ Lcd_data_16
 	T_ADRS _arg_adrs,
 	usint _arg_num_data
 )
-//3桁
 {
 	switch (_arg_num_data)
 	{
@@ -246,7 +227,6 @@ Lcd_data_16
 void 
 C_MD_MAIN::
 Lcd_md_num (T_ADRS _arg_adrs)
-//1桁
 {
 	Lcd_put_num(_arg_adrs, _mem_md_main_data_0._md_0_data_bit._md_0_num_md, 1, ED_10);
 }
