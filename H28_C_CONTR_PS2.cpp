@@ -58,3 +58,27 @@ Lcd_data (T_ADRS _arg_addr)
 	Lcd_put_num(_arg_addr + 2,Ret_data(1),2,ED_16);
 	Lcd_put_num(_arg_addr + 4,Ret_data(2),2,ED_16);
 }
+
+inline void
+C_CONTR_ps2 ::
+Lcd_cross (T_ADRS _arg_adrs)
+{
+	Lcd_cross_x(_arg_adrs + 0);
+	Lcd_cross_y(_arg_adrs + 1);
+}
+
+inline void
+C_CONTR_ps2 ::
+Lcd_Rsti (T_ADRS _arg_adrs)
+{
+	Lcd_Rsti_x(_arg_adrs + 0);
+	Lcd_Rsti_y(_arg_adrs + 1);
+}
+
+inline void
+C_CONTR_ps2 ::
+Lcd_Lsti (T_ADRS _arg_adrs)
+{
+	Lcd_Lsti_x(_arg_adrs + 0);
+	Lcd_Lsti_y(_arg_adrs + 1);
+}

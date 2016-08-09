@@ -75,6 +75,33 @@ public:
 	 */
 	void Lcd_data(T_ADRS _arg_addr);
 	
+	/**
+	 * \brief 十字キーのデータをLCDに表示する
+	 *		_arg_adrs + 0 -> cross_x
+	 *		_arg_adrs + 1 -> cross_y
+	 * 
+	 * \param _arg_adrs 表示する場所
+	 */
+	void Lcd_cross(T_ADRS _arg_adrs);
+	
+	/**
+	 * \brief 右スティックのデータをLCDに表示する
+	 *		_arg_adrs + 0 -> Rsti_x
+	 *		_arg_adrs + 1 -> Rsti_y
+	 * 
+	 * \param _arg_adrs 表示する場所
+	 */
+	void Lcd_Rsti (T_ADRS _arg_adrs);
+	
+	/**
+	 * \brief 左スティックのデータをLCDに表示する
+	 *		_arg_adrs + 0 -> Lsti_x
+	 *		_arg_adrs + 1 -> Lsti_y
+	 * 
+	 * \param _arg_adrs 表示する場所
+	 */
+	void Lcd_Lsti (T_ADRS _arg_adrs);
+	
 	void Lcd_cross_x(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_cross_x(),1,ED_10);	}
 	void Lcd_cross_y(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_cross_y(),1,ED_10);	}
 	void Lcd_Rsti_x	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Rsti_x(),1,ED_10);	}
