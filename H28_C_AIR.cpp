@@ -292,7 +292,7 @@ Out (C_UART_T _arg_air_uart_t)
 電磁弁回路へデータを送信する
 */
 {
-	_arg_air_uart_t.Set_bit9(FALSE);
+	_arg_air_uart_t.Set_bit9_off();
 	
 	_arg_air_uart_t << _mem_air_data._data_byte;
 }

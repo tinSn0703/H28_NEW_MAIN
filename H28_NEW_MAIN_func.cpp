@@ -23,7 +23,7 @@ T_PWM F_Set_pwm
 	
 	switch (_arg_pwm_hl)
 	{
-		case NOREA:
+		case __NOREA__:
 		{
 			if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
 			{
@@ -34,7 +34,7 @@ T_PWM F_Set_pwm
 			
 			break;
 		}
-		case SOUWE:
+		case __SOUWE__:
 		{
 			if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
 			{
@@ -45,7 +45,7 @@ T_PWM F_Set_pwm
 			
 			break;
 		}
-		case ZERO:
+		case __ZERO__:
 		{
 			_arg_flag = TRUE;
 			
