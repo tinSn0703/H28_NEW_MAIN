@@ -46,38 +46,20 @@ F_Set_pwm
 );
 
 /**
- * \brief : 2輪を扱う関数。
+ * \brief 3輪の信地旋回
  * 
- * \param _arg_motor : 要素数2の配列にしといてね
- * \param _arg_direc_move : 進む方向
- 
- * \param _arg_pwm : PWM
+ * \param _arg_motor	  : 旋回させるモータ。要素数は3
+ * \param _arg_turn_left  : 左旋回
+ * \param _arg_turn_right : 右旋回
+ * \param _arg_pwm		  : PWM
  */
 inline void 
-F_Set_wheel_2
+F_Set_wheel_turn_3
 (
-	C_MD_MAIN _arg_motor[2], 
-	E_DIRECY _arg_direc_move,
+	C_MD_MAIN _arg_motor[3],
+	BOOL  _arg_turn_left,
+	BOOL  _arg_turn_right,
 	T_PWM _arg_pwm
-);
-
-/**
- * \brief 二輪の信地旋回。
- * 
- * \param _arg_motor : 旋回させるモータ。要素数は2
- * \param _arg_turn_0 : _arg_motor[0]を回転させる
- * \param _arg_turn_1 : _arg_motor[1]を回転させる
- * \param _arg_pwm : 設定するPWM
- * \param _arg_sig_turn_base : 旋回時の正逆転の設定
- */
-inline void 
-F_Set_wheel_turn_2
-(
-	C_MD_MAIN _arg_motor[2],
-	BOOL _arg_turn_0,
-	BOOL _arg_turn_1,
-	T_PWM _arg_pwm,
-	BOOL _arg_sig_turn_base
 );
 
 /**
@@ -87,7 +69,6 @@ F_Set_wheel_turn_2
  * \param _arg_turn_0 : 0番のモータ側を回転させる
  * \param _arg_turn_1 : 2番のモータ側を回転させる
  * \param _arg_pwm : PWM
- * \param _arg_sig_turn_base : 旋回時の正逆転の設定 
  */
 inline void 
 F_Set_wheel_turn_4
@@ -95,27 +76,24 @@ F_Set_wheel_turn_4
 	C_MD_MAIN _arg_motor[4],
 	BOOL _arg_turn_0,
 	BOOL _arg_turn_1,
-	T_PWM _arg_pwm,
-	BOOL _arg_sig_turn_base
+	T_PWM _arg_pwm
 );
 
 /**
- * \brief 二輪の超信地旋回。
+ * \brief 3輪の超信地旋回。
  * 
- * \param _arg_motor : 旋回させるモータ。要素数は2
- * \param _arg_turn_0 : _arg_motor[0]を回転させる
- * \param _arg_turn_1 : _arg_motor[1]を回転させる
+ * \param _arg_motor : 旋回させるモータ。要素数は3
+ * \param _arg_turn_left  : 左旋回
+ * \param _arg_turn_right : 右旋回
  * \param _arg_pwm : 設定するPWM
- * \param _arg_sig_turn_base : 旋回時の正逆転の設定
  */
 inline void 
-F_Set_wheel_pivot_turn_2
+F_Set_wheel_pivot_turn_3
 (
-	C_MD_MAIN _arg_motor[2],
-	BOOL _arg_turn_0,
-	BOOL _arg_turn_1,
-	T_PWM _arg_pwm,
-	BOOL _arg_sig_turn_base
+	C_MD_MAIN _arg_motor[3],
+	BOOL _arg_turn_left,
+	BOOL _arg_turn_right,
+	T_PWM _arg_pwm
 );
 
 /**
@@ -260,5 +238,7 @@ F_Set_count
 	BOOL &_arg_flag,
 	C_COUNT_u1 &_arg_count
 );
+
+#include "H28_NEW_MAIN_func_wheel_2.h"
 
 #include "H28_NEW_MAIN_func.cpp"

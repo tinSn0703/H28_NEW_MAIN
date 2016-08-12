@@ -47,6 +47,13 @@ Chan_md (usint  _arg_num_md)
 }
 
 inline void 
+C_MD_MAIN :: 
+Chan_turn ()
+{
+	_mem_md_main_nf_sig_turn = TURN_TF(_mem_md_main_nf_sig_turn);
+}
+
+inline void 
 C_MD_MAIN::
 Set_turn (BOOL _arg_nf_sig_turn)
 {

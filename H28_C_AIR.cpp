@@ -235,28 +235,14 @@ Do
 {	
 	if (_arg_air_nf)
 	{
-		if (_mem_array_air_flag[_arg_air_num_0] == FALSE)
-		{			
-			return (void)0;
-		}
-		
-		switch (_mem_array_air_flag[_arg_air_num_1])
+		if (_mem_array_air_flag[_arg_air_num_0])
 		{
-			case TRUE:
+			_arg_nf_timer = FALSE;
+			
+			switch (_mem_array_air_flag[_arg_air_num_1])
 			{
-				if (Ret_num(_arg_air_num_1))	_arg_nf_timer = FALSE;
-				
-				Set_num(_arg_air_num_0,FALSE);
-				
-				break;
-			}
-			case FALSE:
-			{
-				if (Ret_num(_arg_air_num_0))	_arg_nf_timer = FALSE;
-				
-				Set_num(_arg_air_num_1,FALSE);
-				
-				break;
+				case TRUE:	Set_num(_arg_air_num_0,FALSE);	break;
+				case FALSE:	Set_num(_arg_air_num_1,FALSE);	break;
 			}
 		}
 	}
