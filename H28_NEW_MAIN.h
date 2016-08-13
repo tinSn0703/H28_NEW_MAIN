@@ -405,5 +405,5 @@ CHECK_MOVE
 
 /************************************************************************/
 
-#include "H28_NEW_MAIN/H28_NEW_MAIN_class.h"
-#include "H28_NEW_MAIN/H28_NEW_MAIN_func.h"
+#include "H28_NEW_MAIN_class/H28_NEW_MAIN_class.h"
+#include "H28_NEW_MAIN_func/H28_NEW_MAIN_func.h"
