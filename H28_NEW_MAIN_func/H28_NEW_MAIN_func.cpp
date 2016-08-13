@@ -100,7 +100,7 @@ F_Set_pwm
 }
 
 inline void 
-F_Set_wheel_turn_3
+F_Set_mekanamuni_turn_3
 (
 	C_MD_MAIN _arg_motor[3], 
 	BOOL _arg_turn_left, 
@@ -153,7 +153,7 @@ F_Set_wheel_turn_4
 
 
 inline void 
-F_Set_wheel_pivot_turn_3
+F_Set_makanamuni_pivot_turn_3
 (
 	C_MD_MAIN _arg_motor[3], 
 	BOOL _arg_turn_left, 
@@ -328,25 +328,24 @@ F_Set_count
 (
 	BOOL  _arg_set_high,
 	BOOL  _arg_set_low,
-	BOOL &_arg_flag,
 	C_COUNT_u1 &_arg_count
 )
 {
 	if (_arg_set_high | _arg_set_low)
 	{
-		if (_arg_set_high & _arg_flag)
+		if (_arg_set_high & _arg_count.Ret_flag())
 		{
 			_arg_count ++;
 		}
-		else if (_arg_set_low & _arg_flag)
+		else if (_arg_set_low & _arg_count.Ret_flag())
 		{
 			_arg_count --;
 		}
 		
-		_arg_flag = FALSE;
+		_arg_count.Flag_down();
 	}
 	else
 	{
-		_arg_flag = TRUE;
+		_arg_count.Flag_up();
 	}
 };

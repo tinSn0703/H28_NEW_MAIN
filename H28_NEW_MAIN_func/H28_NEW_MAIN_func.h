@@ -25,7 +25,7 @@ T_PWM F_Set_pwm
 );
 
 /**
- * \brief : _arg_pwmを++,--する。 
+ * \brief _arg_pwmを++,--する。 
  * 
  * \param _arg_nf_pwm_high : TRUEのとき_arg_pwmを++する
  * \param _arg_nf_pwm_low  : TRUEのとき_arg_pwmを--する
@@ -46,7 +46,7 @@ F_Set_pwm
 );
 
 /**
- * \brief 3輪の信地旋回
+ * \brief 3輪メカナムニの信地旋回
  * 
  * \param _arg_motor	  : 旋回させるモータ。要素数は3
  * \param _arg_turn_left  : 左旋回
@@ -54,7 +54,7 @@ F_Set_pwm
  * \param _arg_pwm		  : PWM
  */
 inline void 
-F_Set_wheel_turn_3
+F_Set_mekanamuni_turn_3
 (
 	C_MD_MAIN _arg_motor[3],
 	BOOL  _arg_turn_left,
@@ -65,7 +65,7 @@ F_Set_wheel_turn_3
 /**
  * \brief 4輪の旋回
  * 
- * \param _arg_motor  : 旋回させるもーた。要素数は4
+ * \param _arg_motor  : 旋回させるモータ。要素数は4
  * \param _arg_turn_0 : 0番のモータ側を回転させる
  * \param _arg_turn_1 : 2番のモータ側を回転させる
  * \param _arg_pwm : PWM
@@ -80,7 +80,7 @@ F_Set_wheel_turn_4
 );
 
 /**
- * \brief 3輪の超信地旋回。
+ * \brief 3輪メカナムニの超信地旋回。
  * 
  * \param _arg_motor : 旋回させるモータ。要素数は3
  * \param _arg_turn_left  : 左旋回
@@ -88,7 +88,7 @@ F_Set_wheel_turn_4
  * \param _arg_pwm : 設定するPWM
  */
 inline void 
-F_Set_wheel_pivot_turn_3
+F_Set_makanamuni_pivot_turn_3
 (
 	C_MD_MAIN _arg_motor[3],
 	BOOL _arg_turn_left,
@@ -97,7 +97,8 @@ F_Set_wheel_pivot_turn_3
 );
 
 /**
- * \brief 四輪メカナムを扱う関数
+ * \brief 
+ * 四輪メカナムを扱う関数
  * ちゃんと動くかはわからん
  * 
  * \param _arg_motor
@@ -118,8 +119,9 @@ F_Set_mekanam_4
 );
 
 /**
- * \brief 三輪メカナムニを扱う関数
- * ちゃんと動くかわからんし、斜めには動けない
+ * \brief 
+ * 三輪メカナムニを扱う関数
+ * 斜めには動けない
  * 
  * \param _arg_motor
  *	動かすモータ。要素数は3
@@ -139,7 +141,8 @@ F_Set_mekanamuni_3
 );
 
 /**
- * \brief モーターを正逆転させる
+ * \brief 
+ * モーターを正逆転させる
  * これメンバでもいい気がしてきた
  * 
  * \param _arg_motor : 設定するモータ
@@ -235,7 +238,6 @@ F_Set_count
 (
 	BOOL  _arg_set_high,
 	BOOL  _arg_set_low,
-	BOOL &_arg_flag,
 	C_COUNT_u1 &_arg_count
 );
 
