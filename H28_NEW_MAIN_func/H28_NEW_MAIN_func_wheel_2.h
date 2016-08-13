@@ -23,7 +23,8 @@ F_Set_wheel_2
  * \param _arg_turn_0 : _arg_motor[0]ÇâÒì]Ç≥ÇπÇÈ
  * \param _arg_turn_1 : _arg_motor[1]ÇâÒì]Ç≥ÇπÇÈ
  * \param _arg_pwm : ê›íËÇ∑ÇÈPWM
- * \param _arg_sig_turn_base : ê˘âÒéûÇÃê≥ãtì]ÇÃê›íË
+ * \param _arg_nf_turn : ëÄçÏÇÃîΩì]
+ * \param _arg_sig_base : ê˘âÒéûÇÃê≥ãtì]ÇÃê›íË
  */
 inline void 
 F_Set_wheel_turn_2
@@ -32,7 +33,8 @@ F_Set_wheel_turn_2
 	BOOL _arg_turn_0,
 	BOOL _arg_turn_1,
 	T_PWM _arg_pwm,
-	BOOL _arg_sig_turn_base
+	BOOL _arg_sig_base,
+	BOOL _arg_nf_turn
 );
 
 /**
@@ -43,15 +45,17 @@ F_Set_wheel_turn_2
  *		EAST -> [0]ë§
  *		WEST -> [1]ë§
  * \param _arg_pwm : ê›íËÇ∑ÇÈPWM
- * \param _arg_sig_turn_base : ê˘âÒéûÇÃê≥ãtì]ÇÃê›íË
+ * \param _arg_nf_turn : ëÄçÏÇÃîΩì]
+ * \param _arg_sig_base : ê˘âÒéûÇÃê≥ãtì]ÇÃê›íË
  */
 inline void
 F_Set_wheel_turn_2
 (
 	C_MD_MAIN _arg_motor[2],
-	E_DIRECX  _arg_direc_x,
-	T_PWM	  _arg_pwm,
-	BOOL	  _arg_sig_turn_base
+	E_DIRECX _arg_direc_x,
+	T_PWM _arg_pwm,
+	BOOL _arg_nf_turn,
+	BOOL _arg_sig_base
 );
 
 
@@ -62,6 +66,7 @@ F_Set_wheel_turn_2
  * \param _arg_turn_0 : _arg_motor[0]ÇâÒì]Ç≥ÇπÇÈ
  * \param _arg_turn_1 : _arg_motor[1]ÇâÒì]Ç≥ÇπÇÈ
  * \param _arg_pwm : ê›íËÇ∑ÇÈPWM
+ * \param _arg_nf_turn : ëÄçÏÇÃîΩì]
  */
 inline void 
 F_Set_wheel_pivot_turn_2
@@ -69,7 +74,8 @@ F_Set_wheel_pivot_turn_2
 	C_MD_MAIN _arg_motor[2],
 	BOOL _arg_turn_0,
 	BOOL _arg_turn_1,
-	T_PWM _arg_pwm
+	T_PWM _arg_pwm,
+	BOOL  _arg_nf_turn
 );
 
 /**
@@ -80,13 +86,15 @@ F_Set_wheel_pivot_turn_2
  *		EAST -> [0]ë§
  *		WEST -> [1]ë§
  * \param _arg_pwm : ê›íËÇ∑ÇÈPWM
+ * \param _arg_nf_turn : ëÄçÏÇÃîΩì]
  */
 inline void 
 F_Set_wheel_pivot_turn_2
 (
 	C_MD_MAIN _arg_motor[2],
 	E_DIRECX  _arg_direc_x,
-	T_PWM	  _arg_pwm
+	T_PWM	  _arg_pwm,
+	BOOL	  _arg_nf_turn
 );
 
 #include "H28_NEW_MAIN_func_wheel_2.cpp"

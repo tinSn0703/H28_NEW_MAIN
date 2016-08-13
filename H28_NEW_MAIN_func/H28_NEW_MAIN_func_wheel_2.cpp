@@ -22,18 +22,34 @@ F_Set_wheel_turn_2
 	BOOL _arg_turn_0,
 	BOOL _arg_turn_1,
 	T_PWM _arg_pwm,
-	BOOL _arg_turn_sig_base = TRUE
+	BOOL _arg_sig_base = TRUE,
+	BOOL _arg_nf_turn = FALSE
 )
 {
-	E_SIG _sig = SET_SIG(_arg_turn_sig_base);
+	E_SIG _sig = SET_SIG(_arg_sig_base);
 	
-	if (_arg_turn_0)
+	BOOL _turn_0 = FALSE;
+	BOOL _turn_1 = FALSE;
+	
+	switch (_arg_nf_turn)
+	{
+		case TRUE:
+			_turn_0 = _arg_turn_1;
+			_turn_1 = _arg_turn_0;
+		break;
+		case FALSE:
+			_turn_0 = _arg_turn_0;
+			_turn_1 = _arg_turn_1;
+		break;
+	}
+	
+	if (_turn_0)
 	{
 		_arg_motor[0].Set_data(  _sig,_arg_pwm);
 		_arg_motor[1].Set_data(ES_STOP,_arg_pwm);
 	}
 	
-	if (_arg_turn_1)
+	if (_turn_1)
 	{
 		_arg_motor[0].Set_data(ES_STOP,_arg_pwm);
 		_arg_motor[1].Set_data(   _sig,_arg_pwm);
@@ -76,19 +92,35 @@ F_Set_wheel_pivot_turn_2
 	C_MD_MAIN _arg_motor[2],
 	BOOL _arg_turn_0,
 	BOOL _arg_turn_1,
-	T_PWM _arg_pwm
+	T_PWM _arg_pwm,
+	BOOL _arg_nf_turn = FALSE
 )
 {
 	E_SIG _sig_0 = ES_STOP;
 	E_SIG _sig_1 = ES_STOP;
 	
-	if (_arg_turn_0)
+	BOOL _turn_0 = FALSE;
+	BOOL _turn_1 = FALSE;
+	
+	switch (_arg_nf_turn)
+	{
+		case TRUE:
+			_turn_0 = _arg_turn_1;
+			_turn_1 = _arg_turn_0;
+		break;
+		case FALSE:
+			_turn_0 = _arg_turn_0;
+			_turn_1 = _arg_turn_1;
+		break;
+	}
+	
+	if (_turn_0)
 	{
 		_sig_0 = ES_TRUE;
 		_sig_1 = ES_FALSE;
 	}
 	
-	if (_arg_turn_1)
+	if (_turn_1)
 	{
 		_sig_0 = ES_FALSE;
 		_sig_1 = ES_TRUE;
