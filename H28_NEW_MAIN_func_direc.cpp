@@ -41,6 +41,26 @@ TURN_DIREC_X (E_DIRECX _arg_direc_x )
 	return (E_DIRECX)((__DIREC_TURN__ >> (((usint)_arg_direc_x) * 2)) & 3);
 }
 
+inline BOOL 
+CHEN_DIREC_TF_E (E_DIRECX _arg_direc_x)
+{
+	return (BOOL)((0b001 >> _arg_direc_x) & 1);
+}
+
+inline BOOL
+CHEN_DIREC_TF_W (E_DIRECX _arg_direc_x)
+{
+	return (BOOL)((0b010 >> _arg_direc_x) & 1);
+}
+
+inline BOOL
+CHEN_DIREC_TF_Z (E_DIRECX _arg_direc_x)
+{
+	return (BOOL)((0b100 >> _arg_direc_x) & 1);
+}
+
+/************************************************************************/
+
 inline E_DIRECY
 SET_DIREC_Y
 (
@@ -77,4 +97,22 @@ inline E_DIRECY
 TURN_DIREC_Y (E_DIRECY _arg_direc_y )
 {
 	return (E_DIRECY)((__DIREC_TURN__ >> (((usint)_arg_direc_y) * 2)) & 3);
+}
+
+inline BOOL
+CHEN_DIREC_TF_N (E_DIRECY _arg_direc_y)
+{
+	return (BOOL)((0b001 >> _arg_direc_y) & 1);
+}
+
+inline BOOL
+CHEN_DIREC_TF_S (E_DIRECY _arg_direc_y)
+{
+	return (BOOL)((0b010 >> _arg_direc_y) & 1);
+}
+
+inline BOOL
+CHEN_DIREC_TF_Z (E_DIRECY _arg_direc_y)
+{
+	return (BOOL)((0b100 >> _arg_direc_y) & 1);
 }

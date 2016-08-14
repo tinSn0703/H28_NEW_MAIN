@@ -66,6 +66,38 @@ inline E_DIRECX SET_TURN_DIREC_X (T_DATA _arg_direc_x_data, T_NUM _arg_direc_x_b
 inline E_DIRECX TURN_DIREC_X (E_DIRECX _arg_direc_x );
 
 /**
+ * \brief 
+ * _arg_direc_xがED_EASTのときTRUEを返す
+ * 
+ * \param _arg_direc_x : 確認対象
+ * 
+ * \return BOOL 上記の通り。それ以外はFALSE
+ */
+inline BOOL CHEN_DIREC_TF_E (E_DIRECX _arg_direc_x);
+
+/**
+ * \brief 
+ * _arg_direc_xがED_WESTのときTRUEを返す
+ * 
+ * \param _arg_direc_x : 確認対象
+ * 
+ * \return BOOL 上記の通り。それ以外はFALSE
+ */
+inline BOOL CHEN_DIREC_TF_W (E_DIRECX _arg_direc_x);
+
+/**
+ * \brief 
+ * _arg_direc_xがED_XZEROのときTRUEを返す
+ * 
+ * \param _arg_direc_x : 確認対象
+ * 
+ * \return BOOL 上記の通り。それ以外はFALSE
+ */
+inline BOOL CHEN_DIREC_TF_Z (E_DIRECX _arg_direc_x);
+
+/************************************************************************/
+
+/**
  * \brief データ中のあるbitとbit + 1から設定されたE_DIRECYを返す
  * 
  * \param _arg_direc_y_data : 探すデータ
@@ -123,5 +155,35 @@ inline E_DIRECY SET_TURN_DIREC_Y (T_DATA _arg_direc_y_data, T_NUM _arg_direc_y_b
  *	ED_YZERO -> ED_YZERO
  */
 inline E_DIRECY TURN_DIREC_Y (E_DIRECY _arg_direc_y );
+
+/**
+ * \brief 
+ * _arg_direc_yがED_NORTHのときTRUEを返す
+ * 
+ * \param _arg_direc_y : 確認対象
+ * 
+ * \return BOOL 上記の通り。それ以外はFALSE
+ */
+inline BOOL CHEN_DIREC_TF_N (E_DIRECY _arg_direc_y);
+
+/**
+ * \brief 
+ * _arg_direc_yがED_SOUTHのときTRUEを返す
+ * 
+ * \param _arg_direc_y : 確認対象
+ * 
+ * \return BOOL 上記の通り。それ以外はFALSE
+ */
+inline BOOL CHEN_DIREC_TF_S (E_DIRECY _arg_direc_y);
+
+/**
+ * \brief 
+ * _arg_direc_yがED_YZEROのときTRUEを返す
+ * 
+ * \param _arg_direc_y : 確認対象
+ * 
+ * \return BOOL 上記の通り。それ以外はFALSE
+ */
+inline BOOL CHEN_DIREC_TF_Z (E_DIRECY _arg_direc_y);
 
 #include "H28_NEW_MAIN_func_direc.cpp"
