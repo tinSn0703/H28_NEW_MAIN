@@ -114,8 +114,7 @@ F_Set_mekanamuni_turn_3
 		_arg_motor[1].Set_data( ES_TRUE,_arg_pwm);
 		_arg_motor[2].Set_data( ES_STOP,_arg_pwm);
 	}
-	
-	if (_arg_turn_right)
+	else if (_arg_turn_right)
 	{
 		_arg_motor[0].Set_data(ES_FALSE,_arg_pwm);
 		_arg_motor[1].Set_data( ES_STOP,_arg_pwm);
@@ -153,7 +152,7 @@ F_Set_wheel_turn_4
 
 
 inline void 
-F_Set_makanamuni_pivot_turn_3
+F_Set_mekanamuni_pivot_turn_3
 (
 	C_MD_MAIN _arg_motor[3], 
 	BOOL _arg_turn_left, 
@@ -168,9 +167,9 @@ F_Set_makanamuni_pivot_turn_3
 	{
 		_sig_0 = ES_TRUE;
 		_sig_1 = ES_FALSE;
+		
 	}
-	
-	if (_arg_turn_right)
+	else if (_arg_turn_right)
 	{
 		_sig_0 = ES_FALSE;
 		_sig_1 = ES_TRUE;
@@ -228,14 +227,18 @@ F_Set_mekanamuni_3
 			switch (_arg_direc_x)
 			{
 				case ED_EAST:
-				{					
+				{
+					_arg_motor[0].Set_pwm_revis(_arg_pwm * 0.4);
+							
 					_temp_sig_c = ES_FALSE;
 					_temp_sig_l = ES_TRUE;
 					_temp_sig_r = ES_FALSE;
 				}
 				break;
 				case ED_WEST:
-				{					
+				{
+					_arg_motor[0].Set_pwm_revis(_arg_pwm * 0.4);
+									
 					_temp_sig_c = ES_TRUE;
 					_temp_sig_l = ES_FALSE;
 					_temp_sig_r = ES_TRUE;
@@ -248,9 +251,9 @@ F_Set_mekanamuni_3
 		break;
 	}
 	
-	_arg_motor[0].Set_data(_temp_sig_c,_arg_pwm);
-	_arg_motor[1].Set_data(_temp_sig_l,_arg_pwm);
-	_arg_motor[2].Set_data(_temp_sig_r,_arg_pwm);
+	_arg_motor[0].Set_data(_temp_sig_c,_arg_pwm,FALSE);
+	_arg_motor[1].Set_data(_temp_sig_l,_arg_pwm,FALSE);
+	_arg_motor[2].Set_data(_temp_sig_r,_arg_pwm,FALSE);
 }
 
 inline void 
