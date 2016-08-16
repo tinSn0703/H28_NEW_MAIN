@@ -88,7 +88,7 @@ F_Set_wheel_turn_4
  * \param _arg_pwm : 設定するPWM
  */
 inline void 
-F_Set_makanamuni_pivot_turn_3
+F_Set_mekanamuni_pivot_turn_3
 (
 	C_MD_MAIN _arg_motor[3],
 	BOOL _arg_turn_left,

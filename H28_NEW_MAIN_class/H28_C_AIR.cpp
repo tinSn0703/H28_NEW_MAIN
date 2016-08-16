@@ -227,12 +227,13 @@ Do
 )
 /*
 5port電磁弁用。タイマ付き
+最初に自動的に_arg_air_num_1がONになる
 
 	_arg_air_num_0,_arg_air_num_1  : 動かす電磁弁のポートの番号
 	_arg_air_nf   : 電磁弁のONOFF
 	_arg_nf_timer : タイマカウンタのフラグ。外部でカウント完了したら、TRUEにしといてくさい。
 */
-{	
+{
 	if (_arg_air_nf)
 	{
 		if (_mem_array_air_flag[_arg_air_num_0])
