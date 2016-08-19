@@ -228,7 +228,7 @@ F_Set_mekanamuni_3
 			{
 				case ED_EAST:
 				{
-					_arg_motor[0].Set_pwm_revis(_arg_pwm * 0.4);
+					_arg_motor[0].Set_pwm_revis(_arg_pwm * __MULTIPLE_OMUNI__);
 							
 					_temp_sig_c = ES_FALSE;
 					_temp_sig_l = ES_TRUE;
@@ -237,7 +237,7 @@ F_Set_mekanamuni_3
 				break;
 				case ED_WEST:
 				{
-					_arg_motor[0].Set_pwm_revis(_arg_pwm * 0.4);
+					_arg_motor[0].Set_pwm_revis(_arg_pwm * __MULTIPLE_OMUNI__);
 									
 					_temp_sig_c = ES_TRUE;
 					_temp_sig_l = ES_FALSE;

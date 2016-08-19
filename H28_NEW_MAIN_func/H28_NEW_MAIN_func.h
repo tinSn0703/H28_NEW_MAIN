@@ -118,6 +118,8 @@ F_Set_mekanam_4
 	T_PWM _arg_pwm
 );
 
+#define __MULTIPLE_OMUNI__ 0.3
+
 /**
  * \brief 
  * 三輪メカナムニを扱う関数
