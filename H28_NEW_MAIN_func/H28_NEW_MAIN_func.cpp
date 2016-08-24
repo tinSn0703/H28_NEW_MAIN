@@ -251,9 +251,13 @@ F_Set_mekanamuni_3
 		break;
 	}
 	
-	_arg_motor[0].Set_data(_temp_sig_c,_arg_pwm,FALSE);
-	_arg_motor[1].Set_data(_temp_sig_l,_arg_pwm,FALSE);
-	_arg_motor[2].Set_data(_temp_sig_r,_arg_pwm,FALSE);
+	_arg_motor[0].Set_data(_temp_sig_c,_arg_pwm);
+	_arg_motor[1].Set_data(_temp_sig_l,_arg_pwm);
+	_arg_motor[2].Set_data(_temp_sig_r,_arg_pwm);
+	
+//	_arg_motor[0].Set_data(_temp_sig_c,_arg_pwm,FALSE);
+//	_arg_motor[1].Set_data(_temp_sig_l,_arg_pwm,FALSE);
+//	_arg_motor[2].Set_data(_temp_sig_r,_arg_pwm,FALSE);
 }
 
 inline void 
@@ -352,3 +356,50 @@ F_Set_count
 		_arg_count.Flag_up();
 	}
 };
+
+inline void 
+F_Count_tf
+(
+	C_COUNT_u1 &_arg_count,
+	BOOL _arg_nf_count_start,
+	BOOL &_arg_nf,
+	BOOL &_arg_flag_count,
+	BOOL &_arg_flag_timer
+)
+{
+	if (_arg_nf_count_start)
+	{
+		if (_arg_flag_count)
+		{
+			_arg_count.Min();
+			_arg_count.Flag_down();
+			
+			_arg_flag_count = FALSE;
+		}
+	}
+	else
+	{
+		_arg_flag_count = TRUE;
+	}
+	
+	if (_arg_count == _arg_count.Ret_max())
+	{
+		if (_arg_nf)
+		{
+			_arg_count.Min();
+			_arg_count.Flag_up();
+		}
+		
+		_arg_nf = TURN_TF(_arg_nf);
+	}
+	
+	if (_arg_flag_timer)
+	{
+		if (_arg_count.Ret_flag() == FALSE)
+		{
+			_arg_count ++;
+			
+			_arg_flag_timer = FALSE;
+		}
+	}
+}

@@ -1,6 +1,8 @@
 ﻿
 #pragma once
 
+#define __MULTIPLE_OMUNI__ 0.2
+
 /**
  * \brief _arg_pwmを++か--する
  * 
@@ -118,8 +120,6 @@ F_Set_mekanam_4
 	T_PWM _arg_pwm
 );
 
-#define __MULTIPLE_OMUNI__ 0.3
-
 /**
  * \brief 
  * 三輪メカナムニを扱う関数
@@ -232,7 +232,6 @@ F_Set_tf
  * 
  * \param _arg_set_high : カウントアップ
  * \param _arg_set_low  : カウントダウン
- * \param _arg_flag  : フラグ。外部で作ってね。あと外部で変えないでね
  * \param _arg_count : カウンタ。変えられるやつ
  */
 inline void 
@@ -242,6 +241,17 @@ F_Set_count
 	BOOL  _arg_set_low,
 	C_COUNT_u1 &_arg_count
 );
+
+inline void 
+F_Count_tf
+(
+	C_COUNT_u1 &_arg_count,
+	BOOL _arg_nf_count_start,
+	BOOL &_arg_nf,
+	BOOL &_arg_flag_count,
+	BOOL &_arg_flag_timer
+);
+
 
 #include "H28_NEW_MAIN_func_wheel_2.h"
 
