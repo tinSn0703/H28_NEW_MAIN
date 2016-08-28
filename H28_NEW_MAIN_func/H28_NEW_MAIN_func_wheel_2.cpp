@@ -87,7 +87,7 @@ F_Set_wheel_turn_2
 }
 
 inline void
-F_Set_wheel_pivot_turn_2
+F_Set_wheel_p_turn_2
 (
 	C_MD_MAIN _arg_motor[2],
 	BOOL _arg_turn_0,
@@ -131,7 +131,7 @@ F_Set_wheel_pivot_turn_2
 }
 
 inline void
-F_Set_wheel_pivot_turn_2
+F_Set_wheel_p_turn_2
 (
 	C_MD_MAIN _arg_motor[2],
 	E_DIRECX _arg_direc_x,
