@@ -91,7 +91,6 @@ Set_sig (E_SIG _arg_sig_mode)
 		_arg_sig_mode = TURN_SIG_ROTATE(_arg_sig_mode);
 	}
 	
-	
 	_mem_md_main_data_0._md_0_data_bit._md_0_sig_mode = _arg_sig_mode;
 }
 

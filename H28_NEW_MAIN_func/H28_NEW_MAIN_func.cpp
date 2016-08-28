@@ -100,7 +100,7 @@ F_Set_pwm
 }
 
 inline void 
-F_Set_mekanamuni_turn_3
+F_Set_mowheeel_turn_3
 (
 	C_MD_MAIN _arg_motor[3], 
 	BOOL _arg_turn_left, 
@@ -152,7 +152,7 @@ F_Set_wheel_turn_4
 
 
 inline void 
-F_Set_mekanamuni_pivot_turn_3
+F_Set_mowheel_p_turn_3
 (
 	C_MD_MAIN _arg_motor[3], 
 	BOOL _arg_turn_left, 
@@ -181,7 +181,7 @@ F_Set_mekanamuni_pivot_turn_3
 }
 
 inline void 
-F_Set_mekanam_4
+F_Set_mwheel_4
 (
 	C_MD_MAIN _arg_motor[4], 
 	E_DIRECX _arg_direc_x, 
@@ -189,14 +189,52 @@ F_Set_mekanam_4
 	T_PWM _arg_pwm 
 )
 {
-	_arg_motor[0].Set_data(	SET_SIG( TURN_DIREC_Y(_arg_direc_y),				 _arg_direc_x),  _arg_pwm);
-	_arg_motor[1].Set_data(	SET_SIG( TURN_DIREC_Y(_arg_direc_y),	TURN_DIREC_X(_arg_direc_x)), _arg_pwm);
-	_arg_motor[2].Set_data(	SET_SIG( TURN_DIREC_Y(_arg_direc_y),				 _arg_direc_x),	 _arg_pwm);
-	_arg_motor[3].Set_data(	SET_SIG( TURN_DIREC_Y(_arg_direc_y),	TURN_DIREC_X(_arg_direc_x)), _arg_pwm);
+	E_SIG _temp_sig[4] = {ES_STOP,ES_STOP,ES_STOP,ES_STOP};
+		
+	switch (_arg_direc_x)
+	{
+		case ED_WEST:
+		{
+			_temp_sig[0] = ES_TRUE;
+			_temp_sig[1] = ES_FALSE;
+			_temp_sig[2] = ES_FALSE;
+			_temp_sig[3] = ES_TRUE;
+		}
+		break;
+		case ED_EAST:
+		{
+			_temp_sig[0] = ES_FALSE;
+			_temp_sig[1] = ES_TRUE;
+			_temp_sig[2] = ES_TRUE;
+			_temp_sig[3] = ES_FALSE;
+		}
+		break;
+		case ED_XZERO:
+		{
+			switch (_arg_direc_y)
+			{
+				case ED_NORTH:
+				{
+					for (usint i = 0; i < 4; i ++)	_temp_sig[i] = ES_TRUE;
+				}
+				break;
+				case ED_SOUTH:
+				{
+					for (usint i = 0; i < 4; i ++)	_temp_sig[i] = ES_FALSE;
+				}
+				break;
+				case ED_YZERO:
+				break;
+			}
+		}
+		break;
+	}
+	
+ 	for (usint i = 0; i < 4; i ++)	_arg_motor[i].Set_data(_temp_sig[i], _arg_pwm);
 }
 
 inline void
-F_Set_mekanamuni_3
+F_Set_mowheel_3
 (
 	C_MD_MAIN _arg_motor[3],
 	E_DIRECX _arg_direc_x,
@@ -286,6 +324,34 @@ F_Set_motor_tf_1
 inline void 
 F_Set_motor_tf_1
 (
+	C_MD_MAIN &_arg_motor,
+	BOOL _arg_nf,
+	BOOL &_arg_flag_nf,
+	E_SIG _arg_base,
+	T_PWM _arg_pwm
+)
+{
+	if (_arg_nf)
+	{
+		if (_arg_flag_nf)
+		{
+			if (_arg_motor.Ret_sig() == ES_STOP)
+			{
+				_arg_motor.Set_data(_arg_base,_arg_pwm);
+			}
+			else
+			{
+				_arg_motor.Set_data(ES_STOP,0);
+			}
+		}
+	}
+	
+	_arg_flag_nf = ~_arg_nf;	
+}
+
+inline void 
+F_Set_motor_tf_1
+(
 	C_MD_MAIN &_arg_motor, 
 	E_DIRECY _arg_motor_tf, 
 	T_PWM _arg_pwm
@@ -319,7 +385,7 @@ F_Set_tf
 		{
 			BOOL _temp_nf = _arg_nf;
 			
-			_arg_nf = TURN_TF(_temp_nf);
+			_arg_nf = ~_temp_nf;
 		}
 		
 		_arg_flag = FALSE;
@@ -331,7 +397,7 @@ F_Set_tf
 }
 
 inline void 
-F_Set_count
+F_Do_count
 (
 	BOOL  _arg_set_high,
 	BOOL  _arg_set_low,
@@ -360,46 +426,21 @@ F_Set_count
 inline void 
 F_Count_tf
 (
-	C_COUNT_u1 &_arg_count,
 	BOOL _arg_nf_count_start,
 	BOOL &_arg_nf,
-	BOOL &_arg_flag_count,
-	BOOL &_arg_flag_timer
+	C_COUNT_u1 &_arg_count
 )
 {
-	if (_arg_nf_count_start)
+	if (_arg_nf_count_start & ~_arg_count.Ret_flag())
 	{
-		if (_arg_flag_count)
-		{
-			_arg_count.Min();
-			_arg_count.Flag_down();
-			
-			_arg_flag_count = FALSE;
-		}
-	}
-	else
-	{
-		_arg_flag_count = TRUE;
+		_arg_count.Min();
+		_arg_count.Flag_up();
 	}
 	
-	if (_arg_count == _arg_count.Ret_max())
+	if (_arg_count.Comp_max() & _arg_count.Ret_flag())
 	{
-		if (_arg_nf)
-		{
-			_arg_count.Min();
-			_arg_count.Flag_up();
-		}
+		_arg_count.Flag_down();
 		
-		_arg_nf = TURN_TF(_arg_nf);
-	}
-	
-	if (_arg_flag_timer)
-	{
-		if (_arg_count.Ret_flag() == FALSE)
-		{
-			_arg_count ++;
-			
-			_arg_flag_timer = FALSE;
-		}
+		_arg_nf = ~_arg_nf;
 	}
 }
