@@ -4,37 +4,37 @@
 #include "H28_C_AIR.h"
 
 inline 
-C_AIR::
+C_AIR ::
 C_AIR (T_DATA_8 _arg_air_data = 0x00)
 {
-	_mem_air_data._data_byte = _arg_air_data;
+	_mem_air_data._byte = _arg_air_data;
 	
 	for (usint i = 0; i < 8; i++)	_mem_array_air_flag[i] = TRUE;
 }
 
 inline T_DATA_8
-C_AIR::
+C_AIR ::
 Ret ()
 {
-	return _mem_air_data._data_byte;
+	return _mem_air_data._byte;
 }
 
 inline BOOL
-C_AIR::
+C_AIR ::
 Ret_num (T_NUM _arg_air_num)
 {
-	return CHECK_BIT_TF(_mem_air_data._data_byte,_arg_air_num);
+	return CHECK_BIT_TF(_mem_air_data._byte,_arg_air_num);
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Set (T_DATA_8 _arg_air_data)
 {
-	_mem_air_data._data_byte = _arg_air_data;
+	_mem_air_data._byte = _arg_air_data;
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Set_num
 (
 	T_NUM _arg_air_num,
@@ -43,20 +43,20 @@ Set_num
 {
 	switch (_arg_air_nf)
 	{
-		case TRUE:	_mem_air_data._data_byte |=  (1 << _arg_air_num);	break;
-		case FALSE:	_mem_air_data._data_byte &= ~(1 << _arg_air_num);	break;
+		case TRUE:	_mem_air_data._byte |=  (1 << _arg_air_num);	break;
+		case FALSE:	_mem_air_data._byte &= ~(1 << _arg_air_num);	break;
 	}
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Turn ()
 {
-	_mem_air_data._data_byte = ~(_mem_air_data._data_byte);
+	_mem_air_data._byte = ~(_mem_air_data._byte);
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Turn_num (T_NUM _arg_air_num)
 {
 	switch (_arg_air_num)
@@ -74,7 +74,7 @@ Turn_num (T_NUM _arg_air_num)
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Do
 (
 	T_NUM _arg_air_num, 
@@ -97,7 +97,7 @@ Do
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Do
 (
 	T_NUM _arg_air_num, 
@@ -121,7 +121,7 @@ Do
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Do
 (
 	T_NUM _arg_air_num_0, 
@@ -150,7 +150,7 @@ Do
 		_mem_array_air_flag[_arg_air_num_0] = TRUE;
 	}
 	
-	if ((Ret_num(_arg_air_num_0) | Ret_num(_arg_air_num_1) | TURN_TF(_arg_nf_timer)) == FALSE)
+	if ((Ret_num(_arg_air_num_0) | Ret_num(_arg_air_num_1) | ~_arg_nf_timer) == FALSE)
 	{
 		switch (_mem_array_air_flag[_arg_air_num_1])
 		{
@@ -158,35 +158,76 @@ Do
 			case FALSE:	Set_num(_arg_air_num_0,TRUE);	break;
 		}
 		
-		_mem_array_air_flag[_arg_air_num_1] = TURN_TF(_mem_array_air_flag[_arg_air_num_1]);
+		_mem_array_air_flag[_arg_air_num_1] = ~_mem_array_air_flag[_arg_air_num_1];
 	}
 }
 
 void 
-C_AIR::
+C_AIR ::
 Out (C_UART_T &_arg_uart_t)
 {
 	_arg_uart_t.Set_bit9_off();
 	
-	_arg_uart_t << _mem_air_data._data_byte;
+	_arg_uart_t << _mem_air_data._byte;
+}
+
+void 
+C_AIR :: 
+Out (C_IO_OUT &_arg_io_out)
+{
+	_arg_io_out.Out(Ret());
+}
+
+void 
+C_AIR :: 
+Out 
+(
+	C_IO_OUT &_arg_io_out, 
+	usint _arg_air_num
+)
+{
+	_arg_io_out.Out_num(_arg_air_num, Ret_num(_arg_air_num));
+}
+
+void 
+C_AIR :: 
+Out
+(
+	C_IO_OUT &_arg_io_out, 
+	usint _arg_air_num, 
+	usint _arg_io_num
+)
+{
+	_arg_io_out.Out_num(_arg_io_num, Ret_num(_arg_air_num));
+}
+
+void 
+C_AIR :: 
+Out
+(
+	C_IO_OUT_pin &_arg_io_out, 
+	usint _arg_air_num
+)
+{
+	_arg_io_out.Out(Ret_num(_arg_air_num));
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Lcd_2 (T_ADRS _arg_adrs)
 {
-	Lcd_put_num(_arg_adrs,_mem_air_data._data_byte,8,ED_02);
+	Lcd_put_num(_arg_adrs,_mem_air_data._byte,8,ED_02);
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Lcd_16 (T_ADRS _arg_adrs)
 {
-	Lcd_put_num(_arg_adrs,_mem_air_data._data_byte,2,ED_16);
+	Lcd_put_num(_arg_adrs,_mem_air_data._byte,2,ED_16);
 }
 
 inline void 
-C_AIR::
+C_AIR ::
 Lcd_num
 (
 	T_ADRS _arg_adrs,
