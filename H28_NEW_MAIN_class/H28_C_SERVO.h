@@ -9,8 +9,8 @@ private:
 	{
 		struct S_SERVO
 		{
-			T_DATA_8 _angle :7;
-			T_DATA_8 _num :1;
+			T_DATA_8 _angle :5;
+			T_DATA_8 _num :3;
 		};
 		
 		S_SERVO _bit;
