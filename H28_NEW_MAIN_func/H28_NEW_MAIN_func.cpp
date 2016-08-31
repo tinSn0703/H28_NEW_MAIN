@@ -78,18 +78,18 @@ F_Set_pwm
 		if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
 		{
 			_arg_pwm ++;
-			
-			_arg_flag = FALSE;
 		}
+		
+		_arg_flag = FALSE;
 	}
 	else if (_arg_nf_pwm_low)
 	{
 		if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
 		{
 			_arg_pwm --;
-			
-			_arg_flag = FALSE;
 		}
+		
+		_arg_flag = FALSE;
 	}
 	else
 	{
@@ -428,13 +428,17 @@ F_Count_tf
 (
 	BOOL _arg_nf_count_start,
 	BOOL &_arg_nf,
+	BOOL &_arg_flag,
 	C_COUNT_u1 &_arg_count
 )
 {
-	if (_arg_nf_count_start & ~_arg_count.Ret_flag())
+	if (_arg_nf_count_start)
 	{
-		_arg_count.Min();
-		_arg_count.Flag_up();
+		if (_arg_flag & ~_arg_count.Ret_flag())
+		{
+			_arg_count.Min();
+			_arg_count.Flag_up();
+		}
 	}
 	
 	if (_arg_count.Comp_max() & _arg_count.Ret_flag())
@@ -442,5 +446,23 @@ F_Count_tf
 		_arg_count.Flag_down();
 		
 		_arg_nf = ~_arg_nf;
+	}
+	
+	_arg_flag = ~_arg_nf_count_start;
+}
+
+inline void 
+F_Count_tf
+(
+	uchar _arg_comp,
+	BOOL &_arg_nf,
+	C_COUNT_u1 &_arg_count
+)
+{
+	if (_arg_count.Comp(_arg_comp) & _arg_count.Ret_flag())
+	{
+		_arg_nf = ~_arg_nf;
+		
+		_arg_count ++;
 	}
 }
