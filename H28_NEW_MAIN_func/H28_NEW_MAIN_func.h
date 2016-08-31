@@ -186,6 +186,22 @@ inline void F_Do_count(BOOL  _arg_set_high, BOOL  _arg_set_low, C_COUNT_u1 &_arg
  */
 inline void F_Count_tf(BOOL _arg_nf_count, BOOL &_arg_nf, C_COUNT_u1 &_arg_count);
 
+/**
+ * \brief 
+ * カウンタを利用して_arg_nfのTFを反転させる関数
+ * カウンタはループにしとかないでください
+ * カウントの++は別のところでやってください。
+ * カウンタのフラグが立っていて、_arg_compとカウンタが等しいときに、_arg_nfが変化します
+ * 変化するとカウンタの値が++されます。
+ *
+ * \param _arg_comp	 : 比較する値
+ * \param _arg_nf	 : 動かされるやつ
+ * \param _arg_flag	 : フラグ。外部で変えないでね
+ * \param _arg_count : カウンタ
+ */
+inline void F_Count_tf(uchar _arg_comp, BOOL &_arg_nf, BOOL &_arg_flag, C_COUNT_u1 &_arg_count);
+
 #include "H28_NEW_MAIN_func_wheel_2.h"
+#include "H28_NEW_MAIN_func_lcd.h"
 
 #include "H28_NEW_MAIN_func.cpp"
