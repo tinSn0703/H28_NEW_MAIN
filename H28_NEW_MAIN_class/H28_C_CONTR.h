@@ -123,29 +123,29 @@ protected:
 		
 		void Set_data (T_DATA_8 _arg_arr_data[__CON_BYTE_UART__])
 		{
-			_data_bit._cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_arr_data[1],1),CHECK_BIT_TF(_arg_arr_data[0],5));
-			_data_bit._cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_arr_data[0],4),CHECK_BIT_TF(_arg_arr_data[1],0));
+			_data_bit._cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_arr_data[1], 1), CHECK_BIT_TF(_arg_arr_data[0], 5));
+			_data_bit._cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_arr_data[0], 4), CHECK_BIT_TF(_arg_arr_data[1], 0));
 			
-			_data_bit._stick_left_x = SET_DIREC_X(_arg_arr_data[3],2);
-			_data_bit._stick_left_y = SET_DIREC_Y(_arg_arr_data[3],4);
+			_data_bit._stick_left_x = SET_DIREC_X(_arg_arr_data[3], 2);
+			_data_bit._stick_left_y = SET_DIREC_Y(_arg_arr_data[3], 4);
 			
-			_data_bit._stick_right_x = SET_DIREC_X(_arg_arr_data[2],4);
-			_data_bit._stick_right_y = SET_DIREC_Y(_arg_arr_data[3],0);
+			_data_bit._stick_right_x = SET_DIREC_X(_arg_arr_data[2], 4);
+			_data_bit._stick_right_y = SET_DIREC_Y(_arg_arr_data[3], 0);
 			
-			_data_bit._nf_start  = CHECK_TURN_BIT_TF(_arg_arr_data[0],3);
-			_data_bit._nf_select = CHECK_TURN_BIT_TF(_arg_arr_data[0],0);
-			_data_bit._nf_home   = CHECK_TURN_BIT_TF(_arg_arr_data[0],1);
+			_data_bit._nf_start  = CHECK_TURN_BIT_TF(_arg_arr_data[0], 3);
+			_data_bit._nf_select = CHECK_TURN_BIT_TF(_arg_arr_data[0], 0);
+			_data_bit._nf_home   = CHECK_TURN_BIT_TF(_arg_arr_data[0], 1);
 			
-			_data_bit._nf_right = CHECK_TURN_BIT_TF(_arg_arr_data[1],5);
-			_data_bit._nf_z_right = CHECK_TURN_BIT_TF(_arg_arr_data[1],3);
+			_data_bit._nf_right = CHECK_TURN_BIT_TF(_arg_arr_data[1], 5);
+			_data_bit._nf_z_right = CHECK_TURN_BIT_TF(_arg_arr_data[1], 3);
 			
-			_data_bit._nf_left  = CHECK_TURN_BIT_TF(_arg_arr_data[1],4);
-			_data_bit._nf_z_left  = CHECK_TURN_BIT_TF(_arg_arr_data[1],2);
+			_data_bit._nf_left  = CHECK_TURN_BIT_TF(_arg_arr_data[1], 4);
+			_data_bit._nf_z_left  = CHECK_TURN_BIT_TF(_arg_arr_data[1], 2);
 			
-			_data_bit._nf_y = CHECK_TURN_BIT_TF(_arg_arr_data[2],3);
-			_data_bit._nf_b = CHECK_TURN_BIT_TF(_arg_arr_data[2],2);
-			_data_bit._nf_a = CHECK_TURN_BIT_TF(_arg_arr_data[2],1);
-			_data_bit._nf_x = CHECK_TURN_BIT_TF(_arg_arr_data[2],0);
+			_data_bit._nf_y = CHECK_TURN_BIT_TF(_arg_arr_data[2], 3);
+			_data_bit._nf_b = CHECK_TURN_BIT_TF(_arg_arr_data[2], 2);
+			_data_bit._nf_a = CHECK_TURN_BIT_TF(_arg_arr_data[2], 1);
+			_data_bit._nf_x = CHECK_TURN_BIT_TF(_arg_arr_data[2], 0);
 		}
 	};
 	
