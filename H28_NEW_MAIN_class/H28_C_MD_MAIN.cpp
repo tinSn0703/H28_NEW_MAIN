@@ -35,7 +35,7 @@ C_MD_MAIN
 	
 	_mem_md_main_pwm_revis = _arg_pwm_revis;
 	
-	_mem_md_main_nf_sig_turn = _arg_nf_sig_turn;
+	_mem_md_main_nf_sig_reverse = _arg_nf_sig_turn;
 }
 
 inline void 
@@ -48,16 +48,16 @@ Chan_md (usint  _arg_num_md)
 
 inline void 
 C_MD_MAIN :: 
-Chan_turn ()
+Chan_reverse ()
 {
-	_mem_md_main_nf_sig_turn = TURN_TF(_mem_md_main_nf_sig_turn);
+	_mem_md_main_nf_sig_reverse = TURN_TF(_mem_md_main_nf_sig_reverse);
 }
 
 inline void 
 C_MD_MAIN::
 Set_turn (BOOL _arg_nf_sig_turn)
 {
-	_mem_md_main_nf_sig_turn = _arg_nf_sig_turn;
+	_mem_md_main_nf_sig_reverse = _arg_nf_sig_turn;
 }
 
 inline void 
@@ -86,7 +86,7 @@ Set_sig (E_SIG _arg_sig_mode)
 		_mem_md_main_data_1._md_1_data_bit._md_1_pwm_value = 0;
 	}
 	
-	if (_mem_md_main_nf_sig_turn)
+	if (_mem_md_main_nf_sig_reverse)
 	{
 		_arg_sig_mode = TURN_SIG_ROTATE(_arg_sig_mode);
 	}

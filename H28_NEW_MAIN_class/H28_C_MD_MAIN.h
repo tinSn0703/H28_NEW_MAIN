@@ -41,7 +41,7 @@ private:
 	
 	sint _mem_md_main_pwm_revis :6;
 	
-	BOOL _mem_md_main_nf_sig_turn :1;
+	BOOL _mem_md_main_nf_sig_reverse :1;
 	
 #	define MD_DATA_NUM_0 0
 #	define MD_DATA_NUM_1 1
@@ -73,7 +73,7 @@ public:
 	/**
 	 * \brief 反転の設定を入れ替える
 	 */
-	void Chan_turn();
+	void Chan_reverse();
 	
 	/**
 	 * \brief MDCへデータを送信する
@@ -138,7 +138,7 @@ public:
 	E_SIG Ret_sig()		{	return _mem_md_main_data_0._md_0_data_bit._md_0_sig_mode;	}
 	T_PWM Ret_pwm()		{	return _mem_md_main_data_1._md_1_data_bit._md_1_pwm_value;	}
 	BOOL Ret_steps()	{	return _mem_md_main_data_0._md_0_data_bit._md_0_nf_steps;	}
-	BOOL Ret_turn()		{	return _mem_md_main_nf_sig_turn;	}
+	BOOL Ret_turn()		{	return _mem_md_main_nf_sig_reverse;	}
 	
 	//Lcd表示
 	
