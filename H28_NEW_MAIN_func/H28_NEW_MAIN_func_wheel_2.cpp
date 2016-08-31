@@ -22,8 +22,8 @@ F_Set_wheel_turn_2
 	BOOL _arg_turn_0,
 	BOOL _arg_turn_1,
 	T_PWM _arg_pwm,
-	BOOL _arg_sig_base = TRUE,
-	BOOL _arg_nf_turn = FALSE
+	BOOL _arg_nf_turn = FALSE,
+	BOOL _arg_sig_base = TRUE
 )
 {
 	E_SIG _sig = SET_SIG(_arg_sig_base);
@@ -62,12 +62,21 @@ F_Set_wheel_turn_2
 	C_MD_MAIN _arg_motor[2],
 	E_DIRECX _arg_direc_x,
 	T_PWM _arg_pwm,
-	BOOL _arg_turn_sig_base = TRUE
+	BOOL _arg_nf_turn,
+	BOOL _arg_sig_base = TRUE
 )
 {
-	E_SIG _sig = SET_SIG(_arg_turn_sig_base);
+	E_SIG _sig = SET_SIG(_arg_sig_base);
+	E_DIRECX _direc = _arg_direc_x;
 	
-	switch (_arg_direc_x)
+	if (_arg_nf_turn)
+	{
+		_sig = TURN_SIG_ROTATE(_sig);
+		
+		_direc = TURN_DIREC_X(_direc);
+	}
+	
+	switch (_direc)
 	{
 		case ED_EAST:
 		{
@@ -82,6 +91,10 @@ F_Set_wheel_turn_2
 		}
 		break;
 		case ED_XZERO:
+		{
+			_arg_motor[0].Set_data(ES_STOP,0);
+			_arg_motor[1].Set_data(ES_STOP,0);
+		}
 		break;
 	}
 }
