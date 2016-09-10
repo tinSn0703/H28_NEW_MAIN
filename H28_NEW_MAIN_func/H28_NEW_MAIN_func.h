@@ -3,6 +3,11 @@
 
 #define __MULTIPLE_OMUNI__ 0.2
 
+#define __MEKANAMU_RI_FR__	0
+#define __MEKANAMU_RI_BA__	1
+#define __MEKANAMU_LE_FR__	2
+#define __MEKANAMU_LE_BA__	3
+
 /**
  * \brief _arg_pwmを++か--する
  * 
@@ -17,7 +22,7 @@
  * \return T_PWM ついで
  */
 template <class DIREC>
-inline T_PWM F_Set_pwm(DIREC _arg_pwm_hl, T_PWM &_arg_pwm, BOOL &_arg_flag,	BOOL _arg_pwm_recet = FALSE);
+inline T_PWM F_Set_pwm(const DIREC _arg_pwm_hl, T_PWM &_arg_pwm, BOOL &_arg_flag, const BOOL _arg_pwm_recet = FALSE);
 
 /**
  * \brief _arg_pwmを++,--する。 
@@ -30,7 +35,7 @@ inline T_PWM F_Set_pwm(DIREC _arg_pwm_hl, T_PWM &_arg_pwm, BOOL &_arg_flag,	BOOL
  * 
  * \return T_PWM : ついで
  */
-inline T_PWM F_Set_pwm(BOOL _arg_nf_pwm_high, BOOL _arg_nf_pwm_low, T_PWM &_arg_pwm, BOOL &_arg_flag, BOOL _arg_pwm_recet);
+inline T_PWM F_Set_pwm(const BOOL _arg_nf_pwm_high, const BOOL _arg_nf_pwm_low, T_PWM &_arg_pwm, BOOL &_arg_flag, const BOOL _arg_pwm_recet);
 
 /**
  * \brief 3輪メカナムニの信地旋回
@@ -40,7 +45,7 @@ inline T_PWM F_Set_pwm(BOOL _arg_nf_pwm_high, BOOL _arg_nf_pwm_low, T_PWM &_arg_
  * \param _arg_turn_right : 右旋回
  * \param _arg_pwm		  : PWM
  */
-inline void F_Set_mowheeel_turn_3(C_MD_MAIN _arg_motor[3], BOOL  _arg_turn_left, BOOL  _arg_turn_right, T_PWM _arg_pwm);
+inline void F_Set_mowheeel_turn_3(C_MD_MAIN _arg_motor[3], const BOOL _arg_turn_left, const BOOL _arg_turn_right, const T_PWM _arg_pwm);
 
 /**
  * \brief 4輪の旋回
@@ -50,7 +55,7 @@ inline void F_Set_mowheeel_turn_3(C_MD_MAIN _arg_motor[3], BOOL  _arg_turn_left,
  * \param _arg_turn_1 : 2番のモータ側を回転させる
  * \param _arg_pwm : PWM
  */
-inline void F_Set_wheel_turn_4(C_MD_MAIN _arg_motor[4], BOOL _arg_turn_0, BOOL _arg_turn_1, T_PWM _arg_pwm);
+inline void F_Set_wheel_turn_4(C_MD_MAIN _arg_motor[4], const BOOL _arg_turn_0, const BOOL _arg_turn_1, const T_PWM _arg_pwm);
 
 /**
  * \brief 3輪メカナムニの超信地旋回。
@@ -60,7 +65,7 @@ inline void F_Set_wheel_turn_4(C_MD_MAIN _arg_motor[4], BOOL _arg_turn_0, BOOL _
  * \param _arg_turn_right : 右旋回
  * \param _arg_pwm : 設定するPWM
  */
-inline void F_Set_mowheel_p_turn_3(C_MD_MAIN _arg_motor[3], BOOL _arg_turn_left, BOOL _arg_turn_right, T_PWM _arg_pwm);
+inline void F_Set_mowheel_p_turn_3(C_MD_MAIN _arg_motor[3], const BOOL _arg_turn_left, const BOOL _arg_turn_right, const T_PWM _arg_pwm);
 
 /**
  * \brief 
@@ -75,7 +80,7 @@ inline void F_Set_mowheel_p_turn_3(C_MD_MAIN _arg_motor[3], BOOL _arg_turn_left,
  * \param _arg_direc_y : y軸方向
  * \param _arg_pwm : PWM
  */
-inline void F_Set_mwheel_4(C_MD_MAIN _arg_motor[4], E_DIRECX _arg_direc_x, E_DIRECY _arg_direc_y, T_PWM _arg_pwm);
+inline void F_Set_mwheel_4(C_MD_MAIN _arg_motor[4], const E_DIRECX _arg_direc_x, const E_DIRECY _arg_direc_y, const T_PWM _arg_pwm);
 
 /**
  * \brief 
@@ -90,7 +95,7 @@ inline void F_Set_mwheel_4(C_MD_MAIN _arg_motor[4], E_DIRECX _arg_direc_x, E_DIR
  * \param _arg_direc_y : y
  * \param _arg_pwm : PWM
  */
-inline void F_Set_mowheel_3(C_MD_MAIN _arg_motor[3], E_DIRECX _arg_direc_x, E_DIRECY _arg_direc_y, T_PWM _arg_pwm);
+inline void F_Set_mowheel_3(C_MD_MAIN _arg_motor[3], const E_DIRECX _arg_direc_x, const E_DIRECY _arg_direc_y, const T_PWM _arg_pwm);
 
 /**
  * \brief 
@@ -109,7 +114,7 @@ inline void F_Set_mowheel_3(C_MD_MAIN _arg_motor[3], E_DIRECX _arg_direc_x, E_DI
  *
  * \param _arg_pwm : 設定するPWM
  */
-inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, BOOL _arg_nf_true, BOOL _arg_nf_fales,  T_PWM _arg_pwm);
+inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, const BOOL _arg_nf_true, const BOOL _arg_nf_fales, const T_PWM _arg_pwm);
 
 /**
  * \brief 
@@ -120,7 +125,7 @@ inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, BOOL _arg_nf_true, BOOL _arg
  * \param _arg_base		: 
  * \param _arg_pwm		: 
  */
-inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, BOOL _arg_nf, BOOL &_arg_flag_nf, E_SIG _arg_base, T_PWM _arg_pwm);
+inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, const BOOL _arg_nf, BOOL &_arg_flag_nf, const E_SIG _arg_base, const T_PWM _arg_pwm);
 
 /**
  * \brief モーターを正逆転させる
@@ -134,7 +139,7 @@ inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, BOOL _arg_nf, BOOL &_arg_fla
  *
  * \param _arg_pwm : モーターのPWM
  */
-inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_DIRECY _arg_motor_tf, T_PWM _arg_pwm);
+inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, const E_DIRECY _arg_motor_tf, const T_PWM _arg_pwm);
 
 /**
  * \brief モーターを正逆転させる
@@ -148,18 +153,7 @@ inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_DIRECY _arg_motor_tf, T_PW
  *
  * \param _arg_pwm : モーターのPWM
  */
-inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, E_DIRECX _arg_motor_tf, T_PWM _arg_pwm);
-
-/**
- * \brief 
- * _arg_set_tfで、_arg_nfのTFを入れ替える
- * 一度_arg_set_tfがFALESになってから、TRUEにならないと_arg_nfが入れ替えらない仕組み
- * 
- * \param _arg_set_tf : 設定の入力
- * \param _arg_nf : 変えられるの
- * \param _arg_flag : フラグ。外部で変えないでね
- */
-inline void F_Set_tf(BOOL  _arg_set_tf, BOOL &_arg_nf, BOOL &_arg_flag);
+inline void F_Set_motor_tf_1(C_MD_MAIN &_arg_motor, const E_DIRECX _arg_motor_tf, const T_PWM _arg_pwm);
 
 /**
  * \brief 
@@ -170,7 +164,7 @@ inline void F_Set_tf(BOOL  _arg_set_tf, BOOL &_arg_nf, BOOL &_arg_flag);
  * \param _arg_set_low  : カウントダウン
  * \param _arg_count : カウンタ。変えられるやつ
  */
-inline void F_Do_count(BOOL  _arg_set_high, BOOL  _arg_set_low, C_COUNT_u1 &_arg_count);
+inline void F_Do_count(const BOOL  _arg_set_high, const BOOL  _arg_set_low, C_COUNT_u1 &_arg_count);
 
 /**
  * \brief 
@@ -184,7 +178,7 @@ inline void F_Do_count(BOOL  _arg_set_high, BOOL  _arg_set_low, C_COUNT_u1 &_arg
  * \param _arg_nf			: カウントが完了しているとこいつのTFが反転する
  * \param _arg_count		: カウンタ
  */
-inline void F_Count_tf(BOOL _arg_nf_count, BOOL &_arg_nf, C_COUNT_u1 &_arg_count);
+inline void F_Count_tf(const BOOL _arg_nf_count, BOOL &_arg_nf, C_COUNT_u1 &_arg_count);
 
 /**
  * \brief 
@@ -199,7 +193,7 @@ inline void F_Count_tf(BOOL _arg_nf_count, BOOL &_arg_nf, C_COUNT_u1 &_arg_count
  * \param _arg_flag	 : フラグ。外部で変えないでね
  * \param _arg_count : カウンタ
  */
-inline void F_Count_tf(uchar _arg_comp, BOOL &_arg_nf, BOOL &_arg_flag, C_COUNT_u1 &_arg_count);
+inline void F_Count_tf(const uchar _arg_comp, BOOL &_arg_nf, BOOL &_arg_flag, C_COUNT_u1 &_arg_count);
 
 #include "H28_NEW_MAIN_func_wheel_2.h"
 #include "H28_NEW_MAIN_func_lcd.h"
