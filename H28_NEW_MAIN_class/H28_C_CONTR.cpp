@@ -4,7 +4,7 @@
 #include "H28_C_CONTR.h"
 
 inline void
-C_CONTR::
+C_CONTR ::
 In
 (
 	C_UART_R & _arg_uart_r,
@@ -13,14 +13,14 @@ In
 {	
 	_arg_uart_r.Check();
 	
-	if (_arg_uart_r == EU_ERROR) //受信失敗
+	if (_arg_uart_r == EU_ERROR) //受信成功
 	{
 		_arg_arr_data[0] = 0x3f;
 		_arg_arr_data[1] = 0x7f;
 		_arg_arr_data[2] = 0x8f;
 		_arg_arr_data[3] = 0xc0;
 		
-		return (void)0;
+		FUNC_END;
 	}
 	
 	usint _flag = 0;
@@ -33,17 +33,16 @@ In
 		
 		if (_arg_uart_r != EU_ERROR)
 		{
-			_arg_arr_data[(_temp & 0xc0) >> 6] = _temp;
+			const usint _num = ((_temp >> 6) & 3);
 			
-			_flag |= (1 << ((_temp & 0xc0) >> 6));
+			_arg_arr_data[_num] = _temp;
+			
+			_flag |= (1 << _num);
 		}
 		
-		if (_flag == 0x0f) //データを全て得るまで続く
-		{
-			break;
-		}
+		if (_flag == 0x0f) break; //全データ受信完了
 	}
-};
+}
 
 inline void
 C_CONTR::
@@ -88,4 +87,4 @@ In
 			break;
 		}
 	}
-};
+}
