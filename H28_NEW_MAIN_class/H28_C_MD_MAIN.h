@@ -138,7 +138,7 @@ public:
 	E_SIG Ret_sig()		{	return _mem_md_main_data_0._md_0_data_bit._md_0_sig_mode;	}
 	T_PWM Ret_pwm()		{	return _mem_md_main_data_1._md_1_data_bit._md_1_pwm_value;	}
 	BOOL Ret_steps()	{	return _mem_md_main_data_0._md_0_data_bit._md_0_nf_steps;	}
-	BOOL Ret_turn()		{	return _mem_md_main_nf_sig_reverse;	}
+	BOOL Ret_reverse()		{	return _mem_md_main_nf_sig_reverse;	}
 	
 	//Lcd•\Ž¦
 	
