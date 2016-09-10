@@ -80,6 +80,18 @@ public:
 	 */
 	void Set_num(T_NUM _arg_air_num, BOOL _arg_air_nf);
 	
+	/**
+	 * \brief 
+	 * ダブル型の電磁弁用の設定
+	 * 　_arg_air_num_oneのPORTがONの場合、_arg_air_num_doのPORTが設定
+	 * できなくなっている。
+	 * 
+	 * \param _arg_air_num_one	: もう片方のPORT
+	 * \param _arg_air_num_do	: 設定するPORT
+	 * \param _arg_air_nf		: ONOFF
+	 */
+	void Set_double(T_NUM _arg_air_num_one, T_NUM _arg_air_num_do, BOOL _arg_air_nf);
+	
 	void Set_0(BOOL _arg_air_nf_0)	{	_mem_air_data._bit._air0 = _arg_air_nf_0;	}
 	void Set_1(BOOL _arg_air_nf_1)	{	_mem_air_data._bit._air1 = _arg_air_nf_1;	}
 	void Set_2(BOOL _arg_air_nf_2)	{	_mem_air_data._bit._air2 = _arg_air_nf_2;	}
@@ -112,7 +124,7 @@ public:
 
 	/**
 	 * \brief 
-	 * ロスト型の電磁弁の実行。サイクロンッ
+	 * ロスト型の電磁弁の実行。
 	 * _arg_air_nfがTRUEになると、一度FALSEにしてからじゃないと動作しません
 	 *
 	 * \param _arg_air_num : 番号
@@ -122,7 +134,7 @@ public:
 	
 	/**
 	 * \brief 
-	 * ロスト型の電磁弁の実行。ジョーカァー
+	 * ロスト型の電磁弁の実行。
 	 * タイマ付き
 	 * _arg_air_nfがTRUEになると、一度FALSEにしてからじゃないと動作しません
 	 * あとカウント完了するまで
@@ -135,17 +147,43 @@ public:
 	
 	/**
 	 * \brief 
-	 * ダブル型の電磁弁の実行。2つで1つの電磁弁だ。
+	 * ダブル型の電磁弁の実行。
+	 * ONになっているのを入れ替える
 	 * PORTが2つ必要なので、その2つを指定しておいてください。
 	 * TIMERの時間はとりあえず100msぐらい確保しといてください
 	 * 最初に自動的に_arg_air_num_1側がONになります
 	 * 
-	 * \param _arg_air_num_0 : 動かすPORTその0
-	 * \param _arg_air_num_1 : 動かすPORTその1
+	 * \param _arg_air_num_ri : 動かすPORTその0
+	 * \param _arg_air_num_le : 動かすPORTその1
 	 * \param _arg_air_nf    : ONOFF
 	 * \param _arg_nf_timer  : TIMERのフラグ。カウント完了したらTRUEにしといてくさい
 	 */
-	void Do(T_NUM _arg_air_num_0, T_NUM _arg_air_num_1, BOOL _arg_air_nf, BOOL &_arg_nf_timer);
+	void Do_double (T_NUM _arg_air_num_ri, T_NUM _arg_air_num_le, BOOL _arg_air_nf, BOOL &_arg_nf_timer);
+	
+	/**
+	 * \brief 
+	 * ダブル型の電磁弁の実行。
+	 * 片方のソレノイドを動かせる
+	 * もう片方のソレノイドがONの場合には動かすことができない
+	 * 
+	 * \param _arg_air_num_one	: もう片方
+	 * \param _arg_air_num_do	: 動かすほう
+	 * \param _arg_air_nf		: ONOFF
+	 */
+	void Do_double (T_NUM _arg_air_num_one, T_NUM _arg_air_num_do, BOOL _arg_air_nf);
+	
+	/**
+	 * \brief 
+	 * ダブル型の電磁弁の実行。
+	 * ソレノイドを個別に動かせる。
+	 * 両方ONは無理なので。あしからず。
+	 * 
+	 * \param _arg_air_num_ri : 動かすPORTその0
+	 * \param _arg_air_nf_ri  : ONOFFその0
+	 * \param _arg_air_num_le : 動かすPORTその1
+	 * \param _arg_air_nf_le  : ONOFFその1
+	 */
+	void Do_double (T_NUM _arg_air_num_ri, BOOL _arg_air_nf_ri, T_NUM _arg_air_num_le, BOOL _arg_air_nf_le);
 	
 	/**
 	 * \brief 電磁弁回路へデータを送信する。

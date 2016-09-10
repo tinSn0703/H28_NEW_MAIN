@@ -49,6 +49,21 @@ Set_num
 }
 
 inline void 
+C_AIR :: 
+Set_double
+(
+	T_NUM _arg_air_num_one, 
+	T_NUM _arg_air_num_do, 
+	BOOL _arg_air_nf
+)
+{
+	if (Ret_num(_arg_air_num_one) & _arg_air_nf)	FUNC_END;
+	//oneがONかつ、doをONにしようとしていた場合
+	
+	Set_num(_arg_air_num_do, _arg_air_nf);
+}
+
+inline void 
 C_AIR ::
 Turn ()
 {
@@ -59,18 +74,7 @@ inline void
 C_AIR ::
 Turn_num (T_NUM _arg_air_num)
 {
-	switch (_arg_air_num)
-	{
-		case 0:	Turn_0();	break;
-		case 1:	Turn_1();	break;
-		case 2:	Turn_2();	break;
-		case 3:	Turn_3();	break;
-		case 4:	Turn_4();	break;
-		case 5:	Turn_5();	break;
-		case 6:	Turn_6();	break;
-		case 7:	Turn_7();	break;
-		default:			break;
-	}
+	Set_num(_arg_air_num, ~Ret_num(_arg_air_num));
 }
 
 inline void 
@@ -81,9 +85,9 @@ Do
 	BOOL _arg_air_nf
 )
 {
-	if (_arg_air_nf == TRUE)
+	if (_arg_air_nf)
 	{
-		if (_mem_array_air_flag[_arg_air_num] == TRUE)
+		if (_mem_array_air_flag[_arg_air_num])
 		{
 			Turn_num(_arg_air_num);
 		}
@@ -122,43 +126,105 @@ Do
 
 inline void 
 C_AIR ::
-Do
+Do_double
 (
-	T_NUM _arg_air_num_0, 
-	T_NUM _arg_air_num_1, 
+	T_NUM _arg_air_num_ri, 
+	T_NUM _arg_air_num_le, 
 	BOOL _arg_air_nf ,
 	BOOL &_arg_nf_timer
 )
 {
+	//_mem_array_air_flag[_arg_air_num_ri] : _arg_air_nfのフラグとして使用
+	//_mem_array_air_flag[_arg_air_num_le] : ONにするPORTの選択用として使用。
+	//										 TRUE  -> _arg_air_num_le
+	//										 FALSE -> _arg_air_num_ri
+	
 	if (_arg_air_nf)
 	{
-		if (_mem_array_air_flag[_arg_air_num_0])
+		if (_mem_array_air_flag[_arg_air_num_ri])
 		{			
-			switch (_mem_array_air_flag[_arg_air_num_1])
+			switch (_mem_array_air_flag[_arg_air_num_le])
 			{
-				case TRUE:	Set_num(_arg_air_num_0,FALSE);	break;
-				case FALSE:	Set_num(_arg_air_num_1,FALSE);	break;
+				case TRUE:	Set_num(_arg_air_num_ri,FALSE);	break;
+				case FALSE:	Set_num(_arg_air_num_le,FALSE);	break;
 			}
 			
 			_arg_nf_timer = FALSE;
 			
-			_mem_array_air_flag[_arg_air_num_0] = FALSE;
+			_mem_array_air_flag[_arg_air_num_ri] = FALSE;
 		}
 	}
 	else
 	{
-		_mem_array_air_flag[_arg_air_num_0] = TRUE;
+		_mem_array_air_flag[_arg_air_num_ri] = TRUE;
 	}
 	
-	if ((Ret_num(_arg_air_num_0) | Ret_num(_arg_air_num_1) | ~_arg_nf_timer) == FALSE)
+	if ((Ret_num(_arg_air_num_ri) | Ret_num(_arg_air_num_le) | ~_arg_nf_timer) == FALSE)
 	{
-		switch (_mem_array_air_flag[_arg_air_num_1])
+		switch (_mem_array_air_flag[_arg_air_num_le])
 		{
-			case TRUE:	Set_num(_arg_air_num_1,TRUE);	break;
-			case FALSE:	Set_num(_arg_air_num_0,TRUE);	break;
+			case TRUE:	Set_num(_arg_air_num_le,TRUE);	break;
+			case FALSE:	Set_num(_arg_air_num_ri,TRUE);	break;
 		}
 		
-		_mem_array_air_flag[_arg_air_num_1] = ~_mem_array_air_flag[_arg_air_num_1];
+		_mem_array_air_flag[_arg_air_num_le] = ~_mem_array_air_flag[_arg_air_num_le];
+	}
+	
+	if (Ret_num(_arg_air_num_ri) & Ret_num(_arg_air_num_le))
+	//両方がONになっていないかのチェック
+	{
+		Set_num(_arg_air_num_ri, FALSE);
+		Set_num(_arg_air_num_le, FALSE);
+	}
+}
+
+void 
+C_AIR :: 
+Do_double
+(
+	T_NUM _arg_air_num_one, 
+	T_NUM _arg_air_num_do, 
+	BOOL _arg_air_nf
+)
+{
+	if ((Ret_num(_arg_air_num_one) & _arg_air_nf) == FALSE)
+	{
+		Do(_arg_air_num_do, _arg_air_nf);
+	}
+	
+	if (Ret_num(_arg_air_num_one) & Ret_num(_arg_air_num_do))
+	//両方がONになっていないかのチェック
+	{
+		Set_num(_arg_air_num_one, FALSE);
+		Set_num(_arg_air_num_do,  FALSE);
+	}
+}
+
+void 
+C_AIR :: 
+Do_double 
+(
+	T_NUM _arg_air_num_ri, 
+	BOOL _arg_air_nf_ri, 
+	T_NUM _arg_air_num_le, 
+	BOOL _arg_air_nf_le
+)
+{
+	if ((Ret_num(_arg_air_num_le) & _arg_air_nf_ri) == FALSE)
+	{
+		Do (_arg_air_num_ri, _arg_air_nf_ri);
+	}
+	
+	if ((Ret_num(_arg_air_num_le) & _arg_air_nf_ri) == FALSE)
+	{
+		Do (_arg_air_num_ri, _arg_air_nf_ri);
+	}
+	
+	if (Ret_num(_arg_air_num_ri) & Ret_num(_arg_air_num_le))
+	//両方がONになっていないかのチェック
+	{
+		Set_num(_arg_air_num_ri, FALSE);
+		Set_num(_arg_air_num_le, FALSE);
 	}
 }
 
