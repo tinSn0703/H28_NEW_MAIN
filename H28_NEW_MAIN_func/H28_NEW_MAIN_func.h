@@ -18,11 +18,12 @@
  * \param _arg_pwm  : 変更するPWM
  * \param _arg_flag : 連打防止。外部で作ってね。
  * \param _arg_pwm_recet : _arg_pwmをPWM_NORにする。
+ * \param _arg_pwm_nor	 : 基本のPWM
  * 
  * \return T_PWM ついで
  */
 template <class DIREC>
-inline T_PWM F_Set_pwm(const DIREC _arg_pwm_hl, T_PWM &_arg_pwm, BOOL &_arg_flag, const BOOL _arg_pwm_recet = FALSE);
+inline T_PWM F_Set_pwm(const DIREC _arg_pwm_hl, T_PWM &_arg_pwm, BOOL &_arg_flag, const BOOL _arg_pwm_recet , const T_PWM _arg_pwm_nor);
 
 /**
  * \brief _arg_pwmを++,--する。 
@@ -32,10 +33,11 @@ inline T_PWM F_Set_pwm(const DIREC _arg_pwm_hl, T_PWM &_arg_pwm, BOOL &_arg_flag
  * \param _arg_pwm  : 変更するPWM
  * \param _arg_flag : 連打防止。外部で作ってね。
  * \param _arg_pwm_recet : TRUEのとき_arg_pwmをPWM_NORにする。
+ * \param _arg_pwm_nor	 : 基本のPWM
  * 
  * \return T_PWM : ついで
  */
-inline T_PWM F_Set_pwm(const BOOL _arg_nf_pwm_high, const BOOL _arg_nf_pwm_low, T_PWM &_arg_pwm, BOOL &_arg_flag, const BOOL _arg_pwm_recet);
+inline T_PWM F_Set_pwm(const BOOL _arg_nf_pwm_high, const BOOL _arg_nf_pwm_low, T_PWM &_arg_pwm, BOOL &_arg_flag, const BOOL _arg_pwm_recet, const T_PWM _arg_pwm_nor);
 
 /**
  * \brief 3輪メカナムニの信地旋回

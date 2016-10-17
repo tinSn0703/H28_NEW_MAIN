@@ -11,38 +11,26 @@ T_PWM F_Set_pwm
 	const DIREC  _arg_pwm_hl, 
 	T_PWM		&_arg_pwm, 
 	const BOOL	&_arg_flag,
-	const BOOL	 _arg_pwm_recet = FALSE
+	const BOOL	 _arg_pwm_recet = FALSE,
+	const T_PWM  _arg_pwm_nor = PWM_NOR
 )
-{
-	if (_arg_pwm_recet)
-	{
-		_arg_pwm = PWM_WHEEL_NOR;
-		
-		return _arg_pwm;
-	}
-	
+{	
 	switch (_arg_pwm_hl)
 	{
 		case __NOREA__:
 		{
-			if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
-			{
-				_arg_pwm++;
+			if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))	_arg_pwm++;
 				
-				_arg_flag = FALSE;
-			}
-			
+			_arg_flag = FALSE;
+						
 			break;
 		}
 		case __SOUWE__:
 		{
-			if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
-			{
-				_arg_pwm--;
+			if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))	_arg_pwm--;
 				
-				_arg_flag = FALSE;
-			}
-			
+			_arg_flag = FALSE;
+					
 			break;
 		}
 		case __ZERO__:
@@ -52,6 +40,8 @@ T_PWM F_Set_pwm
 			break;
 		}
 	}
+	
+	if (_arg_pwm_recet)	_arg_pwm = _arg_pwm_nor;
 	
 	return _arg_pwm;
 }
@@ -63,31 +53,19 @@ F_Set_pwm
 	const BOOL	 _arg_nf_pwm_low, 
 	T_PWM		&_arg_pwm, 
 	BOOL		&_arg_flag, 
-	const BOOL	 _arg_pwm_recet = FALSE
+	const BOOL	 _arg_pwm_recet = FALSE,
+	const T_PWM  _arg_pwm_nor = PWM_NOR
 )
 {
-	if (_arg_pwm_recet)
-	{
-		_arg_pwm = PWM_WHEEL_NOR;
-		
-		return _arg_pwm;
-	}
-	
 	if (_arg_nf_pwm_high)
 	{
-		if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))
-		{
-			_arg_pwm ++;
-		}
+		if ((_arg_flag == TRUE) && (_arg_pwm != 0x1f))	_arg_pwm ++;
 		
 		_arg_flag = FALSE;
 	}
 	else if (_arg_nf_pwm_low)
 	{
-		if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))
-		{
-			_arg_pwm --;
-		}
+		if ((_arg_flag == TRUE) && (_arg_pwm != 0x00))	_arg_pwm --;
 		
 		_arg_flag = FALSE;
 	}
@@ -95,6 +73,8 @@ F_Set_pwm
 	{
 		_arg_flag = TRUE;
 	}
+	
+	if (_arg_pwm_recet)	_arg_pwm = _arg_pwm_nor;
 	
 	return _arg_pwm;
 }
@@ -191,16 +171,18 @@ F_Set_mwheel_4
 			_temp_sig[__MEKANAMU_RI_BA__] = ES_FALSE;
 			_temp_sig[__MEKANAMU_LE_FR__] = ES_TRUE;
 			_temp_sig[__MEKANAMU_LE_BA__] = ES_FALSE;
+			
+			break;
 		}
-		break;
 		case ED_EAST:
 		{
 			_temp_sig[__MEKANAMU_RI_FR__] = ES_FALSE;
 			_temp_sig[__MEKANAMU_RI_BA__] = ES_TRUE;
 			_temp_sig[__MEKANAMU_LE_FR__] = ES_FALSE;
 			_temp_sig[__MEKANAMU_LE_BA__] = ES_TRUE;
+		
+			break;
 		}
-		break;
 		case ED_XZERO:
 		{
 			switch (_arg_direc_y)
@@ -211,27 +193,31 @@ F_Set_mwheel_4
 					_temp_sig[__MEKANAMU_RI_BA__] = ES_TRUE;
 					_temp_sig[__MEKANAMU_LE_FR__] = ES_FALSE;
 					_temp_sig[__MEKANAMU_LE_BA__] = ES_FALSE;
+				
+					break;
 				}
-				break;
 				case ED_SOUTH:
 				{
 					_temp_sig[__MEKANAMU_RI_FR__] = ES_FALSE;
 					_temp_sig[__MEKANAMU_RI_BA__] = ES_FALSE;
 					_temp_sig[__MEKANAMU_LE_FR__] = ES_TRUE;
 					_temp_sig[__MEKANAMU_LE_BA__] = ES_TRUE;
+				
+					break;
 				}
-				break;
 				case ED_YZERO:
 				{
 					_temp_sig[__MEKANAMU_RI_FR__] = ES_STOP;
 					_temp_sig[__MEKANAMU_RI_BA__] = ES_STOP;
 					_temp_sig[__MEKANAMU_LE_FR__] = ES_STOP;
 					_temp_sig[__MEKANAMU_LE_BA__] = ES_STOP;
+				
+					break;
 				}
-				break;
 			}
+			
+			break;
 		}
-		break;
 	}
 	
  	for (usint i = 0; i < 4; i ++)	_arg_motor[i].Set_data(_temp_sig[i], _arg_pwm);
@@ -256,14 +242,16 @@ F_Set_mowheel_3
 		{
 			_temp_sig_l = ES_TRUE;
 			_temp_sig_r = ES_TRUE;
+		
+			break;
 		}
-		break;
 		case ED_SOUTH:
 		{
 			_temp_sig_l = ES_FALSE;
 			_temp_sig_r = ES_FALSE;
+			
+			break;
 		}
-		break;
 		case ED_YZERO:
 		{
 			switch (_arg_direc_x)
@@ -275,8 +263,9 @@ F_Set_mowheel_3
 					_temp_sig_c = ES_FALSE;
 					_temp_sig_l = ES_TRUE;
 					_temp_sig_r = ES_FALSE;
+					
+					break;
 				}
-				break;
 				case ED_WEST:
 				{
 					_arg_motor[0].Set_pwm_revis(_arg_pwm * __MULTIPLE_OMUNI__);
@@ -284,13 +273,14 @@ F_Set_mowheel_3
 					_temp_sig_c = ES_TRUE;
 					_temp_sig_l = ES_FALSE;
 					_temp_sig_r = ES_TRUE;
+					
+					break;
 				}
-				break;
-				case ED_XZERO:
-				break;
+				case ED_XZERO:	break;
 			}
+			
+			break;
 		}
-		break;
 	}
 	
 	_arg_motor[0].Set_data(_temp_sig_c,_arg_pwm);
@@ -313,14 +303,8 @@ F_Set_motor_tf_1
 {
 	E_SIG _temp_sig = ES_STOP;
 	
-	if (_arg_nf_true)
-	{
-		_temp_sig = ES_TRUE;
-	}
-	else if (_arg_nf_fales)
-	{
-		_temp_sig = ES_FALSE;
-	}
+	if (_arg_nf_true)			_temp_sig = ES_TRUE;
+	else if (_arg_nf_fales)		_temp_sig = ES_FALSE;
 	
 	_arg_motor.Set_data(_temp_sig,_arg_pwm);
 }
@@ -335,19 +319,10 @@ F_Set_motor_tf_1
 	const T_PWM  _arg_pwm
 )
 {
-	if (_arg_nf)
+	if (_arg_nf & _arg_flag_nf)
 	{
-		if (_arg_flag_nf)
-		{
-			if (_arg_motor.Ret_sig() == ES_STOP)
-			{
-				_arg_motor.Set_data(_arg_base,_arg_pwm);
-			}
-			else
-			{
-				_arg_motor.Set_data(ES_STOP,0);
-			}
-		}
+		if (_arg_motor.Ret_sig() == ES_STOP)	_arg_motor.Set_data(_arg_base,_arg_pwm);
+		else									_arg_motor.Set_data(ES_STOP,0);
 	}
 	
 	_arg_flag_nf = ~_arg_nf;	
@@ -385,14 +360,8 @@ F_Do_count
 {
 	if (_arg_set_high | _arg_set_low)
 	{
-		if (_arg_set_high & _arg_count.Ret_flag())
-		{
-			_arg_count ++;
-		}
-		else if (_arg_set_low & _arg_count.Ret_flag())
-		{
-			_arg_count --;
-		}
+		if (_arg_set_high & _arg_count.Ret_flag())		_arg_count ++;
+		else if (_arg_set_low & _arg_count.Ret_flag())	_arg_count --;
 		
 		_arg_count.Flag_down();
 	}
