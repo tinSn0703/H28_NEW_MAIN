@@ -85,19 +85,9 @@ Do
 	BOOL _arg_air_nf
 )
 {
-	if (_arg_air_nf)
-	{
-		if (_mem_array_air_flag[_arg_air_num])
-		{
-			Turn_num(_arg_air_num);
-		}
-		
-		_mem_array_air_flag[_arg_air_num] = FALSE;
-	}
-	else
-	{
-		_mem_array_air_flag[_arg_air_num] = TRUE;
-	}
+	if (_arg_air_nf & _mem_array_air_flag[_arg_air_num])	Turn_num(_arg_air_num);
+	
+	_mem_array_air_flag[_arg_air_num] = ~_arg_air_nf;
 }
 
 inline void 
@@ -109,19 +99,9 @@ Do
 	BOOL &_arg_nf_timer
 )
 {
-	if (_arg_air_nf == TRUE)
-	{
-		if ((_mem_array_air_flag[_arg_air_num] & _arg_nf_timer) == TRUE)
-		{
-			Turn_num(_arg_air_num);
-		}
-		
-		_mem_array_air_flag[_arg_air_num] = FALSE;
-	}
-	else
-	{
-		_mem_array_air_flag[_arg_air_num] = TRUE;
-	}
+	if (_arg_air_nf & _mem_array_air_flag[_arg_air_num] & _arg_nf_timer)	Turn_num(_arg_air_num);
+	
+	_mem_array_air_flag[_arg_air_num] = ~_arg_air_nf;
 }
 
 inline void 
@@ -139,25 +119,18 @@ Do_double
 	//										 TRUE  -> _arg_air_num_le
 	//										 FALSE -> _arg_air_num_ri
 	
-	if (_arg_air_nf)
+	if (_arg_air_nf & _mem_array_air_flag[_arg_air_num_ri])
 	{
-		if (_mem_array_air_flag[_arg_air_num_ri])
-		{			
-			switch (_mem_array_air_flag[_arg_air_num_le])
-			{
-				case TRUE:	Set_num(_arg_air_num_ri,FALSE);	break;
-				case FALSE:	Set_num(_arg_air_num_le,FALSE);	break;
-			}
-			
-			_arg_nf_timer = FALSE;
-			
-			_mem_array_air_flag[_arg_air_num_ri] = FALSE;
+		switch (_mem_array_air_flag[_arg_air_num_le])
+		{
+			case TRUE:	Set_num(_arg_air_num_ri,FALSE);	break;
+			case FALSE:	Set_num(_arg_air_num_le,FALSE);	break;
 		}
+			
+		_arg_nf_timer = FALSE;
 	}
-	else
-	{
-		_mem_array_air_flag[_arg_air_num_ri] = TRUE;
-	}
+	
+	_mem_array_air_flag[_arg_air_num_ri] = ~_arg_air_nf;
 	
 	if ((Ret_num(_arg_air_num_ri) | Ret_num(_arg_air_num_le) | ~_arg_nf_timer) == FALSE)
 	{
@@ -170,8 +143,7 @@ Do_double
 		_mem_array_air_flag[_arg_air_num_le] = ~_mem_array_air_flag[_arg_air_num_le];
 	}
 	
-	if (Ret_num(_arg_air_num_ri) & Ret_num(_arg_air_num_le))
-	//両方がONになっていないかのチェック
+	if (Ret_num(_arg_air_num_ri) & Ret_num(_arg_air_num_le))	//両方がONになっていないかのチェック
 	{
 		Set_num(_arg_air_num_ri, FALSE);
 		Set_num(_arg_air_num_le, FALSE);
@@ -187,13 +159,9 @@ Do_double
 	BOOL _arg_air_nf
 )
 {
-	if ((Ret_num(_arg_air_num_one) & _arg_air_nf) == FALSE)
-	{
-		Do(_arg_air_num_do, _arg_air_nf);
-	}
+	if ((Ret_num(_arg_air_num_one) & _arg_air_nf) == FALSE)	Do(_arg_air_num_do, _arg_air_nf);
 	
-	if (Ret_num(_arg_air_num_one) & Ret_num(_arg_air_num_do))
-	//両方がONになっていないかのチェック
+	if (Ret_num(_arg_air_num_one) & Ret_num(_arg_air_num_do))	//両方がONになっていないかのチェック
 	{
 		Set_num(_arg_air_num_one, FALSE);
 		Set_num(_arg_air_num_do,  FALSE);
@@ -210,18 +178,10 @@ Do_double
 	BOOL _arg_air_nf_le
 )
 {
-	if ((Ret_num(_arg_air_num_le) & _arg_air_nf_ri) == FALSE)
-	{
-		Do (_arg_air_num_ri, _arg_air_nf_ri);
-	}
+	if ((Ret_num(_arg_air_num_le) & _arg_air_nf_ri) == FALSE)	Do (_arg_air_num_ri, _arg_air_nf_ri);
+	if ((Ret_num(_arg_air_num_le) & _arg_air_nf_ri) == FALSE)	Do (_arg_air_num_ri, _arg_air_nf_ri);
 	
-	if ((Ret_num(_arg_air_num_le) & _arg_air_nf_ri) == FALSE)
-	{
-		Do (_arg_air_num_ri, _arg_air_nf_ri);
-	}
-	
-	if (Ret_num(_arg_air_num_ri) & Ret_num(_arg_air_num_le))
-	//両方がONになっていないかのチェック
+	if (Ret_num(_arg_air_num_ri) & Ret_num(_arg_air_num_le))	//両方がONになっていないかのチェック
 	{
 		Set_num(_arg_air_num_ri, FALSE);
 		Set_num(_arg_air_num_le, FALSE);
