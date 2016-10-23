@@ -12,12 +12,14 @@ protected:
 	
 	U_CONTR_Wii _mem_contr_wii_data;
 	
+	BOOL _mem_contr_wii_nf_overwrite :1;
+	
 public:
 	
 	/**
 	 * \brief コンストラクタ。データを初期化する
 	 */
-	C_CONTR_Wii();
+	C_CONTR_Wii (BOOL _arg_nf_overweite);
 	
 	/**
 	 * \brief BT_RX回路からの受信。(単線時用)
@@ -37,6 +39,22 @@ public:
 	 * \brief データをリセットする
 	 */
 	void Reset();
+	
+	void Set_Rsti_x(E_DIRECX _arg_set)	{_mem_contr_wii_data._data_bit._stick_right_x = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._stick_right_x);}
+	void Set_Rsti_y(E_DIRECY _arg_set)	{_mem_contr_wii_data._data_bit._stick_right_y = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._stick_right_y);}
+	void Set_Lsti_x(E_DIRECX _arg_set)	{_mem_contr_wii_data._data_bit._stick_left_x  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._stick_left_x);}
+	void Set_Lsti_y(E_DIRECY _arg_set)	{_mem_contr_wii_data._data_bit._stick_left_y  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._stick_left_y);}
+	
+	void Set_A(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_a = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_a);}
+	void Set_B(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_b = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_b);}
+	void Set_X(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_x = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_x);}
+	void Set_Y(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_y = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_y);}
+	
+	void Set_R(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_right = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_right);}
+	void Set_L(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_left  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_left);}
+	
+	void Set_ZR(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_z_right = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_z_right);}
+	void Set_ZL(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_z_left  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_z_left);}
 	
 	/**
 	 * \brief データをreturnする

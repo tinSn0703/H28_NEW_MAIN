@@ -6,9 +6,11 @@
 //public
 inline 
 C_CONTR_Wii ::
-C_CONTR_Wii()
+C_CONTR_Wii(BOOL _arg_nf_overwrite = FALSE)
 {
 	Reset();
+	
+	_mem_contr_wii_nf_overwrite = _arg_nf_overwrite;
 }
 
 void 
@@ -17,7 +19,7 @@ In (C_UART_R &_arg_uart_r)
 {
 	T_DATA_8 _temp_data[__CON_BYTE_UART__] = {0x3f,0x7f,0x8f,0xc0};
 	
-	C_CONTR::In(_arg_uart_r,_temp_data);
+	C_CONTR::In(_arg_uart_r, _temp_data);
 	
 	_mem_contr_wii_data.Set_data(_temp_data);
 }
