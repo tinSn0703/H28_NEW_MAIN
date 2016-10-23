@@ -10,18 +10,18 @@ In
 	C_UART_R & _arg_uart_r,
 	T_DATA_8 _arg_arr_data[__CON_BYTE_UART__] 
 )
-{	
-	_arg_uart_r.Check();
-	
-	if (_arg_uart_r == EU_ERROR) //受信成功
-	{
-		_arg_arr_data[0] = 0x3f;
-		_arg_arr_data[1] = 0x7f;
-		_arg_arr_data[2] = 0x8f;
-		_arg_arr_data[3] = 0xc0;
-		
-		FUNC_END;
-	}
+{
+// 	_arg_uart_r.Check();
+// 	
+// 	if (_arg_uart_r == EU_ERROR) //受信失敗
+// 	{
+// 		_arg_arr_data[0] = 0x3f;
+// 		_arg_arr_data[1] = 0x7f;
+// 		_arg_arr_data[2] = 0x8f;
+// 		_arg_arr_data[3] = 0xc0;
+// 		
+// 		return (void)0;
+// 	}
 	
 	usint _flag = 0;
 	
@@ -40,8 +40,14 @@ In
 			_flag |= (1 << _num);
 		}
 		
-		if (_flag == 0x0f) break; //全データ受信完了
+		if (_flag == 0x0f) return (void)0; //全データ受信完了
 	}
+	
+// 	_arg_arr_data[0] = 0x3f;
+// 	_arg_arr_data[1] = 0x7f;
+// 	_arg_arr_data[2] = 0x8f;
+// 	_arg_arr_data[3] = 0xc0;
+
 }
 
 inline void
