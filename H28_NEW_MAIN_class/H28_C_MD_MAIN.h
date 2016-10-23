@@ -1,40 +1,40 @@
 
 #pragma once
 
+union U_MD_0
+{
+	struct S_MD_0 //‡”Ô•Ï‚¦‚é‚È
+	{
+		E_SIG _md_0_sig_mode	:2;
+		BOOL  _md_0_nf_steps	:1;
+		usint _md_0_without		:2;
+		usint _md_0_num_data	:1;
+		usint _md_0_num_md		:2;
+		usint _md_0_num_mdc		:1;
+		
+	};
+	
+	S_MD_0 _md_0_data_bit;
+	T_DATA _md_0_data :9;
+};
+
+union U_MD_1
+{
+	struct S_MD_1 //‡”Ô•Ï‚¦‚é‚È
+	{
+		T_PWM _md_1_pwm_value	:5;
+		usint _md_1_num_data	:1;
+		usint _md_1_num_md		:2;
+		usint _md_1_num_mdc		:1;
+	};
+	
+	S_MD_1 _md_1_data_bit;
+	T_DATA _md_1_data :9;
+};
+
 class C_MD_MAIN
 {
 private:
-	
-	union U_MD_0
-	{
-		struct S_MD_0 //‡”Ô•Ï‚¦‚é‚È
-		{
-			E_SIG _md_0_sig_mode	:2;
-			BOOL  _md_0_nf_steps	:1;
-			usint _md_0_without		:2;
-			usint _md_0_num_data	:1;
-			usint _md_0_num_md		:2;
-			usint _md_0_num_mdc		:1;
-			
-		};
-		
-		S_MD_0 _md_0_data_bit;
-		T_DATA _md_0_data :9;
-	};
-	
-	union U_MD_1
-	{
-		struct S_MD_1 //‡”Ô•Ï‚¦‚é‚È
-		{
-			T_PWM _md_1_pwm_value	:5;
-			usint _md_1_num_data	:1;
-			usint _md_1_num_md		:2;
-			usint _md_1_num_mdc		:1;
-		};
-		
-		S_MD_1 _md_1_data_bit;
-		T_DATA _md_1_data :9;
-	};
 	
 	U_MD_0 _mem_md_main_data_0;
 	U_MD_1 _mem_md_main_data_1;
