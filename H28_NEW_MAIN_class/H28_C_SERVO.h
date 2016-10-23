@@ -23,7 +23,7 @@ public:
 	
 	C_SERVO()	{}
 		
-	C_SERVO(T_DATA_8 _arg_num);
+	C_SERVO(T_DATA_8 _arg_num, T_DATA_8 _arg_angle);
 	
 	void Set(T_DATA_8 _arg_angle);
 	

@@ -5,10 +5,10 @@
 
 inline
 C_SERVO :: 
-C_SERVO (T_DATA_8 _arg_num)
+C_SERVO (T_DATA_8 _arg_num, T_DATA_8 _arg_angle = 0)
 {
 	_mem_servo_data._bit._num = _arg_num;
-	_mem_servo_data._bit._angle = 0;
+	_mem_servo_data._bit._angle = _arg_angle;
 }
 
 inline void 
