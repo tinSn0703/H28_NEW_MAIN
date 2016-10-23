@@ -39,7 +39,7 @@ typedef unsigned char T_PWM;
 typedef C_COUNT <T_PWM> C_COUNT_PWM;
 
 #ifndef PWM_NOR
-#	define PWM_WHEEL_NOR 0x0a
+#	define PWM_NOR 0x0a
 #endif
 
 /**

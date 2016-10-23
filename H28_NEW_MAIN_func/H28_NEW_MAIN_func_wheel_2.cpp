@@ -34,13 +34,19 @@ F_Set_wheel_turn_2
 	switch (_arg_nf_turn)
 	{
 		case TRUE:
+		{
 			_turn_0 = _arg_turn_1;
 			_turn_1 = _arg_turn_0;
-		break;
+			
+			break;
+		}
 		case FALSE:
+		{
 			_turn_0 = _arg_turn_0;
 			_turn_1 = _arg_turn_1;
-		break;
+			
+			break;
+		}
 	}
 	
 	if (_turn_0)
@@ -82,20 +88,23 @@ F_Set_wheel_turn_2
 		{
 			_arg_motor[0].Set_data(  _sig,_arg_pwm);
 			_arg_motor[1].Set_data(ES_STOP,_arg_pwm);
+		
+			break;
 		}
-		break;
 		case ED_WEST:
 		{
 			_arg_motor[0].Set_data(ES_STOP,_arg_pwm);
 			_arg_motor[1].Set_data(   _sig,_arg_pwm);
+			
+			break;
 		}
-		break;
 		case ED_XZERO:
 		{
 			_arg_motor[0].Set_data(ES_STOP,0);
 			_arg_motor[1].Set_data(ES_STOP,0);
+			
+			break;
 		}
-		break;
 	}
 }
 
@@ -118,13 +127,19 @@ F_Set_wheel_p_turn_2
 	switch (_arg_nf_turn)
 	{
 		case TRUE:
+		{
 			_turn_0 = _arg_turn_1;
 			_turn_1 = _arg_turn_0;
-		break;
+			
+			break;
+		}
 		case FALSE:
+		{
 			_turn_0 = _arg_turn_0;
 			_turn_1 = _arg_turn_1;
-		break;
+			
+			break;
+		}
 	}
 	
 	if (_turn_0)
@@ -160,16 +175,17 @@ F_Set_wheel_p_turn_2
 		{
 			_sig_0 = ES_TRUE;
 			_sig_1 = ES_FALSE;
+			
+			break;
 		}
-		break;
 		case ED_WEST:
 		{
 			_sig_0 = ES_FALSE;
 			_sig_1 = ES_TRUE;
+			
+			break;
 		}
-		break;
-		case ED_XZERO:
-		break;
+		case ED_XZERO:	break;
 	}
 	
 	_arg_motor[0].Set_data(_sig_0,_arg_pwm);

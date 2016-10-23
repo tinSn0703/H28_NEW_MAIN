@@ -121,7 +121,7 @@ Do_double
 	
 	if (_arg_air_nf & _mem_array_air_flag[_arg_air_num_ri])
 	{
-		switch (_mem_array_air_flag[_arg_air_num_le])
+		switch (_mem_array_air_flag[_arg_air_num_le]) //ソレノイドをOFFに
 		{
 			case TRUE:	Set_num(_arg_air_num_ri,FALSE);	break;
 			case FALSE:	Set_num(_arg_air_num_le,FALSE);	break;
@@ -133,8 +133,9 @@ Do_double
 	_mem_array_air_flag[_arg_air_num_ri] = ~_arg_air_nf;
 	
 	if ((Ret_num(_arg_air_num_ri) | Ret_num(_arg_air_num_le) | ~_arg_nf_timer) == FALSE)
+	//_arg_air_nfがTRUEになってFALSEになってから、一定時間経過後に処理されます。
 	{
-		switch (_mem_array_air_flag[_arg_air_num_le])
+		switch (_mem_array_air_flag[_arg_air_num_le]) //ソレノイドをONに
 		{
 			case TRUE:	Set_num(_arg_air_num_le,TRUE);	break;
 			case FALSE:	Set_num(_arg_air_num_ri,TRUE);	break;
