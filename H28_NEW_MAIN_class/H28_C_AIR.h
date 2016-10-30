@@ -70,7 +70,7 @@ public:
 	 * 
 	 * \param _arg_air_data : 設定。使いたい番号のbitを1,0してください
 	 */
-	void Set(T_DATA_8 _arg_air_data);
+	void Write_all(T_DATA_8 _arg_air_data);
 	
 	/**
 	 * \brief 指定された電磁弁のONOFFの設定を行う
@@ -78,7 +78,7 @@ public:
 	 * \param _arg_air_num : 設定する番号
 	 * \param _arg_air_nf  : ONOFF
 	 */
-	void Set_num(T_NUM _arg_air_num, BOOL _arg_air_nf);
+	void Write_num(T_NUM _arg_air_num, BOOL _arg_air_nf);
 	
 	/**
 	 * \brief 
@@ -90,16 +90,16 @@ public:
 	 * \param _arg_air_num_do	: 設定するPORT
 	 * \param _arg_air_nf		: ONOFF
 	 */
-	void Set_double(T_NUM _arg_air_num_one, T_NUM _arg_air_num_do, BOOL _arg_air_nf);
+	void Write_double(T_NUM _arg_air_num_one, T_NUM _arg_air_num_do, BOOL _arg_air_nf);
 	
-	void Set_0(BOOL _arg_air_nf_0)	{	_mem_air_data._bit._air0 = _arg_air_nf_0;	}
-	void Set_1(BOOL _arg_air_nf_1)	{	_mem_air_data._bit._air1 = _arg_air_nf_1;	}
-	void Set_2(BOOL _arg_air_nf_2)	{	_mem_air_data._bit._air2 = _arg_air_nf_2;	}
-	void Set_3(BOOL _arg_air_nf_3)	{	_mem_air_data._bit._air3 = _arg_air_nf_3;	}
-	void Set_4(BOOL _arg_air_nf_4)	{	_mem_air_data._bit._air4 = _arg_air_nf_4;	}
-	void Set_5(BOOL _arg_air_nf_5)	{	_mem_air_data._bit._air5 = _arg_air_nf_5;	}
-	void Set_6(BOOL _arg_air_nf_6)	{	_mem_air_data._bit._air6 = _arg_air_nf_6;	}
-	void Set_7(BOOL _arg_air_nf_7)	{	_mem_air_data._bit._air7 = _arg_air_nf_7;	}
+	void Write_0(BOOL _arg_air_nf_0)	{	_mem_air_data._bit._air0 = _arg_air_nf_0;	}
+	void Write_1(BOOL _arg_air_nf_1)	{	_mem_air_data._bit._air1 = _arg_air_nf_1;	}
+	void Write_2(BOOL _arg_air_nf_2)	{	_mem_air_data._bit._air2 = _arg_air_nf_2;	}
+	void Write_3(BOOL _arg_air_nf_3)	{	_mem_air_data._bit._air3 = _arg_air_nf_3;	}
+	void Write_4(BOOL _arg_air_nf_4)	{	_mem_air_data._bit._air4 = _arg_air_nf_4;	}
+	void Write_5(BOOL _arg_air_nf_5)	{	_mem_air_data._bit._air5 = _arg_air_nf_5;	}
+	void Write_6(BOOL _arg_air_nf_6)	{	_mem_air_data._bit._air6 = _arg_air_nf_6;	}
+	void Write_7(BOOL _arg_air_nf_7)	{	_mem_air_data._bit._air7 = _arg_air_nf_7;	}
 	
 	/**
 	 * \brief 電磁弁の設定を反転させる

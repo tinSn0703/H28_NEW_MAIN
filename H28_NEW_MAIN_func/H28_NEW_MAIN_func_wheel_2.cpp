@@ -4,19 +4,19 @@
 #include "H28_NEW_MAIN_func_wheel_2.h"
 
 inline void
-F_Set_wheel_2
+F_Do_wheel_2
 (
 	C_MD_MAIN _arg_motor[2],
 	E_DIRECY _arg_direc_move,
 	T_PWM _arg_pwm
 )
 {
-	_arg_motor[0].Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
-	_arg_motor[1].Set_data(SET_SIG(_arg_direc_move),_arg_pwm);
+	_arg_motor[0].Write_data(SET_SIG(_arg_direc_move),_arg_pwm);
+	_arg_motor[1].Write_data(SET_SIG(_arg_direc_move),_arg_pwm);
 }
 
 inline void
-F_Set_wheel_turn_2
+F_Do_wheel_turn_2
 (
 	C_MD_MAIN _arg_motor[2],
 	BOOL _arg_turn_0,
@@ -51,19 +51,19 @@ F_Set_wheel_turn_2
 	
 	if (_turn_0)
 	{
-		_arg_motor[0].Set_data(  _sig,_arg_pwm);
-		_arg_motor[1].Set_data(ES_STOP,_arg_pwm);
+		_arg_motor[0].Write_data(  _sig,_arg_pwm);
+		_arg_motor[1].Write_data(ES_STOP,_arg_pwm);
 	}
 	
 	if (_turn_1)
 	{
-		_arg_motor[0].Set_data(ES_STOP,_arg_pwm);
-		_arg_motor[1].Set_data(   _sig,_arg_pwm);
+		_arg_motor[0].Write_data(ES_STOP,_arg_pwm);
+		_arg_motor[1].Write_data(   _sig,_arg_pwm);
 	}
 }
 
 inline void
-F_Set_wheel_turn_2
+F_Do_wheel_turn_2
 (
 	C_MD_MAIN _arg_motor[2],
 	E_DIRECX _arg_direc_x,
@@ -86,22 +86,22 @@ F_Set_wheel_turn_2
 	{
 		case ED_EAST:
 		{
-			_arg_motor[0].Set_data(  _sig,_arg_pwm);
-			_arg_motor[1].Set_data(ES_STOP,_arg_pwm);
+			_arg_motor[0].Write_data(  _sig,_arg_pwm);
+			_arg_motor[1].Write_data(ES_STOP,_arg_pwm);
 		
 			break;
 		}
 		case ED_WEST:
 		{
-			_arg_motor[0].Set_data(ES_STOP,_arg_pwm);
-			_arg_motor[1].Set_data(   _sig,_arg_pwm);
+			_arg_motor[0].Write_data(ES_STOP,_arg_pwm);
+			_arg_motor[1].Write_data(   _sig,_arg_pwm);
 			
 			break;
 		}
 		case ED_XZERO:
 		{
-			_arg_motor[0].Set_data(ES_STOP,0);
-			_arg_motor[1].Set_data(ES_STOP,0);
+			_arg_motor[0].Write_data(ES_STOP,0);
+			_arg_motor[1].Write_data(ES_STOP,0);
 			
 			break;
 		}
@@ -109,7 +109,7 @@ F_Set_wheel_turn_2
 }
 
 inline void
-F_Set_wheel_p_turn_2
+F_Do_wheel_p_turn_2
 (
 	C_MD_MAIN _arg_motor[2],
 	BOOL _arg_turn_0,
@@ -154,12 +154,12 @@ F_Set_wheel_p_turn_2
 		_sig_1 = ES_TRUE;
 	}
 	
-	_arg_motor[0].Set_data(_sig_0,_arg_pwm);
-	_arg_motor[1].Set_data(_sig_1,_arg_pwm);
+	_arg_motor[0].Write_data(_sig_0,_arg_pwm);
+	_arg_motor[1].Write_data(_sig_1,_arg_pwm);
 }
 
 inline void
-F_Set_wheel_p_turn_2
+F_Do_wheel_p_turn_2
 (
 	C_MD_MAIN _arg_motor[2],
 	E_DIRECX _arg_direc_x,
@@ -188,6 +188,6 @@ F_Set_wheel_p_turn_2
 		case ED_XZERO:	break;
 	}
 	
-	_arg_motor[0].Set_data(_sig_0,_arg_pwm);
-	_arg_motor[1].Set_data(_sig_1,_arg_pwm);
+	_arg_motor[0].Write_data(_sig_0,_arg_pwm);
+	_arg_motor[1].Write_data(_sig_1,_arg_pwm);
 }

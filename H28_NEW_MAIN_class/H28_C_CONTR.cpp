@@ -11,18 +11,6 @@ In
 	T_DATA_8 _arg_arr_data[__CON_BYTE_UART__] 
 )
 {
-// 	_arg_uart_r.Check();
-// 	
-// 	if (_arg_uart_r == EU_ERROR) //受信失敗
-// 	{
-// 		_arg_arr_data[0] = 0x3f;
-// 		_arg_arr_data[1] = 0x7f;
-// 		_arg_arr_data[2] = 0x8f;
-// 		_arg_arr_data[3] = 0xc0;
-// 		
-// 		return (void)0;
-// 	}
-	
 	usint _flag = 0;
 	
 	for (usint i = 0; i < 15; i++) //さすがに無限ループ化するのはまずいので
@@ -42,12 +30,6 @@ In
 		
 		if (_flag == 0x0f) return (void)0; //全データ受信完了
 	}
-	
-// 	_arg_arr_data[0] = 0x3f;
-// 	_arg_arr_data[1] = 0x7f;
-// 	_arg_arr_data[2] = 0x8f;
-// 	_arg_arr_data[3] = 0xc0;
-
 }
 
 inline void
@@ -61,17 +43,17 @@ In
 	_arg_uart_r2.Set_bit9_0(FALSE);
 	_arg_uart_r2.Set_bit9_1(FALSE);
 	
-	_arg_uart_r2.Check();
-	
-	if (_arg_uart_r2 == EU_ERROR) //受信失敗
-	{
-		_arg_arr_data[0] = 0x3f;
-		_arg_arr_data[1] = 0x7f;
-		_arg_arr_data[2] = 0x8f;
-		_arg_arr_data[3] = 0xc0;
-		
-		return (void)0;
-	}
+// 	_arg_uart_r2.Check();
+// 	
+// 	if (_arg_uart_r2 == EU_ERROR) //受信失敗
+// 	{
+// 		_arg_arr_data[0] = 0x3f;
+// 		_arg_arr_data[1] = 0x7f;
+// 		_arg_arr_data[2] = 0x8f;
+// 		_arg_arr_data[3] = 0xc0;
+// 		
+// 		return (void)0;
+// 	}
 	
 	usint _flag = 0;
 	

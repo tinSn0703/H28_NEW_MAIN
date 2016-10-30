@@ -1,40 +1,75 @@
 
 #pragma once
 
-union U_MD_0
+union U_MD
 {
+	struct S_MD
+	{
+		T_DATA _data_md		:5;
+		usint  _num_data	:1;
+		usint  _num_md		:2;
+		usint  _num_mdc		:1;
+	};
+	
 	struct S_MD_0 //順番変えるな
 	{
-		E_SIG _md_0_sig_mode	:2;
-		BOOL  _md_0_nf_steps	:1;
-		usint _md_0_without		:2;
-		usint _md_0_num_data	:1;
-		usint _md_0_num_md		:2;
-		usint _md_0_num_mdc		:1;
+		E_SIG _sig		:2;
+		BOOL  _nf_step	:1;
+		usint _without	:2;
+		usint _num_data	:1;
+		usint _num_md	:2;
+		usint _num_mdc	:1;
 		
 	};
 	
-	S_MD_0 _md_0_data_bit;
-	T_DATA _md_0_data :9;
-};
-
-union U_MD_1
-{
 	struct S_MD_1 //順番変えるな
 	{
-		T_PWM _md_1_pwm_value	:5;
-		usint _md_1_num_data	:1;
-		usint _md_1_num_md		:2;
-		usint _md_1_num_mdc		:1;
+		T_PWM _pwm		:5;
+		usint _num_data	:1;
+		usint _num_md	:2;
+		usint _num_mdc	:1;
 	};
 	
-	S_MD_1 _md_1_data_bit;
-	T_DATA _md_1_data :9;
+	S_MD	_data_divi_both	  ;
+	S_MD_0	_data_divi_0	  ;
+	S_MD_1	_data_divi_1	  ;
+	T_DATA	_data_all		:9;
 };
 
 class C_MD_MAIN
 {
 private:
+	
+	union U_MD_0
+	{
+		struct S_MD_0 //順番変えるな
+		{
+			E_SIG _sig		:2;
+			BOOL  _nf_step	:1;
+			usint _without	:2;
+			usint _num_data	:1;
+			usint _num_md	:2;
+			usint _num_mdc	:1;
+			
+		};
+		
+		S_MD_0 _data_divi  ;
+		T_DATA _data_all :9;
+	};
+
+	union U_MD_1
+	{
+		struct S_MD_1 //順番変えるな
+		{
+			T_PWM _pwm		:5;
+			usint _num_data	:1;
+			usint _num_md	:2;
+			usint _num_mdc	:1;
+		};
+		
+		S_MD_1 _data_divi  ;
+		T_DATA _data_all :9;
+	};
 	
 	U_MD_0 _mem_md_main_data_0;
 	U_MD_1 _mem_md_main_data_1;
@@ -91,28 +126,28 @@ public:
 	 * \param _arg_pwm_value : PWM
 	 * \param _arg_nf_steps  : 段々の使用について	
 	 */
-	void Set_data(E_SIG _arg_sig_mode, T_PWM _arg_pwm_value, BOOL _arg_nf_steps);
+	void Write_data(E_SIG _arg_sig_mode, T_PWM _arg_pwm_value, BOOL _arg_nf_steps);
 	
 	/**
-	 * \brief PWMの設定。Set_dataを使うのを推奨
+	 * \brief PWMの設定。Write_dataを使うのを推奨
 	 * 
 	 * \param _arg_pwm_value : PWM
 	 */
-	void Set_pwm(T_PWM _arg_pwm_value);
+	void Write_pwm(T_PWM _arg_pwm_value);
 	
 	/**
 	 * \brief 補正PWMの設定。PWMの設定の前に行うこと
 	 * 
 	 * \param _arg_pwm_revis : 補正PWM。-31~+30の範囲で設定してね
 	 */
-	void Set_pwm_revis(sint _arg_pwm_revis);
+	void Write_pwm_revis(sint _arg_pwm_revis);
 	
 	/**
 	 * \brief 動作の設定
 	 * 
 	 * \param _arg_sig_mode : 動作
 	 */
-	void Set_sig(E_SIG _arg_sig_mode);
+	void Write_sig(E_SIG _arg_sig_mode);
 	
 	/**
 	 * \brief 正逆反転の設定。SIGの設定の前に行うこと
@@ -121,24 +156,24 @@ public:
 	 *		TURE  -> 反転
 	 *		FALSE -> そのまま
 	 */
-	void Set_turn(BOOL _arg_sig_turn);
+	void Write_sig_turn(BOOL _arg_sig_turn);
 	
 	/**
 	 * \brief 段々の設定
 	 * 
 	 * \param _arg_nf_steps : ONOFF
 	 */
-	void Set_steps(BOOL _arg_nf_steps);
+	void Write_steps(BOOL _arg_nf_steps);
 	
-	//データ表示
-	T_DATA Ret_data_0()	{	return _mem_md_main_data_0._md_0_data;	}
-	T_DATA Ret_data_1()	{	return _mem_md_main_data_1._md_1_data;	}
-	usint Ret_num_mdc()	{	return _mem_md_main_data_0._md_0_data_bit._md_0_num_mdc;	}
-	usint Ret_num_md()	{	return _mem_md_main_data_0._md_0_data_bit._md_0_num_md;		}
-	E_SIG Ret_sig()		{	return _mem_md_main_data_0._md_0_data_bit._md_0_sig_mode;	}
-	T_PWM Ret_pwm()		{	return _mem_md_main_data_1._md_1_data_bit._md_1_pwm_value;	}
-	BOOL Ret_steps()	{	return _mem_md_main_data_0._md_0_data_bit._md_0_nf_steps;	}
-	BOOL Ret_reverse()		{	return _mem_md_main_nf_sig_reverse;	}
+	//データのreturn
+	T_DATA Ret_data_0()	{	return _mem_md_main_data_0._data_all;			}
+	T_DATA Ret_data_1()	{	return _mem_md_main_data_1._data_all;			}
+	usint Ret_num_mdc()	{	return _mem_md_main_data_0._data_divi._num_mdc;	}
+	usint Ret_num_md()	{	return _mem_md_main_data_0._data_divi._num_md;	}
+	E_SIG Ret_sig()		{	return _mem_md_main_data_0._data_divi._sig;		}
+	T_PWM Ret_pwm()		{	return _mem_md_main_data_1._data_divi._pwm;		}
+	BOOL Ret_steps()	{	return _mem_md_main_data_0._data_divi._nf_step;	}
+	BOOL Ret_reverse()	{	return _mem_md_main_nf_sig_reverse;				}
 	
 	//Lcd表示
 	

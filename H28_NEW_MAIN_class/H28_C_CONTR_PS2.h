@@ -36,7 +36,7 @@ public:
 	/**
 	 * \brief データをリセットする
 	 */
-	void Reset();
+	void Init();
 	
 	/**
 	 * \brief データをreturnする
@@ -47,24 +47,24 @@ public:
 	 */
 	T_DATA_8 Ret_data(usint _arg_num_data);
 	
-	E_DIRECX Ret_cross_x()	{	return _mem_contr_ps2_data._data_bit._cross_x;			}
-	E_DIRECY Ret_cross_y()	{	return _mem_contr_ps2_data._data_bit._cross_y;			}
+	E_DIRECX Ret_cross_x()	{	return _mem_contr_ps2_data._data_bit._btn_cross_x;		}
+	E_DIRECY Ret_cross_y()	{	return _mem_contr_ps2_data._data_bit._btn_cross_y;		}
 	E_DIRECX Ret_Rsti_x()	{	return _mem_contr_ps2_data._data_bit._stick_right_x;	}
 	E_DIRECX Ret_Lsti_x()	{	return _mem_contr_ps2_data._data_bit._stick_left_x;		}
 	E_DIRECY Ret_Rsti_y()	{	return _mem_contr_ps2_data._data_bit._stick_right_y;	}
 	E_DIRECY Ret_Lsti_y()	{	return _mem_contr_ps2_data._data_bit._stick_left_y;		}
-	BOOL  Ret_select()		{	return _mem_contr_ps2_data._data_bit._nf_select;		}
-	BOOL  Ret_start()		{	return _mem_contr_ps2_data._data_bit._nf_start;			}
-	BOOL  Ret_tri()			{	return _mem_contr_ps2_data._data_bit._nf_tri;			}
-	BOOL  Ret_cir()			{	return _mem_contr_ps2_data._data_bit._nf_cir;			}
-	BOOL  Ret_squ()			{	return _mem_contr_ps2_data._data_bit._nf_squ;			}
-	BOOL  Ret_cro()			{	return _mem_contr_ps2_data._data_bit._nf_cro;			}
-	BOOL  Ret_R1()			{	return _mem_contr_ps2_data._data_bit._nf_right_1;		}
-	BOOL  Ret_R2()			{	return _mem_contr_ps2_data._data_bit._nf_right_2;		}
-	BOOL  Ret_R3()			{	return _mem_contr_ps2_data._data_bit._nf_right_3;		}
-	BOOL  Ret_L1()			{	return _mem_contr_ps2_data._data_bit._nf_left_1;		}
-	BOOL  Ret_L2()			{	return _mem_contr_ps2_data._data_bit._nf_left_2;		}
-	BOOL  Ret_L3()			{	return _mem_contr_ps2_data._data_bit._nf_left_3;		}
+	BOOL  Ret_select()		{	return _mem_contr_ps2_data._data_bit._btn_select;		}
+	BOOL  Ret_start()		{	return _mem_contr_ps2_data._data_bit._btn_start;		}
+	BOOL  Ret_tri()			{	return _mem_contr_ps2_data._data_bit._btn_tri;			}
+	BOOL  Ret_cir()			{	return _mem_contr_ps2_data._data_bit._btn_cir;			}
+	BOOL  Ret_squ()			{	return _mem_contr_ps2_data._data_bit._btn_squ;			}
+	BOOL  Ret_cro()			{	return _mem_contr_ps2_data._data_bit._btn_cro;			}
+	BOOL  Ret_R1()			{	return _mem_contr_ps2_data._data_bit._btn_right_1;		}
+	BOOL  Ret_R2()			{	return _mem_contr_ps2_data._data_bit._btn_right_2;		}
+	BOOL  Ret_R3()			{	return _mem_contr_ps2_data._data_bit._btn_right_3;		}
+	BOOL  Ret_L1()			{	return _mem_contr_ps2_data._data_bit._btn_left_1;		}
+	BOOL  Ret_L2()			{	return _mem_contr_ps2_data._data_bit._btn_left_2;		}
+	BOOL  Ret_L3()			{	return _mem_contr_ps2_data._data_bit._btn_left_3;		}
 	
 	/**
 	 * \brief 

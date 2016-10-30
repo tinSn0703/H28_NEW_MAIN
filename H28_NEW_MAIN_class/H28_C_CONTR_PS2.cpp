@@ -9,7 +9,7 @@ inline
 C_CONTR_ps2 :: 
 C_CONTR_ps2 ()
 {
-	Reset();
+	Init();
 }
 
 void 
@@ -20,7 +20,7 @@ In (C_UART_R &_arg_uart_r)
 	
 	C_CONTR::In(_arg_uart_r,_temp_data);
 	
-	_mem_contr_ps2_data.Set_data(_temp_data);
+	_mem_contr_ps2_data.Write(_temp_data);
 }
 
 void 
@@ -31,12 +31,12 @@ In (C_UART_R2 &_arg_uart_r2)
 	
 	C_CONTR::In(_arg_uart_r2,_temp_data);
 	
-	_mem_contr_ps2_data.Set_data(_temp_data);
+	_mem_contr_ps2_data.Write(_temp_data);
 }
 
 inline void 
 C_CONTR_ps2 :: 
-Reset ()
+Init ()
 {
 	_mem_contr_ps2_data._arr_data_byte[0] = 0xff;
 	_mem_contr_ps2_data._arr_data_byte[1] = 0x0f;
@@ -54,9 +54,9 @@ inline void
 C_CONTR_ps2 ::
 Lcd_data (T_ADRS _arg_addr)
 {
-	Lcd_put_num(_arg_addr + 0,Ret_data(0),2,ED_16);
-	Lcd_put_num(_arg_addr + 2,Ret_data(1),2,ED_16);
-	Lcd_put_num(_arg_addr + 4,Ret_data(2),2,ED_16);
+	Lcd_put_num(_arg_addr + 0, Ret_data(0), 2, ED_16);
+	Lcd_put_num(_arg_addr + 2, Ret_data(1), 2, ED_16);
+	Lcd_put_num(_arg_addr + 4, Ret_data(2), 2, ED_16);
 }
 
 inline void

@@ -28,14 +28,14 @@ Ret_num (T_NUM _arg_air_num)
 
 inline void 
 C_AIR ::
-Set (T_DATA_8 _arg_air_data)
+Write_all (T_DATA_8 _arg_air_data)
 {
 	_mem_air_data._byte = _arg_air_data;
 }
 
 inline void 
 C_AIR ::
-Set_num
+Write_num
 (
 	T_NUM _arg_air_num,
 	BOOL _arg_air_nf
@@ -50,17 +50,17 @@ Set_num
 
 inline void 
 C_AIR :: 
-Set_double
+Write_double
 (
 	T_NUM _arg_air_num_one, 
 	T_NUM _arg_air_num_do, 
 	BOOL _arg_air_nf
 )
 {
-	if (Ret_num(_arg_air_num_one) & _arg_air_nf)	FUNC_END;
+	if (Ret_num(_arg_air_num_one) & _arg_air_nf)	return (void)0;
 	//oneがONかつ、doをONにしようとしていた場合
 	
-	Set_num(_arg_air_num_do, _arg_air_nf);
+	Write_num(_arg_air_num_do, _arg_air_nf);
 }
 
 inline void 
@@ -74,7 +74,7 @@ inline void
 C_AIR ::
 Turn_num (T_NUM _arg_air_num)
 {
-	Set_num(_arg_air_num, ~Ret_num(_arg_air_num));
+	Write_num(_arg_air_num, ~Ret_num(_arg_air_num));
 }
 
 inline void 
@@ -123,8 +123,8 @@ Do_double
 	{
 		switch (_mem_array_air_flag[_arg_air_num_le]) //ソレノイドをOFFに
 		{
-			case TRUE:	Set_num(_arg_air_num_ri,FALSE);	break;
-			case FALSE:	Set_num(_arg_air_num_le,FALSE);	break;
+			case TRUE:	Write_num(_arg_air_num_ri,FALSE);	break;
+			case FALSE:	Write_num(_arg_air_num_le,FALSE);	break;
 		}
 			
 		_arg_nf_timer = FALSE;
@@ -137,8 +137,8 @@ Do_double
 	{
 		switch (_mem_array_air_flag[_arg_air_num_le]) //ソレノイドをONに
 		{
-			case TRUE:	Set_num(_arg_air_num_le,TRUE);	break;
-			case FALSE:	Set_num(_arg_air_num_ri,TRUE);	break;
+			case TRUE:	Write_num(_arg_air_num_le,TRUE);	break;
+			case FALSE:	Write_num(_arg_air_num_ri,TRUE);	break;
 		}
 		
 		_mem_array_air_flag[_arg_air_num_le] = ~_mem_array_air_flag[_arg_air_num_le];
@@ -146,8 +146,8 @@ Do_double
 	
 	if (Ret_num(_arg_air_num_ri) & Ret_num(_arg_air_num_le))	//両方がONになっていないかのチェック
 	{
-		Set_num(_arg_air_num_ri, FALSE);
-		Set_num(_arg_air_num_le, FALSE);
+		Write_num(_arg_air_num_ri, FALSE);
+		Write_num(_arg_air_num_le, FALSE);
 	}
 }
 
@@ -164,8 +164,8 @@ Do_double
 	
 	if (Ret_num(_arg_air_num_one) & Ret_num(_arg_air_num_do))	//両方がONになっていないかのチェック
 	{
-		Set_num(_arg_air_num_one, FALSE);
-		Set_num(_arg_air_num_do,  FALSE);
+		Write_num(_arg_air_num_one, FALSE);
+		Write_num(_arg_air_num_do,  FALSE);
 	}
 }
 
@@ -184,8 +184,8 @@ Do_double
 	
 	if (Ret_num(_arg_air_num_ri) & Ret_num(_arg_air_num_le))	//両方がONになっていないかのチェック
 	{
-		Set_num(_arg_air_num_ri, FALSE);
-		Set_num(_arg_air_num_le, FALSE);
+		Write_num(_arg_air_num_ri, FALSE);
+		Write_num(_arg_air_num_le, FALSE);
 	}
 }
 

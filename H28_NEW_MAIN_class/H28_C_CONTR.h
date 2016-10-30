@@ -30,31 +30,31 @@ protected:
 			E_DIRECY _stick_left_y :2; //左スティック y方向 6,7bit
 			
 			//_mem_data_controler[1]
-			E_DIRECX _cross_x :2; //十字キー x軸 0,1bit
-			E_DIRECY _cross_y :2; //十字キー y軸 2,3bit
-			BOOL _nf_tri :1; //三角 4bit
-			BOOL _nf_cir :1; //円   5bit
-			BOOL _nf_squ :1; //四角 6bit
-			BOOL _nf_cro :1; //罰印 7bit
+			E_DIRECX _btn_cross_x :2; //十字キー x軸 0,1bit
+			E_DIRECY _btn_cross_y :2; //十字キー y軸 2,3bit
+			BOOL _btn_tri :1; //三角 4bit
+			BOOL _btn_cir :1; //円   5bit
+			BOOL _btn_squ :1; //四角 6bit
+			BOOL _btn_cro :1; //罰印 7bit
 			
 			//_mem_data_controler[2]
-			BOOL _nf_right_1 :1; //0bit
-			BOOL _nf_left_1  :1; //1bit
-			BOOL _nf_right_2 :1; //2bit
-			BOOL _nf_left_2  :1; //3bit
-			BOOL _nf_right_3 :1; //4bit
-			BOOL _nf_left_3  :1; //5bit
-			BOOL _nf_start   :1; //6bit
-			BOOL _nf_select  :1; //7bit
+			BOOL _btn_right_1 :1; //0bit
+			BOOL _btn_left_1  :1; //1bit
+			BOOL _btn_right_2 :1; //2bit
+			BOOL _btn_left_2  :1; //3bit
+			BOOL _btn_right_3 :1; //4bit
+			BOOL _btn_left_3  :1; //5bit
+			BOOL _btn_start   :1; //6bit
+			BOOL _btn_select  :1; //7bit
 		};
 		
 		T_DATA_8 _arr_data_byte[__CON_BYTE__];
 		S_CONTR_ps2 _data_bit;
 		
-		void Set_data (T_DATA_8 _arg_arr_data[__CON_BYTE_UART__])
+		void Write (T_DATA_8 _arg_arr_data[__CON_BYTE_UART__])
 		{
-			_data_bit._cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_arr_data[1],1),CHECK_BIT_TF(_arg_arr_data[0],5));
-			_data_bit._cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_arr_data[0],4),CHECK_BIT_TF(_arg_arr_data[1],0));
+			_data_bit._btn_cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_arr_data[1],1),CHECK_BIT_TF(_arg_arr_data[0],5));
+			_data_bit._btn_cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_arr_data[0],4),CHECK_BIT_TF(_arg_arr_data[1],0));
 			
 			_data_bit._stick_left_x = SET_DIREC_X(_arg_arr_data[3],2);
 			_data_bit._stick_left_y = SET_TURN_DIREC_Y(_arg_arr_data[3],4);
@@ -62,21 +62,21 @@ protected:
 			_data_bit._stick_right_x = SET_DIREC_X(_arg_arr_data[2],4);
 			_data_bit._stick_right_y = SET_TURN_DIREC_Y(_arg_arr_data[3],0);
 			
-			_data_bit._nf_start   = CHECK_TURN_BIT_TF(_arg_arr_data[0],3);
-			_data_bit._nf_select  = CHECK_TURN_BIT_TF(_arg_arr_data[0],0);
+			_data_bit._btn_start   = CHECK_TURN_BIT_TF(_arg_arr_data[0],3);
+			_data_bit._btn_select  = CHECK_TURN_BIT_TF(_arg_arr_data[0],0);
 			
-			_data_bit._nf_right_1 = CHECK_TURN_BIT_TF(_arg_arr_data[1],5);
-			_data_bit._nf_right_2 = CHECK_TURN_BIT_TF(_arg_arr_data[1],3);
-			_data_bit._nf_right_3 = CHECK_TURN_BIT_TF(_arg_arr_data[0],2);
+			_data_bit._btn_right_1 = CHECK_TURN_BIT_TF(_arg_arr_data[1],5);
+			_data_bit._btn_right_2 = CHECK_TURN_BIT_TF(_arg_arr_data[1],3);
+			_data_bit._btn_right_3 = CHECK_TURN_BIT_TF(_arg_arr_data[0],2);
 			
-			_data_bit._nf_left_1  = CHECK_TURN_BIT_TF(_arg_arr_data[1],4);
-			_data_bit._nf_left_2  = CHECK_TURN_BIT_TF(_arg_arr_data[1],2);
-			_data_bit._nf_left_3  = CHECK_TURN_BIT_TF(_arg_arr_data[0],1);
+			_data_bit._btn_left_1  = CHECK_TURN_BIT_TF(_arg_arr_data[1],4);
+			_data_bit._btn_left_2  = CHECK_TURN_BIT_TF(_arg_arr_data[1],2);
+			_data_bit._btn_left_3  = CHECK_TURN_BIT_TF(_arg_arr_data[0],1);
 			
-			_data_bit._nf_squ = CHECK_TURN_BIT_TF(_arg_arr_data[2],3);
-			_data_bit._nf_cro = CHECK_TURN_BIT_TF(_arg_arr_data[2],2);
-			_data_bit._nf_cir = CHECK_TURN_BIT_TF(_arg_arr_data[2],1);
-			_data_bit._nf_tri = CHECK_TURN_BIT_TF(_arg_arr_data[2],0);
+			_data_bit._btn_squ = CHECK_TURN_BIT_TF(_arg_arr_data[2],3);
+			_data_bit._btn_cro = CHECK_TURN_BIT_TF(_arg_arr_data[2],2);
+			_data_bit._btn_cir = CHECK_TURN_BIT_TF(_arg_arr_data[2],1);
+			_data_bit._btn_tri = CHECK_TURN_BIT_TF(_arg_arr_data[2],0);
 		}
 	};
 	
@@ -121,7 +121,7 @@ protected:
 		T_DATA_8 _arr_data_byte[__CON_BYTE__];
 		S_CONTR_Wii _data_bit;
 		
-		void Set_data (T_DATA_8 _arg_arr_data[__CON_BYTE_UART__])
+		void Write (T_DATA_8 _arg_arr_data[__CON_BYTE_UART__])
 		{
 			_data_bit._cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_arr_data[1], 1), CHECK_BIT_TF(_arg_arr_data[0], 5));
 			_data_bit._cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_arr_data[0], 4), CHECK_BIT_TF(_arg_arr_data[1], 0));

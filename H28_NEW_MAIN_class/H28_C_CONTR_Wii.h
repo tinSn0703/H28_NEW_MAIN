@@ -38,7 +38,7 @@ public:
 	/**
 	 * \brief データをリセットする
 	 */
-	void Reset();
+	void Init();
 	
 	void Set_Rsti_x(E_DIRECX _arg_set)	{_mem_contr_wii_data._data_bit._stick_right_x = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._stick_right_x);}
 	void Set_Rsti_y(E_DIRECY _arg_set)	{_mem_contr_wii_data._data_bit._stick_right_y = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._stick_right_y);}

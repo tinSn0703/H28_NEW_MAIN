@@ -1,4 +1,8 @@
 
+/*
+	E_SIG‚ðˆµ‚¤‚½‚ß‚ÌŠÖ”ŒQB
+*/
+
 #pragma once
 
 /**
