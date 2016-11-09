@@ -45,16 +45,16 @@ public:
 	void Set_Lsti_x(E_DIRECX _arg_set)	{_mem_contr_wii_data._data_bit._stick_left_x  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._stick_left_x);}
 	void Set_Lsti_y(E_DIRECY _arg_set)	{_mem_contr_wii_data._data_bit._stick_left_y  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._stick_left_y);}
 	
-	void Set_A(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_a = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_a);}
-	void Set_B(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_b = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_b);}
-	void Set_X(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_x = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_x);}
-	void Set_Y(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_y = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_y);}
+	void Set_A(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._btn_a = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._btn_a);}
+	void Set_B(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._btn_b = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._btn_b);}
+	void Set_X(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._btn_x = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._btn_x);}
+	void Set_Y(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._btn_y = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._btn_y);}
 	
-	void Set_R(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_right = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_right);}
-	void Set_L(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_left  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_left);}
+	void Set_R(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._btn_right = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._btn_right);}
+	void Set_L(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._btn_left  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._btn_left);}
 	
-	void Set_ZR(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_z_right = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_z_right);}
-	void Set_ZL(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._nf_z_left  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._nf_z_left);}
+	void Set_ZR(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._btn_right_z = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._btn_right_z);}
+	void Set_ZL(BOOL _arg_set)	{_mem_contr_wii_data._data_bit._btn_left_z  = (_mem_contr_wii_nf_overwrite == TRUE ? _arg_set : _mem_contr_wii_data._data_bit._btn_left_z);}
 	
 	/**
 	 * \brief ÉfÅ[É^ÇreturnÇ∑ÇÈ
@@ -65,23 +65,23 @@ public:
 	 */
 	T_DATA_8 Ret_data(usint _arg_num);
 	
-	E_DIRECX Ret_cross_x()	{	return _mem_contr_wii_data._data_bit._cross_x;			}
-	E_DIRECY Ret_cross_y()	{	return _mem_contr_wii_data._data_bit._cross_y;			}
+	E_DIRECX Ret_cross_x()	{	return _mem_contr_wii_data._data_bit._btn_cross_x;		}
+	E_DIRECY Ret_cross_y()	{	return _mem_contr_wii_data._data_bit._btn_cross_y;		}
 	E_DIRECX Ret_Rsti_x()	{	return _mem_contr_wii_data._data_bit._stick_right_x;	}
 	E_DIRECY Ret_Rsti_y()	{	return _mem_contr_wii_data._data_bit._stick_right_y;	}
 	E_DIRECX Ret_Lsti_x()	{	return _mem_contr_wii_data._data_bit._stick_left_x;		}
 	E_DIRECY Ret_Lsti_y()	{	return _mem_contr_wii_data._data_bit._stick_left_y;		}
-	BOOL  Ret_select()		{	return _mem_contr_wii_data._data_bit._nf_select;		}
-	BOOL  Ret_start()		{	return _mem_contr_wii_data._data_bit._nf_start;			}
-	BOOL  Ret_home()		{	return _mem_contr_wii_data._data_bit._nf_home;			}
-	BOOL  Ret_X()			{	return _mem_contr_wii_data._data_bit._nf_x;				}
-	BOOL  Ret_A()			{	return _mem_contr_wii_data._data_bit._nf_a;				}
-	BOOL  Ret_Y()			{	return _mem_contr_wii_data._data_bit._nf_y;				}
-	BOOL  Ret_B()			{	return _mem_contr_wii_data._data_bit._nf_b;				}
-	BOOL  Ret_R()			{	return _mem_contr_wii_data._data_bit._nf_right;			}
-	BOOL  Ret_L()			{	return _mem_contr_wii_data._data_bit._nf_left;			}
-	BOOL  Ret_ZR()			{	return _mem_contr_wii_data._data_bit._nf_z_right;		}
-	BOOL  Ret_ZL()			{	return _mem_contr_wii_data._data_bit._nf_z_left;		}
+	BOOL  Ret_select()		{	return _mem_contr_wii_data._data_bit._btn_select;		}
+	BOOL  Ret_start()		{	return _mem_contr_wii_data._data_bit._btn_start;		}
+	BOOL  Ret_home()		{	return _mem_contr_wii_data._data_bit._btn_home;			}
+	BOOL  Ret_X()			{	return _mem_contr_wii_data._data_bit._btn_x;			}
+	BOOL  Ret_A()			{	return _mem_contr_wii_data._data_bit._btn_a;			}
+	BOOL  Ret_Y()			{	return _mem_contr_wii_data._data_bit._btn_y;			}
+	BOOL  Ret_B()			{	return _mem_contr_wii_data._data_bit._btn_b;			}
+	BOOL  Ret_R()			{	return _mem_contr_wii_data._data_bit._btn_right;		}
+	BOOL  Ret_L()			{	return _mem_contr_wii_data._data_bit._btn_left;			}
+	BOOL  Ret_ZR()			{	return _mem_contr_wii_data._data_bit._btn_right_z;		}
+	BOOL  Ret_ZL()			{	return _mem_contr_wii_data._data_bit._btn_left_z;		}
 	
 	/**
 	 * \brief 
