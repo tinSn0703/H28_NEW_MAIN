@@ -283,9 +283,9 @@ F_Do_mowheel_3
 		}
 	}
 	
-	_arg_motor[0].Write_data(_temp_sig_c,_arg_pwm);
-	_arg_motor[1].Write_data(_temp_sig_l,_arg_pwm);
-	_arg_motor[2].Write_data(_temp_sig_r,_arg_pwm);
+	_arg_motor[0].Write_data(_temp_sig_c, _arg_pwm);
+	_arg_motor[1].Write_data(_temp_sig_l, _arg_pwm);
+	_arg_motor[2].Write_data(_temp_sig_r, _arg_pwm);
 	
 //	_arg_motor[0].Set_data(_temp_sig_c,_arg_pwm,FALSE);
 //	_arg_motor[1].Set_data(_temp_sig_l,_arg_pwm,FALSE);
@@ -336,7 +336,7 @@ F_Do_motor_tf_1
 	const T_PWM		 _arg_pwm
 )
 {
-	_arg_motor.Write_data(SET_SIG(_arg_motor_tf),_arg_pwm);
+	_arg_motor.Write_data(F_Func_sig(_arg_motor_tf), _arg_pwm);
 }
 
 inline void 
@@ -347,7 +347,7 @@ F_Do_motor_tf_1
 	const T_PWM		 _arg_pwm
 )
 {
-	_arg_motor.Write_data(SET_SIG(_arg_motor_tf),_arg_pwm);
+	_arg_motor.Write_data(F_Func_sig(_arg_motor_tf), _arg_pwm);
 }
 
 inline void 

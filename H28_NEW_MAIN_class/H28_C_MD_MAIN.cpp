@@ -40,7 +40,7 @@ C_MD_MAIN
 
 inline void 
 C_MD_MAIN::
-Chan_md (usint  _arg_num_md)
+Reset_num_md (usint  _arg_num_md)
 {
 	_mem_md_main_data_0._data_divi._num_md = _arg_num_md;
 	_mem_md_main_data_1._data_divi._num_md = _arg_num_md;
@@ -48,31 +48,25 @@ Chan_md (usint  _arg_num_md)
 
 inline void 
 C_MD_MAIN :: 
-Chan_reverse ()
+Turn_sig_reverse ()
 {
 	_mem_md_main_nf_sig_reverse = TURN_TF(_mem_md_main_nf_sig_reverse);
 }
 
 inline void 
 C_MD_MAIN::
-Write_sig_turn (BOOL _arg_nf_sig_turn)
+Reset_sig_reverse (BOOL _arg_nf_sig_reverse)
 {
-	_mem_md_main_nf_sig_reverse = _arg_nf_sig_turn;
+	_mem_md_main_nf_sig_reverse = _arg_nf_sig_reverse;
 }
 
 inline void 
 C_MD_MAIN::
 Write_pwm (T_PWM _arg_pwm_value)
 {
-	if (_arg_pwm_value != 0)
-	{
-		_arg_pwm_value += _mem_md_main_pwm_revis;
-	}
+	if (_arg_pwm_value != 0)	_arg_pwm_value += _mem_md_main_pwm_revis;
 	
-	if (_arg_pwm_value > 31)
-	{
-		_arg_pwm_value = 31;
-	}
+	if (_arg_pwm_value > 31)	_arg_pwm_value = 31;
 	
 	_mem_md_main_data_1._data_divi._pwm = _arg_pwm_value;
 }
@@ -81,17 +75,9 @@ inline void
 C_MD_MAIN::
 Write_sig (E_SIG _arg_sig_mode)
 {
-	if (CHECK_MOVE(_arg_sig_mode) == FALSE)
-	{
-		_mem_md_main_data_1._data_divi._pwm = 0;
-	}
+	if (F_Check_pwm(_arg_sig_mode) == FALSE)	_mem_md_main_data_1._data_divi._pwm = 0;
 	
-	if (_mem_md_main_nf_sig_reverse)
-	{
-		_arg_sig_mode = TURN_SIG_ROTATE(_arg_sig_mode);
-	}
-	
-	_mem_md_main_data_0._data_divi._sig = _arg_sig_mode;
+	_mem_md_main_data_0._data_divi._sig = (_mem_md_main_nf_sig_reverse ? F_Turn_sig_rotate(_arg_sig_mode) : _arg_sig_mode);
 }
 
 inline void 
