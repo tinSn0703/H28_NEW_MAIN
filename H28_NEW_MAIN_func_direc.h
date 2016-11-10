@@ -19,7 +19,7 @@
  *		1	|    0    | ED_WEST
  *		1	|    1    | ED_XZERO
  */
-inline E_DIRECX SET_DIREC_X (T_DATA _arg_direc_x_data, T_NUM _arg_direc_x_bit);
+inline E_DIRECX F_Func_direc_x (T_DATA _arg_direc_x_data, T_NUM _arg_direc_x_bit);
 
 /**
  * \brief 2つのBOOLから設定されたE_DIRECXを返す
@@ -34,7 +34,7 @@ inline E_DIRECX SET_DIREC_X (T_DATA _arg_direc_x_data, T_NUM _arg_direc_x_bit);
  *	TRUE  | FALES | ED_EAST
  *	TRUE  | TRUE  | ED_XZERO
  */
-inline E_DIRECX SET_DIREC_X (BOOL _arg_direc_x_east, BOOL _arg_direc_x_west);
+inline E_DIRECX F_Func_direc_x (BOOL _arg_direc_x_east, BOOL _arg_direc_x_west);
 
 /**
  * \brief 
@@ -51,7 +51,7 @@ inline E_DIRECX SET_DIREC_X (BOOL _arg_direc_x_east, BOOL _arg_direc_x_west);
  *		1	|    0    | ED_EAST
  *		1	|    1    | ED_XZERO
  */
-inline E_DIRECX SET_TURN_DIREC_X (T_DATA _arg_direc_x_data, T_NUM _arg_direc_x_bit);
+inline E_DIRECX F_Func_turn_direc_x (T_DATA _arg_direc_x_data, T_NUM _arg_direc_x_bit);
 
 /**
  * \brief _arg_direc_xを反転させた値を返す
@@ -63,7 +63,7 @@ inline E_DIRECX SET_TURN_DIREC_X (T_DATA _arg_direc_x_data, T_NUM _arg_direc_x_b
  *	ED_WEST  -> ED_EAST
  *	ED_XZERO -> ED_XZERO
  */
-inline E_DIRECX TURN_DIREC_X (E_DIRECX _arg_direc_x );
+inline E_DIRECX F_Turn_direc_x (E_DIRECX _arg_direc_x );
 
 /**
  * \brief 
@@ -73,7 +73,7 @@ inline E_DIRECX TURN_DIREC_X (E_DIRECX _arg_direc_x );
  * 
  * \return BOOL 上記の通り。それ以外はFALSE
  */
-inline BOOL CHEN_DIREC_TF_E (E_DIRECX _arg_direc_x);
+inline BOOL F_Check_direc_east (E_DIRECX _arg_direc_x);
 
 /**
  * \brief 
@@ -83,7 +83,7 @@ inline BOOL CHEN_DIREC_TF_E (E_DIRECX _arg_direc_x);
  * 
  * \return BOOL 上記の通り。それ以外はFALSE
  */
-inline BOOL CHEN_DIREC_TF_W (E_DIRECX _arg_direc_x);
+inline BOOL F_Check_direc_west (E_DIRECX _arg_direc_x);
 
 /**
  * \brief 
@@ -93,7 +93,7 @@ inline BOOL CHEN_DIREC_TF_W (E_DIRECX _arg_direc_x);
  * 
  * \return BOOL 上記の通り。それ以外はFALSE
  */
-inline BOOL CHEN_DIREC_TF_Z (E_DIRECX _arg_direc_x);
+inline BOOL F_Check_direc_zero (E_DIRECX _arg_direc_x);
 
 /************************************************************************/
 
@@ -110,7 +110,7 @@ inline BOOL CHEN_DIREC_TF_Z (E_DIRECX _arg_direc_x);
  *	 	1	|    0    | ED_SOUTH
  *	 	1	|    1    | ED_YZERO
  */
-inline E_DIRECY SET_DIREC_Y (T_DATA _arg_direc_y_data, T_NUM _arg_direc_y_bit);
+inline E_DIRECY F_Func_direc_y (T_DATA _arg_direc_y_data, T_NUM _arg_direc_y_bit);
 
 /**
  * \brief 2つのBOOLから設定されたE_DIRECYを返す
@@ -125,7 +125,7 @@ inline E_DIRECY SET_DIREC_Y (T_DATA _arg_direc_y_data, T_NUM _arg_direc_y_bit);
  *	 TRUE  | FALES | ED_NORTH
  *	 TRUE  | TRUE  | ED_YZERO
  */
-inline E_DIRECY SET_DIREC_Y (BOOL _arg_direc_y_north, BOOL _arg_direc_y_south);
+inline E_DIRECY F_Func_direc_y (BOOL _arg_direc_y_north, BOOL _arg_direc_y_south);
 
 /**
  * \brief 
@@ -142,7 +142,7 @@ inline E_DIRECY SET_DIREC_Y (BOOL _arg_direc_y_north, BOOL _arg_direc_y_south);
  *		1	|    0    | ED_NORTH
  *		1	|    1    | ED_YZERO
  */
-inline E_DIRECY SET_TURN_DIREC_Y (T_DATA _arg_direc_y_data, T_NUM _arg_direc_y_bit);
+inline E_DIRECY F_Func_turn_direc_y (T_DATA _arg_direc_y_data, T_NUM _arg_direc_y_bit);
 
 /**
  * \brief _arg_direc_yを反転させた値を返す
@@ -154,7 +154,7 @@ inline E_DIRECY SET_TURN_DIREC_Y (T_DATA _arg_direc_y_data, T_NUM _arg_direc_y_b
  *	ED_SOUTH -> ED_NORTH
  *	ED_YZERO -> ED_YZERO
  */
-inline E_DIRECY TURN_DIREC_Y (E_DIRECY _arg_direc_y );
+inline E_DIRECY F_Turn_direc_y (E_DIRECY _arg_direc_y );
 
 /**
  * \brief 
@@ -164,7 +164,7 @@ inline E_DIRECY TURN_DIREC_Y (E_DIRECY _arg_direc_y );
  * 
  * \return BOOL 上記の通り。それ以外はFALSE
  */
-inline BOOL CHEN_DIREC_TF_N (E_DIRECY _arg_direc_y);
+inline BOOL F_Check_direc_north (E_DIRECY _arg_direc_y);
 
 /**
  * \brief 
@@ -174,7 +174,7 @@ inline BOOL CHEN_DIREC_TF_N (E_DIRECY _arg_direc_y);
  * 
  * \return BOOL 上記の通り。それ以外はFALSE
  */
-inline BOOL CHEN_DIREC_TF_S (E_DIRECY _arg_direc_y);
+inline BOOL F_Check_direc_south (E_DIRECY _arg_direc_y);
 
 /**
  * \brief 
@@ -184,6 +184,6 @@ inline BOOL CHEN_DIREC_TF_S (E_DIRECY _arg_direc_y);
  * 
  * \return BOOL 上記の通り。それ以外はFALSE
  */
-inline BOOL CHEN_DIREC_TF_Z (E_DIRECY _arg_direc_y);
+inline BOOL F_Check_direc_zero (E_DIRECY _arg_direc_y);
 
 #include "H28_NEW_MAIN_func_direc.cpp"

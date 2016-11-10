@@ -1,8 +1,6 @@
 ﻿
 #pragma once
 
-#include "H28_NEW_MAIN_func_wheel_2.h"
-
 inline void
 F_Do_wheel_2
 (
@@ -11,8 +9,8 @@ F_Do_wheel_2
 	T_PWM _arg_pwm
 )
 {
-	_arg_motor[0].Write_data(SET_SIG(_arg_direc_move),_arg_pwm);
-	_arg_motor[1].Write_data(SET_SIG(_arg_direc_move),_arg_pwm);
+	_arg_motor[0].Write_data(F_Func_sig(_arg_direc_move),_arg_pwm);
+	_arg_motor[1].Write_data(F_Func_sig(_arg_direc_move),_arg_pwm);
 }
 
 inline void
@@ -26,7 +24,7 @@ F_Do_wheel_turn_2
 	BOOL _arg_sig_base = TRUE
 )
 {
-	E_SIG _sig = SET_SIG(_arg_sig_base);
+	E_SIG _sig = F_Func_sig(_arg_sig_base);
 	
 	BOOL _turn_0 = FALSE;
 	BOOL _turn_1 = FALSE;
@@ -72,14 +70,14 @@ F_Do_wheel_turn_2
 	BOOL _arg_sig_base = TRUE
 )
 {
-	E_SIG _sig = SET_SIG(_arg_sig_base);
+	E_SIG _sig = F_Func_sig(_arg_sig_base);
 	E_DIRECX _direc = _arg_direc_x;
 	
 	if (_arg_nf_turn)
 	{
-		_sig = TURN_SIG_ROTATE(_sig);
+		_sig = F_Turn_sig_rotate(_sig);
 		
-		_direc = TURN_DIREC_X(_direc);
+		_direc = F_Turn_direc_x(_direc);
 	}
 	
 	switch (_direc)

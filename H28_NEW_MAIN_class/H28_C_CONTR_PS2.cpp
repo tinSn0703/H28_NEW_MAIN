@@ -1,8 +1,6 @@
 ﻿
 #pragma once
 
-#include "H28_C_CONTR_PS2.h"
-
 //public member
 
 inline 

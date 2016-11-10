@@ -1,8 +1,6 @@
 
 #pragma once
 
-#include "H28_C_CONTR.h"
-
 inline void
 C_CONTR ::
 In

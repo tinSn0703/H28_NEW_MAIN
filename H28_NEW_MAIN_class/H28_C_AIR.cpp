@@ -1,8 +1,6 @@
 ﻿
 #pragma once
 
-#include "H28_C_AIR.h"
-
 inline 
 C_AIR ::
 C_AIR (T_DATA_8 _arg_air_data = 0x00)
@@ -23,7 +21,7 @@ inline BOOL
 C_AIR ::
 Ret_num (T_NUM _arg_air_num)
 {
-	return CHECK_BIT_TF(_mem_air_data._byte,_arg_air_num);
+	return F_Check_bit_bool(_mem_air_data._byte, _arg_air_num);
 }
 
 inline void 

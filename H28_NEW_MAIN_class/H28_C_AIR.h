@@ -113,14 +113,14 @@ public:
 	 */
 	void Turn_num(T_NUM _arg_air_num);
 
-	void Turn_0()	{	_mem_air_data._bit._air0 = TURN_TF(_mem_air_data._bit._air0);	}
-	void Turn_1()	{	_mem_air_data._bit._air1 = TURN_TF(_mem_air_data._bit._air1);	}
-	void Turn_2()	{	_mem_air_data._bit._air2 = TURN_TF(_mem_air_data._bit._air2);	}
-	void Turn_3()	{	_mem_air_data._bit._air3 = TURN_TF(_mem_air_data._bit._air3);	}
-	void Turn_4()	{	_mem_air_data._bit._air4 = TURN_TF(_mem_air_data._bit._air4);	}
-	void Turn_5()	{	_mem_air_data._bit._air5 = TURN_TF(_mem_air_data._bit._air5);	}
-	void Turn_6()	{	_mem_air_data._bit._air6 = TURN_TF(_mem_air_data._bit._air6);	}
-	void Turn_7()	{	_mem_air_data._bit._air7 = TURN_TF(_mem_air_data._bit._air7);	}
+	void Turn_0()	{	_mem_air_data._bit._air0 = F_Turn_bool(_mem_air_data._bit._air0);	}
+	void Turn_1()	{	_mem_air_data._bit._air1 = F_Turn_bool(_mem_air_data._bit._air1);	}
+	void Turn_2()	{	_mem_air_data._bit._air2 = F_Turn_bool(_mem_air_data._bit._air2);	}
+	void Turn_3()	{	_mem_air_data._bit._air3 = F_Turn_bool(_mem_air_data._bit._air3);	}
+	void Turn_4()	{	_mem_air_data._bit._air4 = F_Turn_bool(_mem_air_data._bit._air4);	}
+	void Turn_5()	{	_mem_air_data._bit._air5 = F_Turn_bool(_mem_air_data._bit._air5);	}
+	void Turn_6()	{	_mem_air_data._bit._air6 = F_Turn_bool(_mem_air_data._bit._air6);	}
+	void Turn_7()	{	_mem_air_data._bit._air7 = F_Turn_bool(_mem_air_data._bit._air7);	}
 
 	/**
 	 * \brief 

@@ -53,30 +53,30 @@ protected:
 		
 		void Write (T_DATA_8 _arg_arr_data[__CON_BYTE_UART__])
 		{
-			_data_bit._btn_cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_arr_data[1],1),CHECK_BIT_TF(_arg_arr_data[0],5));
-			_data_bit._btn_cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_arr_data[0],4),CHECK_BIT_TF(_arg_arr_data[1],0));
+			_data_bit._btn_cross_x = F_Func_direc_x(F_Check_bit_bool(_arg_arr_data[1],1),F_Check_bit_bool(_arg_arr_data[0],5));
+			_data_bit._btn_cross_y = F_Func_direc_y(F_Check_bit_bool(_arg_arr_data[0],4),F_Check_bit_bool(_arg_arr_data[1],0));
 			
-			_data_bit._stick_left_x = SET_DIREC_X(_arg_arr_data[3],2);
-			_data_bit._stick_left_y = SET_TURN_DIREC_Y(_arg_arr_data[3],4);
+			_data_bit._stick_left_x = F_Func_direc_x(_arg_arr_data[3],2);
+			_data_bit._stick_left_y = F_Func_turn_direc_y(_arg_arr_data[3],4);
 			
-			_data_bit._stick_right_x = SET_DIREC_X(_arg_arr_data[2],4);
-			_data_bit._stick_right_y = SET_TURN_DIREC_Y(_arg_arr_data[3],0);
+			_data_bit._stick_right_x = F_Func_direc_x(_arg_arr_data[2],4);
+			_data_bit._stick_right_y = F_Func_turn_direc_y(_arg_arr_data[3],0);
 			
-			_data_bit._btn_start   = CHECK_TURN_BIT_TF(_arg_arr_data[0],3);
-			_data_bit._btn_select  = CHECK_TURN_BIT_TF(_arg_arr_data[0],0);
+			_data_bit._btn_start   = F_Check_turn_bit_bool(_arg_arr_data[0],3);
+			_data_bit._btn_select  = F_Check_turn_bit_bool(_arg_arr_data[0],0);
 			
-			_data_bit._btn_right_1 = CHECK_TURN_BIT_TF(_arg_arr_data[1],5);
-			_data_bit._btn_right_2 = CHECK_TURN_BIT_TF(_arg_arr_data[1],3);
-			_data_bit._btn_right_3 = CHECK_TURN_BIT_TF(_arg_arr_data[0],2);
+			_data_bit._btn_right_1 = F_Check_turn_bit_bool(_arg_arr_data[1],5);
+			_data_bit._btn_right_2 = F_Check_turn_bit_bool(_arg_arr_data[1],3);
+			_data_bit._btn_right_3 = F_Check_turn_bit_bool(_arg_arr_data[0],2);
 			
-			_data_bit._btn_left_1  = CHECK_TURN_BIT_TF(_arg_arr_data[1],4);
-			_data_bit._btn_left_2  = CHECK_TURN_BIT_TF(_arg_arr_data[1],2);
-			_data_bit._btn_left_3  = CHECK_TURN_BIT_TF(_arg_arr_data[0],1);
+			_data_bit._btn_left_1  = F_Check_turn_bit_bool(_arg_arr_data[1],4);
+			_data_bit._btn_left_2  = F_Check_turn_bit_bool(_arg_arr_data[1],2);
+			_data_bit._btn_left_3  = F_Check_turn_bit_bool(_arg_arr_data[0],1);
 			
-			_data_bit._btn_squ = CHECK_TURN_BIT_TF(_arg_arr_data[2],3);
-			_data_bit._btn_cro = CHECK_TURN_BIT_TF(_arg_arr_data[2],2);
-			_data_bit._btn_cir = CHECK_TURN_BIT_TF(_arg_arr_data[2],1);
-			_data_bit._btn_tri = CHECK_TURN_BIT_TF(_arg_arr_data[2],0);
+			_data_bit._btn_squ = F_Check_turn_bit_bool(_arg_arr_data[2],3);
+			_data_bit._btn_cro = F_Check_turn_bit_bool(_arg_arr_data[2],2);
+			_data_bit._btn_cir = F_Check_turn_bit_bool(_arg_arr_data[2],1);
+			_data_bit._btn_tri = F_Check_turn_bit_bool(_arg_arr_data[2],0);
 		}
 	};
 	
@@ -123,29 +123,29 @@ protected:
 		
 		void Write (T_DATA_8 _arg_arr_data[__CON_BYTE_UART__])
 		{
-			_data_bit._btn_cross_x = SET_DIREC_X(CHECK_BIT_TF(_arg_arr_data[1], 1), CHECK_BIT_TF(_arg_arr_data[0], 5));
-			_data_bit._btn_cross_y = SET_DIREC_Y(CHECK_BIT_TF(_arg_arr_data[0], 4), CHECK_BIT_TF(_arg_arr_data[1], 0));
+			_data_bit._btn_cross_x = F_Func_direc_x(F_Check_bit_bool(_arg_arr_data[1], 1), F_Check_bit_bool(_arg_arr_data[0], 5));
+			_data_bit._btn_cross_y = F_Func_direc_y(F_Check_bit_bool(_arg_arr_data[0], 4), F_Check_bit_bool(_arg_arr_data[1], 0));
 			
-			_data_bit._stick_left_x = SET_DIREC_X(_arg_arr_data[3], 2);
-			_data_bit._stick_left_y = SET_DIREC_Y(_arg_arr_data[3], 4);
+			_data_bit._stick_left_x = F_Func_direc_x(_arg_arr_data[3], 2);
+			_data_bit._stick_left_y = F_Func_direc_y(_arg_arr_data[3], 4);
 			
-			_data_bit._stick_right_x = SET_DIREC_X(_arg_arr_data[2], 4);
-			_data_bit._stick_right_y = SET_DIREC_Y(_arg_arr_data[3], 0);
+			_data_bit._stick_right_x = F_Func_direc_x(_arg_arr_data[2], 4);
+			_data_bit._stick_right_y = F_Func_direc_y(_arg_arr_data[3], 0);
 			
-			_data_bit._btn_start  = CHECK_TURN_BIT_TF(_arg_arr_data[0], 3);
-			_data_bit._btn_select = CHECK_TURN_BIT_TF(_arg_arr_data[0], 0);
-			_data_bit._btn_home   = CHECK_TURN_BIT_TF(_arg_arr_data[0], 1);
+			_data_bit._btn_start  = F_Check_turn_bit_bool(_arg_arr_data[0], 3);
+			_data_bit._btn_select = F_Check_turn_bit_bool(_arg_arr_data[0], 0);
+			_data_bit._btn_home   = F_Check_turn_bit_bool(_arg_arr_data[0], 1);
 			
-			_data_bit._btn_right = CHECK_TURN_BIT_TF(_arg_arr_data[1], 5);
-			_data_bit._btn_right_z = CHECK_TURN_BIT_TF(_arg_arr_data[1], 3);
+			_data_bit._btn_right = F_Check_turn_bit_bool(_arg_arr_data[1], 5);
+			_data_bit._btn_right_z = F_Check_turn_bit_bool(_arg_arr_data[1], 3);
 			
-			_data_bit._btn_left  = CHECK_TURN_BIT_TF(_arg_arr_data[1], 4);
-			_data_bit._btn_left_z  = CHECK_TURN_BIT_TF(_arg_arr_data[1], 2);
+			_data_bit._btn_left  = F_Check_turn_bit_bool(_arg_arr_data[1], 4);
+			_data_bit._btn_left_z  = F_Check_turn_bit_bool(_arg_arr_data[1], 2);
 			
-			_data_bit._btn_y = CHECK_TURN_BIT_TF(_arg_arr_data[2], 3);
-			_data_bit._btn_b = CHECK_TURN_BIT_TF(_arg_arr_data[2], 2);
-			_data_bit._btn_a = CHECK_TURN_BIT_TF(_arg_arr_data[2], 1);
-			_data_bit._btn_x = CHECK_TURN_BIT_TF(_arg_arr_data[2], 0);
+			_data_bit._btn_y = F_Check_turn_bit_bool(_arg_arr_data[2], 3);
+			_data_bit._btn_b = F_Check_turn_bit_bool(_arg_arr_data[2], 2);
+			_data_bit._btn_a = F_Check_turn_bit_bool(_arg_arr_data[2], 1);
+			_data_bit._btn_x = F_Check_turn_bit_bool(_arg_arr_data[2], 0);
 		}
 	};
 	

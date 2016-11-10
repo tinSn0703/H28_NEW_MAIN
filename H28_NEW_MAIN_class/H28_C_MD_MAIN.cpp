@@ -8,8 +8,6 @@ ver 0.0.0 H28 05 04
 ver 1.0.0 H28 05 24 共用体と構造体を活用してみました
 */
 
-#include "H28_C_MD_MAIN.h"
-
 inline 
 C_MD_MAIN::
 C_MD_MAIN
@@ -50,7 +48,7 @@ inline void
 C_MD_MAIN :: 
 Turn_sig_reverse ()
 {
-	_mem_md_main_nf_sig_reverse = TURN_TF(_mem_md_main_nf_sig_reverse);
+	_mem_md_main_nf_sig_reverse = F_Turn_bool(_mem_md_main_nf_sig_reverse);
 }
 
 inline void 

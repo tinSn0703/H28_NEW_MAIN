@@ -103,21 +103,21 @@ public:
 	 * 
 	 * \param _arg_num_md : MDの番号(0~3)
 	 */
-	void Chan_md(usint _arg_num_md);
+	void Reset_num_md(usint _arg_num_md);
+	
+	/**
+	 * \brief 正逆反転の設定。SIGの設定の前に行うこと
+	 * 
+	 * \param _arg_sig_turn 
+	 *		TURE  -> 反転
+	 *		FALSE -> そのまま
+	 */
+	void Reset_sig_reverse(BOOL _arg_sig_turn);
 	
 	/**
 	 * \brief 反転の設定を入れ替える
 	 */
-	void Chan_reverse();
-	
-	/**
-	 * \brief MDCへデータを送信する
-	 * 
-	 * \param _arg_uart_t : 送信に使うUART
-	 */
-	void Out(C_UART_T &_arg_uart_t);
-	
-	//データセット
+	void Turn_sig_reverse();
 	
 	/**
 	 * \brief 動作の設定
@@ -150,22 +150,12 @@ public:
 	void Write_sig(E_SIG _arg_sig_mode);
 	
 	/**
-	 * \brief 正逆反転の設定。SIGの設定の前に行うこと
-	 * 
-	 * \param _arg_sig_turn 
-	 *		TURE  -> 反転
-	 *		FALSE -> そのまま
-	 */
-	void Write_sig_turn(BOOL _arg_sig_turn);
-	
-	/**
 	 * \brief 段々の設定
 	 * 
 	 * \param _arg_nf_steps : ONOFF
 	 */
 	void Write_steps(BOOL _arg_nf_steps);
 	
-	//データのreturn
 	T_DATA Ret_data_0()	{	return _mem_md_main_data_0._data_all;			}
 	T_DATA Ret_data_1()	{	return _mem_md_main_data_1._data_all;			}
 	usint Ret_num_mdc()	{	return _mem_md_main_data_0._data_divi._num_mdc;	}
@@ -174,6 +164,19 @@ public:
 	T_PWM Ret_pwm()		{	return _mem_md_main_data_1._data_divi._pwm;		}
 	BOOL Ret_steps()	{	return _mem_md_main_data_0._data_divi._nf_step;	}
 	BOOL Ret_reverse()	{	return _mem_md_main_nf_sig_reverse;				}
+	
+	void Do(const BOOL , const BOOL , const T_PWM );
+	
+	void Do(const E_DIRECX , const T_PWM );
+	
+	void Do(const E_DIRECY , const T_PWM );
+	
+	/**
+	 * \brief MDCへデータを送信する
+	 * 
+	 * \param _arg_uart_t : 送信に使うUART
+	 */
+	void Out(C_UART_T &_arg_uart_t);
 	
 	//Lcd表示
 	

@@ -1,8 +1,6 @@
 ﻿
 #pragma once
 
-#include "H28_C_CONTR_Wii.h"
-
 //public
 inline 
 C_CONTR_Wii ::

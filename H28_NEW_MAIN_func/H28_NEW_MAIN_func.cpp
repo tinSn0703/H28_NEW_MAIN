@@ -1,8 +1,5 @@
 ﻿
-
 #pragma once
-
-#include "H28_NEW_MAIN_func.h"
 
 template <class DIREC>
 inline 

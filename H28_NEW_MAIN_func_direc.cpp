@@ -1,10 +1,8 @@
 ﻿
 #pragma once
 
-#include "H28_NEW_MAIN_func_direc.h"
-
 inline E_DIRECX
-SET_DIREC_X
+F_Func_direc_x
 (
 	T_DATA _arg_direc_x_data,
 	T_NUM _arg_direc_x_bit
@@ -14,7 +12,7 @@ SET_DIREC_X
 }
 
 inline E_DIRECX
-SET_DIREC_X
+F_Func_direc_x
 (
 	BOOL _arg_direc_x_east,
 	BOOL _arg_direc_x_west
@@ -26,7 +24,7 @@ SET_DIREC_X
 }
 
 inline E_DIRECX
-SET_TURN_DIREC_X
+F_Func_turn_direc_x
 (
 	T_DATA _arg_direc_x_data,
 	T_NUM _arg_direc_x_bit
@@ -36,33 +34,31 @@ SET_TURN_DIREC_X
 }
 
 inline E_DIRECX
-TURN_DIREC_X (E_DIRECX _arg_direc_x )
+F_Turn_direc_x (E_DIRECX _arg_direc_x )
 {
 	return (E_DIRECX)((__DIREC_TURN__ >> (((usint)_arg_direc_x) * 2)) & 3);
 }
 
 inline BOOL 
-CHEN_DIREC_TF_E (E_DIRECX _arg_direc_x)
+F_Check_direc_east (E_DIRECX _arg_direc_x)
 {
 	return (BOOL)((0b0010 >> _arg_direc_x) & 1);
 }
 
 inline BOOL
-CHEN_DIREC_TF_W (E_DIRECX _arg_direc_x)
+F_Check_direc_west (E_DIRECX _arg_direc_x)
 {
 	return (BOOL)((0b0100 >> _arg_direc_x) & 1);
 }
 
 inline BOOL
-CHEN_DIREC_TF_Z (E_DIRECX _arg_direc_x)
+F_Check_direc_zero (E_DIRECX _arg_direc_x)
 {
 	return (BOOL)((0b1000 >> _arg_direc_x) & 1);
 }
 
-/************************************************************************/
-
 inline E_DIRECY
-SET_DIREC_Y
+F_Func_direc_y
 (
 	T_DATA _arg_direc_y_data,
 	T_NUM _arg_direc_y_bit
@@ -72,7 +68,7 @@ SET_DIREC_Y
 }
 
 inline E_DIRECY
-SET_DIREC_Y
+F_Func_direc_y
 (
 	BOOL _arg_direc_y_north,
 	BOOL _arg_direc_y_south
@@ -84,7 +80,7 @@ SET_DIREC_Y
 }
 
 inline E_DIRECY
-SET_TURN_DIREC_Y
+F_Func_turn_direc_y
 (
 	T_DATA _arg_direc_y_data,
 	T_NUM _arg_direc_y_bit
@@ -94,25 +90,25 @@ SET_TURN_DIREC_Y
 }
 
 inline E_DIRECY
-TURN_DIREC_Y (E_DIRECY _arg_direc_y )
+F_Turn_direc_y (E_DIRECY _arg_direc_y )
 {
 	return (E_DIRECY)((__DIREC_TURN__ >> (((usint)_arg_direc_y) * 2)) & 3);
 }
 
 inline BOOL
-CHEN_DIREC_TF_N (E_DIRECY _arg_direc_y)
+F_Check_direc_north (E_DIRECY _arg_direc_y)
 {
 	return (BOOL)((0b0010 >> _arg_direc_y) & 1);
 }
 
 inline BOOL
-CHEN_DIREC_TF_S (E_DIRECY _arg_direc_y)
+F_Check_direc_south (E_DIRECY _arg_direc_y)
 {
 	return (BOOL)((0b0100 >> _arg_direc_y) & 1);
 }
 
 inline BOOL
-CHEN_DIREC_TF_Z (E_DIRECY _arg_direc_y)
+F_Check_direc_zero (E_DIRECY _arg_direc_y)
 {
 	return (BOOL)((0b1000 >> _arg_direc_y) & 1);
 }

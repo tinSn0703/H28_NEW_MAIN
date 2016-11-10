@@ -1,8 +1,6 @@
 ﻿
 #pragma once
 
-#include "H28_NEW_MAIN_func_lcd.h"
-
 inline void 
 F_Lcd_mdc_sig 
 (

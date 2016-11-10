@@ -1,8 +1,6 @@
 ﻿
 #pragma once
 
-#include "H28_C_SERVO.h"
-
 inline
 C_SERVO :: 
 C_SERVO (T_DATA_8 _arg_num, T_DATA_8 _arg_angle = 0)
