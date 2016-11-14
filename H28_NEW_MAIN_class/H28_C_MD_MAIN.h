@@ -165,11 +165,33 @@ public:
 	BOOL Ret_steps()	{	return _mem_md_main_data_0._data_divi._nf_step;	}
 	BOOL Ret_reverse()	{	return _mem_md_main_nf_sig_reverse;				}
 	
-	void Do(const BOOL , const BOOL , const T_PWM );
+	/**
+	 * \brief 
+	 *	モーターを正逆転させる設定を行う。両方FALSEの場合は、ES_STOP。
+	 *
+	 * \param _arg_motor_set_true	: ES_TRUEにする
+	 * \param _arg_motor_set_false	: ES_FALSEにする
+	 * \param _arg_pwm				: PWM
+	 */
+	void Do(const BOOL _arg_motor_set_true, const BOOL _arg_motor_set_false, const T_PWM _arg_pwm);
 	
-	void Do(const E_DIRECX , const T_PWM );
+	/**
+	 * \brief 
+	 *	モーターを正逆転させる設定を行う。
+	 *
+	 * \param _arg_motor_set	: ED_EASTのときES_TRUE,ED_WESTのときES_FALSE,ED_XZEROのときES_STOP
+	 * \param _arg_pwm			: PWM
+	 */
+	void Do(const E_DIRECX _arg_motor_set, const T_PWM _arg_pwm);
 	
-	void Do(const E_DIRECY , const T_PWM );
+	/**
+	 * \brief 
+	 *	モーターを正逆転させる設定を行う。
+	 * 
+	 * \param _arg_motor_set	: ED_NORTHのときES_TRUE,ED_SOUTHのときES_FALSE,ED_YZEROのときES_STOP
+	 * \param _arg_pwm			: PWM
+	 */
+	void Do(const E_DIRECY _arg_motor_set, const T_PWM _arg_pwm);
 	
 	/**
 	 * \brief MDCへデータを送信する

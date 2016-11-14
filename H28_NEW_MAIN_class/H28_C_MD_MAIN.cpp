@@ -109,6 +109,46 @@ Write_data
 	Write_steps(_arg_nf_steps);
 }
 
+inline void 
+C_MD_MAIN ::
+Do
+(
+	const BOOL	_arg_motor_set_true, 
+	const BOOL	_arg_motor_set_false, 
+	const T_PWM _arg_pwm
+)
+{
+	E_SIG _temp_sig = ES_STOP;
+	
+	if (_arg_motor_set_false)	_temp_sig = ES_FALSE;
+	if (_arg_motor_set_true)	_temp_sig = ES_TRUE;
+	
+	
+	Write_data(_temp_sig,_arg_pwm);
+}
+
+inline void
+C_MD_MAIN ::
+Do
+(
+	const E_DIRECX	_arg_motor_set,
+	const T_PWM		_arg_pwm
+)
+{
+	Write_data(F_Func_sig(_arg_motor_set), _arg_pwm);
+}
+
+inline void
+C_MD_MAIN ::
+Do
+(
+	const E_DIRECY	_arg_motor_set,
+	const T_PWM		_arg_pwm
+)
+{
+		Write_data(F_Func_sig(_arg_motor_set), _arg_pwm);
+}
+
 void 
 C_MD_MAIN::
 Out (C_UART_T &_arg_uart_t)
