@@ -4,7 +4,7 @@
 #include "H28_C_CONTR.h"
 
 /**
- * Wiiコントローラからデータを受け取る時用
+ * Wiiコントローラからデータを扱うためのクラス
  */
 class C_CONTR_Wii : public C_CONTR
 {

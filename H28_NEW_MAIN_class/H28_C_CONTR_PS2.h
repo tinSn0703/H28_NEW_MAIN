@@ -102,24 +102,24 @@ public:
 	 */
 	void Lcd_Lsti (T_ADRS _arg_adrs);
 	
-	void Lcd_cross_x(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_cross_x(),1,ED_10);	}
-	void Lcd_cross_y(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_cross_y(),1,ED_10);	}
-	void Lcd_Rsti_x	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Rsti_x(),1,ED_10);	}
-	void Lcd_Rsti_y	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Rsti_y(),1,ED_10);	}
-	void Lcd_Lsti_x	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Lsti_x(),1,ED_10);	}
-	void Lcd_Lsti_y	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_Lsti_y(),1,ED_10);	}
-	void Lcd_select	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_select(),1,ED_10);	}
-	void Lcd_start	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_start(),1,ED_10);		}
-	void Lcd_tri	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_tri(),1,ED_10);		}
-	void Lcd_cir	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_cir(),1,ED_10);		}
-	void Lcd_squ	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_squ(),1,ED_10);		}
-	void Lcd_cro	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_cro(),1,ED_10);		}
-	void Lcd_R1		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_R1(),1,ED_10);		}
-	void Lcd_R2		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_R2(),1,ED_10);		}
-	void Lcd_R3		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_R3(),1,ED_10);		}
-	void Lcd_L1		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_L1(),1,ED_10);		}
-	void Lcd_L2		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_L2(),1,ED_10);		}
-	void Lcd_L3		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr,Ret_L3(),1,ED_10);		}
+	void Lcd_cross_x(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_cross_x(), 1, ED_10);	}
+	void Lcd_cross_y(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_cross_y(), 1, ED_10);	}
+	void Lcd_Rsti_x	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_Rsti_x(), 1, ED_10);		}
+	void Lcd_Rsti_y	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_Rsti_y(), 1, ED_10);		}
+	void Lcd_Lsti_x	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_Lsti_x(), 1, ED_10);		}
+	void Lcd_Lsti_y	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_Lsti_y(), 1, ED_10);		}
+	void Lcd_select	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_select(), 1, ED_10);		}
+	void Lcd_start	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_start(), 1, ED_10);		}
+	void Lcd_tri	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_tri(), 1, ED_10);		}
+	void Lcd_cir	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_cir(), 1, ED_10);		}
+	void Lcd_squ	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_squ(), 1, ED_10);		}
+	void Lcd_cro	(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_cro(), 1, ED_10);		}
+	void Lcd_R1		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_R1(), 1, ED_10);			}
+	void Lcd_R2		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_R2(), 1, ED_10);			}
+	void Lcd_R3		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_R3(), 1, ED_10);			}
+	void Lcd_L1		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_L1(), 1, ED_10);			}
+	void Lcd_L2		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_L2(), 1, ED_10);			}
+	void Lcd_L3		(T_ADRS _arg_addr)	{	Lcd_put_num(_arg_addr, Ret_L3(), 1, ED_10);			}
 };
 
 #include "H28_C_CONTR_PS2.cpp"
